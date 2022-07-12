@@ -37,6 +37,14 @@ async def no_DM(ctx):
 async def on_ready():
     await notifer.showWelcomeMessage(disnake, bot, config)
 
+@bot.event
+async def on_guild_join(guild):
+    await notifer.refreshStatus(disnake, bot, config)
+
+@bot.event
+async def on_guild_leave(guild):
+    await notifer.refreshStatus(disnake, bot, config)
+
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'ru_RU'))
 async def help_cmd(ctx, arg):
     await help.sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg)
