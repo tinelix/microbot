@@ -3,7 +3,7 @@ import re
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     query = int(re.search(r'\d+', arg).group())
     user = bot.get_user(query)
-    member = ctx.message.guild.get_member(query)
+    member = ctx.guild.get_member(query)
 
     if(user == None):
         msg_embed = disnake.Embed(
@@ -84,7 +84,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
     query = int(re.search(r'\d+', arg).group())
     user = bot.get_user(query)
-    member = ctx.message.guild.get_member(query)
+    member = ctx.guild.get_member(query)
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
     class AvatarByButton(disnake.ui.View):
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))

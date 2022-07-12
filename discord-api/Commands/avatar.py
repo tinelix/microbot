@@ -3,14 +3,14 @@ import re
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     query = int(re.search(r'\d+', arg).group())
     user = bot.get_user(query)
-    member = ctx.message.guild.get_member(query)
+    member = ctx.guild.get_member(query)
     msg_embed = disnake.Embed(
         title=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator),
         colour=config['accent_def'],
     ).set_image(user.display_avatar.url)
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator):
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
     await ctx.response.send_message(embed=msg_embed)
 

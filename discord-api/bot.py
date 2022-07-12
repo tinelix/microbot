@@ -25,7 +25,7 @@ intents = disnake.Intents.all()
 bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
 
-language = 'en_US'
+language = 'ru_RU'
 
 # 6. Globally blocking all DMs
 @bot.check
@@ -43,7 +43,7 @@ async def help_cmd(ctx, arg):
 
 @bot.slash_command(name="help", description=translator.translate('command_description', 'help', 'ru_RU'))
 async def help_scmd(ctx):
-    await help.sendSlashMsg(ctx, bot, links, config, language, disnake, translator)
+    await help.sendSlashMsg(ctx, bot, config, links, language, disnake, translator)
 
 @bot.command(name="about", description=translator.translate('command_description', 'about', 'ru_RU'))
 async def about_cmd(ctx):
@@ -82,8 +82,8 @@ async def rngen_cmd(ctx, arg):
     await rngen.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="rngen", description=translator.translate('command_description', 'rngen', 'ru_RU'))
-async def rngen_scmd(ctx, question):
-    await rngen.sendSlashMsg(ctx, bot, config, language, disnake, translator, question)
+async def rngen_scmd(ctx, range):
+    await rngen.sendSlashMsg(ctx, bot, config, language, disnake, translator, range)
 
 @bot.command(name="eval")
 async def eval_cmd(ctx, arg):
