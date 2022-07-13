@@ -5,7 +5,14 @@ import sys
 import platform
 
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
+    msg_embed = disnake.Embed(
+        title=str(translator.translate('embed_title', 'about', language)),
+        description=translator.translate('embed_description', 'please_wait', language),
+        colour=config['accent_def'],
+    )
+    return msg_embed
 
+async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
     owner = bot.get_user(config['owner_id'])
 
     plt_system = platform.system()
@@ -40,10 +47,6 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator, 
     else:
         ram = translator.translate('numb_with_unit', 'gigabytes2', language).format(round(psutil.virtual_memory().used / 1024 / 1024 / 1024, 2), round(psutil.virtual_memory().total / 1024 / 1024 / 1024, 2))
 
-    msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'about', language)),
-        colour=config['accent_def'],
-    )
     msg_embed = disnake.Embed(
         title=str(translator.translate('embed_title', 'about', language)),
         colour=config['accent_def']
@@ -89,9 +92,12 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator, 
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version):
-    msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version)
-    await ctx.response.send_message(embed=msg_embed)
+    await ctx.response.defer()
+    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version)
+    await ctx.send(embed=msg_embed)
 
 async def sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version):
     msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version)
-    await ctx.reply(embed=msg_embed, mention_author=False)
+    msg = await ctx.reply(embed=msg_embed, mention_author=False)
+    msg_embed_2 = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version)
+    await msg.edit(embed=msg_embed_2)

@@ -23,6 +23,7 @@ def translate(where, str, language):
                     'error_unf': '😔 Пользователь не найден. Попробуйте найти другого пользователя.',
                     'bug_reporter': '🪲 Да, у нас и такое случается. Но ничего страшного, сейчас отправим разработчикам на исправление этого бага.',
                     'forbidden': '🚫 Вы не имеете права пользоваться этой командой!',
+                    'please_wait': '⌛ Подождите...',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -40,7 +41,7 @@ def translate(where, str, language):
                     'about_regdf': 'Дата регистрации',
                     'about_regdv': '{0}',
                     'about_statsf': 'Статистика',
-                    'about_statsv': '{0} серверов\r\n{0} пользователей',
+                    'about_statsv': '{0} серверов\r\n{1} пользователей',
                     'about_basedf': 'Создано на базе',
                     'about_basedv': 'Python {0}\r\nDisnake {1}',
                     'about_hardwf': 'Оборудование',
@@ -153,6 +154,7 @@ def translate(where, str, language):
                     'error_unf': '😔 User not found. Try to find another user.',
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
+                    'please_wait': '⌛ Wait...',
                 }
             elif where == "embed_fields":
                 locale = {
