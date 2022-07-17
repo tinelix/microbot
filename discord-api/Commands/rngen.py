@@ -10,14 +10,16 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
-    class RetryButton(disnake.ui.View):
-        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'rngen_retry', language))
-        async def regenerate(self, button: disnake.ui.Button, interaction: disnake.Interaction):
-            msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
-            await interaction.response.send_message(embed=msg_embed)
-
-    await ctx.response.send_message(embed=msg_embed, view=RetryButton())
+    try:
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        class RetryButton(disnake.ui.View):
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'rngen_retry', language))
+            async def regenerate(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+                msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+                await interaction.response.send_message(embed=msg_embed)
+        await ctx.response.send_message(embed=msg_embed, view=RetryButton())
+    except:
+        await sendHelpMsg(ctx, bot, config, language, disnake, translator)
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     try:

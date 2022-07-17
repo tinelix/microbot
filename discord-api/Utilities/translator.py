@@ -16,6 +16,7 @@ def translate(where, str, language):
                     'eval': 'Интерпретатор',
                     '8ball': 'Генератор случайных ответов',
                     'rngen': 'Генератор случайных чисел',
+                    'calc': 'Калькулятор',
                 }
             elif where == "embed_description":
                 locale = {
@@ -83,6 +84,13 @@ def translate(where, str, language):
                     '8ball_answv': ['Да.', 'Нет.', 'Возможно.', 'Может быть.', 'Время покажет.', 'Поживем - увидим.', 'Навряд ли.', 'Конечно.', 'Да-да.', 'Неа.', 'Так и есть.', 'Понятия не имею.', 'Я не знаю.', 'Я хз.', 'Без понятия.', 'Наверное, да...', 'Наверное, нет...', 'Да фиг знает!', 'Я не понял ваш вопрос, можете повторить?', 'Попробуйте задать другой вопрос. Может быть, я что-то не понимаю?', 'Вероятно.', 'Ничего подобного.'],
                     'rngen_numbf': 'Число',
                     'rngen_numbv': '{0}',
+                    'calc_resulf': 'Результат',
+                    'calc_rlerrv': 'ОШИБКА: Попытка деления на ноль',
+                    'calc_rlerrv2': 'ОШИБКА: Слишком большое число',
+                    'calc_rlerrv3': 'ОШИБКА: Принимаются только числа',
+                    'calc_rlerrv4': 'ОШИБКА: {0}',
+                    'calc_asignf': 'Доступные знаки',
+                    'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение'
                 }
             elif where == "embed_footer":
                 locale = {
@@ -96,7 +104,8 @@ def translate(where, str, language):
                     'avatar': 'Показывает аватарки пользователя.',
                     '8ball': 'Генерирует для любого вопроса случайный ответ. Все совпадения случайны!',
                     'rngen': 'Генерирует случайное число в указанном диапазоне.',
-                    'guild': 'Показывает информацию о гильдии (сервере)'
+                    'guild': 'Показывает информацию о гильдии (сервере)',
+                    'calc': 'Простойшей калькулятор.'
                 }
             elif where == "command_examples":
                 locale = {
@@ -147,6 +156,7 @@ def translate(where, str, language):
                     'eval': 'Interpreter',
                     '8ball': 'Random Answer Generator',
                     'rngen': 'Random Number Generator',
+                    'calc': 'Calculator',
                 }
             elif where == "embed_description":
                 locale = {
@@ -215,6 +225,13 @@ def translate(where, str, language):
                     '8ball_answv': ['Yes.', 'No.', 'Maybe.', 'Time will tell.', 'Wait and see.', 'Unlikely.', 'Of course.', 'Yep.', 'Nope.', 'And there is.', 'I have no idea.', 'I don\'t know', 'No idea.', 'Maybe yes...', 'Maybe no...', 'Who knows!', 'I didn\'t understand your question, can you repeat?', 'Try asking a different question. Maybe I don\'t understand something?', 'Probably.', 'Nothing like this.'],
                     'rngen_numbf': 'Number',
                     'rngen_numbv': '{0}',
+                    'calc_resulf': 'Result',
+                    'calc_rlerrv': 'ERROR: Attempt to divide by zero',
+                    'calc_rlerrv2': 'ERROR: Number too large',
+                    'calc_rlerrv3': 'ERROR: Only numbers are accepted',
+                    'calc_rlerrv4': 'ERROR: {0}',
+                    'calc_asignf': 'Available signs',
+                    'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication'
                 }
             elif where == "command_description":
                 locale = {
@@ -225,6 +242,7 @@ def translate(where, str, language):
                     '8ball': 'Generates a random answer for any question. All matches are random!',
                     'rngen': 'Generates a number in a specified range.',
                     'guild': 'Shows guild (server) info',
+                    'calc': 'Simplest calculator.'
                 }
             elif where == "embed_footer":
                 locale = {
@@ -239,6 +257,7 @@ def translate(where, str, language):
                     '8ball': '```{0}8ball [question]```',
                     'rngen': '```{0}rngen [beginning of range]-[end of range]```',
                     'guild': '```{0}guild```',
+                    'calc': '```{0}calc [expression]```',
                 }
             elif where == "button":
                 locale = {

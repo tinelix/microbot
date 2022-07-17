@@ -5,7 +5,7 @@ dotenv_path = os.path.join('../', '.env')
 config = {
     'token': os.environ['TOKEN'], # Discord API token from system environment
     'name': 'Microbot',
-    'version': '0.0.3',
+    'version': '0.0.5',
     'version_date': '2022-07-13',
     'prefix': '>',
     'accent_def': 0x33b5e5,

@@ -3,7 +3,6 @@ import disnake
 import platform
 import os
 import json
-import numexpr
 import traceback
 import glob
 import sys
@@ -22,7 +21,7 @@ from config import *
 
 # 5. Creating Discord bot instance with all intents
 intents = disnake.Intents.all()
-bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
+bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands=True)
 bot.remove_command('help')
 
 language = 'ru_RU'
@@ -45,51 +44,51 @@ async def on_guild_join(guild):
 async def on_guild_leave(guild):
     await notifer.refreshStatus(disnake, bot, config)
 
-@bot.command(name="help", description=translator.translate('command_description', 'help', 'ru_RU'))
+@bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_cmd(ctx, arg):
     await help.sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg)
 
-@bot.slash_command(name="help", description=translator.translate('command_description', 'help', 'ru_RU'))
+@bot.slash_command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_scmd(ctx):
     await help.sendSlashMsg(ctx, bot, config, links, language, disnake, translator)
 
-@bot.command(name="about", description=translator.translate('command_description', 'about', 'ru_RU'))
+@bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
 async def about_cmd(ctx):
     await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version)
 
-@bot.slash_command(name="about", description=translator.translate('command_description', 'about', 'ru_RU'))
+@bot.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
 async def about_scmd(ctx):
     await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version)
 
-@bot.command(name="user", description=translator.translate('command_description', 'user', 'ru_RU'))
+@bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
 async def user_cmd(ctx, arg):
     await user.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.slash_command(name="user", description=translator.translate('command_description', 'user', 'ru_RU'))
+@bot.slash_command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
 async def user_scmd(ctx, member):
     await user.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
-@bot.command(name="avatar", description=translator.translate('command_description', 'avatar', 'ru_RU'))
+@bot.command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 async def avatar_cmd(ctx, arg):
     await avatar.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.slash_command(name="avatar", description=translator.translate('command_description', 'avatar', 'ru_RU'))
+@bot.slash_command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 async def avatar_scmd(ctx, member):
     await avatar.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
-@bot.command(name="8ball", description=translator.translate('command_description', '8ball', 'ru_RU'))
+@bot.command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
 async def eightball_cmd(ctx, arg):
     await eightball.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.slash_command(name="8ball", description=translator.translate('command_description', '8ball', 'ru_RU'))
+@bot.slash_command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
 async def eightball_scmd(ctx, question):
     await eightball.sendSlashMsg(ctx, bot, config, language, disnake, translator, question)
 
-@bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'ru_RU'))
+@bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
 async def rngen_cmd(ctx, arg):
     await rngen.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.slash_command(name="rngen", description=translator.translate('command_description', 'rngen', 'ru_RU'))
+@bot.slash_command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
 async def rngen_scmd(ctx, range):
     await rngen.sendSlashMsg(ctx, bot, config, language, disnake, translator, range)
 
@@ -97,13 +96,21 @@ async def rngen_scmd(ctx, range):
 async def eval_cmd(ctx, arg):
     await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.command(name="guild", description=translator.translate('command_description', 'guild', 'ru_RU'))
+@bot.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
 async def guild_cmd(ctx):
     await guild.sendRegularMsg(ctx, bot, config, language, disnake, translator)
 
-@bot.slash_command(name="guild", description=translator.translate('command_description', 'guild', 'ru_RU'))
+@bot.slash_command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
 async def guild_scmd(ctx):
     await guild.sendSlashMsg(ctx, bot, config, language, disnake, translator)
+
+@bot.command(name="calc", description=translator.translate('command_description', 'guild', 'en_US'))
+async def calc_cmd(ctx, arg):
+    await calc.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+
+@bot.slash_command(name="calc", description=translator.translate('command_description', 'guild', 'en_US'))
+async def calc_scmd(ctx, expression):
+    await calc.sendSlashMsg(ctx, bot, config, language, disnake, translator, expression)
 
 @bot.event
 async def on_command_error(ctx, error):

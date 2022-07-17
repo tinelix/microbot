@@ -40,6 +40,8 @@ async def sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator
         query = '8ball'
     elif(ctx.message.content.startswith('{0}rngen'.format(config['prefix']))):
         query = 'rngen'
+    elif(ctx.message.content.startswith('{0}calc'.format(config['prefix']))):
+        query = 'calc'
     else:
         return
     msg_embed = disnake.Embed(

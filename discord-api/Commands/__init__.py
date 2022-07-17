@@ -6,3 +6,4 @@ import Commands.eval
 import Commands.eightball
 import Commands.rngen
 import Commands.guild
+import Commands.calc
