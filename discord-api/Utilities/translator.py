@@ -111,6 +111,7 @@ def translate(where, str, language):
                     'rngen': 'Генерирует случайное число в указанном диапазоне.',
                     'guild': 'Показывает информацию о гильдии (сервере)',
                     'calc': 'Простойшей калькулятор.',
+                    'settings': 'Настройки бота.',
                     'settings_lang': 'Смена языка.',
                 }
             elif where == "command_examples":
@@ -256,6 +257,7 @@ def translate(where, str, language):
                     'rngen': 'Generates a number in a specified range.',
                     'guild': 'Shows guild (server) info',
                     'calc': 'Simplest calculator.',
+                    'settings': 'Bot settings.',
                     'settings_lang': 'Changing bot language.',
                 }
             elif where == "embed_footer":
