@@ -1,0 +1,46 @@
+import numexpr
+
+async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
+    if(len(arg) >= 2):
+        if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
+            if ctx.author.guild_permissions.administrator:
+                await db.update_value(ctx, database, cursor, 'guilds', 'language', '\'{0}\''.format(arg[1]), ctx.message.guild.id)
+                msg_embed = disnake.Embed(
+                    title=str(translator.translate('embed_title', 'settings', arg[1])),
+                    description=str(translator.translate('embed_description', 'settings_done', arg[1])),
+                    colour=config['accent_def']
+                )
+            else:
+                msg_embed = disnake.Embed(
+                    title=str(translator.translate('embed_title', 'forbidden', language)),
+                    description=str(translator.translate('embed_description', 'forbidden', language)),
+                    colour=config['accent_err']
+                )
+    else:
+        msg_embed = disnake.Embed(
+            title=str(translator.translate('embed_title', 'settings', language)),
+            description=str(translator.translate('embed_description', 'settings', language)),
+            colour=config['accent_def'],
+        )
+        msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
+    return msg_embed
+
+async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
+    class ChangeLanguageByButton(disnake.ui.View):
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🚩')
+            async def show_changing_language_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+                language_embed = disnake.Embed(
+                    title=str(translator.translate('embed_title', 'settings', language)),
+                    colour=config['accent_def'],
+                )
+                language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_lang', language).format(config['prefix']), inline=False)
+                await interaction.response.send_message(embed=language_embed)
+    if(len(arg) == 0):
+        await ctx.reply(embed=msg_embed, view=ChangeLanguageByButton(), mention_author=False)
+    else:
+        await ctx.reply(embed=msg_embed, mention_author=False)
+
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
+    await ctx.send(embed=msg_embed)

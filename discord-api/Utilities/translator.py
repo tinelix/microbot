@@ -17,6 +17,7 @@ def translate(where, str, language):
                     '8ball': 'Генератор случайных ответов',
                     'rngen': 'Генератор случайных чисел',
                     'calc': 'Калькулятор',
+                    'settings': 'Настройки',
                 }
             elif where == "embed_description":
                 locale = {
@@ -25,13 +26,15 @@ def translate(where, str, language):
                     'bug_reporter': '🪲 Да, у нас и такое случается. Но ничего страшного, сейчас отправим разработчикам на исправление этого бага.',
                     'forbidden': '🚫 Вы не имеете права пользоваться этой командой!',
                     'please_wait': '⌛ Подождите...',
+                    'settings': '**Настройки сервера:** 🇷🇺',
+                    'settings_done': '✅ Готово!',
                 }
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Префиксы',
                     'help_prefv': '`>` или `/`',
                     'help_cmdsf': 'Команды',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc`',
                     'help_exampf': 'Пример',
                     'eval_codelf': 'Листинг',
                     'eval_resulf': 'Результат',
@@ -90,7 +93,9 @@ def translate(where, str, language):
                     'calc_rlerrv3': 'ОШИБКА: Принимаются только числа',
                     'calc_rlerrv4': 'ОШИБКА: {0}',
                     'calc_asignf': 'Доступные знаки',
-                    'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение'
+                    'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение',
+                    'settings_availoptf': 'Доступные параметры',
+                    'settings_availoptv': '🚩 Язык (Language)',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -105,7 +110,8 @@ def translate(where, str, language):
                     '8ball': 'Генерирует для любого вопроса случайный ответ. Все совпадения случайны!',
                     'rngen': 'Генерирует случайное число в указанном диапазоне.',
                     'guild': 'Показывает информацию о гильдии (сервере)',
-                    'calc': 'Простойшей калькулятор.'
+                    'calc': 'Простойшей калькулятор.',
+                    'settings_lang': 'Смена языка.',
                 }
             elif where == "command_examples":
                 locale = {
@@ -116,6 +122,8 @@ def translate(where, str, language):
                     '8ball': '```{0}8ball [вопрос]```',
                     'rngen': '```{0}rngen [начало диапазона]-[конец диапазона]```',
                     'guild': '```{0}guild```',
+                    'settings': '```{0}settings [-L] [значение]\r\n{0}settings -L ru_RU```',
+                    'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                 }
             elif where == "button":
                 locale = {
@@ -157,6 +165,7 @@ def translate(where, str, language):
                     '8ball': 'Random Answer Generator',
                     'rngen': 'Random Number Generator',
                     'calc': 'Calculator',
+                    'settings': 'Settings',
                 }
             elif where == "embed_description":
                 locale = {
@@ -165,13 +174,15 @@ def translate(where, str, language):
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
                     'please_wait': '⌛ Wait...',
+                    'settings': '**Server settings:** 🇺🇸',
+                    'settings_done': '✅ Done!',
                 }
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Prefixes',
                     'help_prefv': '`>` or `/`',
                     'help_cmdsf': 'Commands',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc`',
                     'help_exampf': 'Examples',
                     'eval_codelf': 'Code listing',
                     'eval_resulf': 'Result',
@@ -231,7 +242,9 @@ def translate(where, str, language):
                     'calc_rlerrv3': 'ERROR: Only numbers are accepted',
                     'calc_rlerrv4': 'ERROR: {0}',
                     'calc_asignf': 'Available signs',
-                    'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication'
+                    'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication',
+                    'settings_availoptf': 'Available options',
+                    'settings_availoptv': '🚩 Язык (Language)',
                 }
             elif where == "command_description":
                 locale = {
@@ -242,7 +255,8 @@ def translate(where, str, language):
                     '8ball': 'Generates a random answer for any question. All matches are random!',
                     'rngen': 'Generates a number in a specified range.',
                     'guild': 'Shows guild (server) info',
-                    'calc': 'Simplest calculator.'
+                    'calc': 'Simplest calculator.',
+                    'settings_lang': 'Changing bot language.',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -258,6 +272,8 @@ def translate(where, str, language):
                     'rngen': '```{0}rngen [beginning of range]-[end of range]```',
                     'guild': '```{0}guild```',
                     'calc': '```{0}calc [expression]```',
+                    'settings': '```{0}settings [-L] [value]\r\n{0}settings -L en_US```',
+                    'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                 }
             elif where == "button":
                 locale = {
