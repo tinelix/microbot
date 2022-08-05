@@ -18,6 +18,7 @@ def translate(where, str, language):
                     'rngen': 'Генератор случайных чисел',
                     'calc': 'Калькулятор',
                     'settings': 'Настройки',
+                    'msg_author': 'Публикация от {0}#{1}',
                 }
             elif where == "embed_description":
                 locale = {
@@ -28,13 +29,15 @@ def translate(where, str, language):
                     'please_wait': '⌛ Подождите...',
                     'settings': '**Настройки сервера:** 🇷🇺',
                     'settings_done': '✅ Готово!',
+                    'publish_isntcomm': '❌ Сервер не обладает функциями сообщества. Включите в настройках сервера.',
+                    'publish_isntnewsch': '❌ Канал не является новостным каналом или каналом с объявлениями. Включите в настройках канала.',
                 }
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Префиксы',
                     'help_prefv': '`>` или `/`',
                     'help_cmdsf': 'Команды',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish`',
                     'help_exampf': 'Пример',
                     'eval_codelf': 'Листинг',
                     'eval_resulf': 'Результат',
@@ -46,8 +49,8 @@ def translate(where, str, language):
                     'about_regdv': '{0}',
                     'about_statsf': 'Статистика',
                     'about_statsv': '{0} серверов\r\n{1} пользователей',
-                    'about_basedf': 'Создано на базе',
-                    'about_basedv': 'Python {0}\r\nDisnake {1}',
+                    'about_basedf': 'Работает на базе',
+                    'about_basedv': 'Python {0}\r\nDisnake {1}\r\nSQLite {2}',
                     'about_hardwf': 'Оборудование',
                     'about_hardwv': '**ЦП:** {0} ({1} МГц)\r\n**ОЗУ:** {2}\r\n**Платформа:** {3}',
                     'about_linksf': 'Ссылки',
@@ -113,6 +116,7 @@ def translate(where, str, language):
                     'calc': 'Простойшей калькулятор.',
                     'settings': 'Настройки бота.',
                     'settings_lang': 'Смена языка.',
+                    'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
                 }
             elif where == "command_examples":
                 locale = {
@@ -125,6 +129,7 @@ def translate(where, str, language):
                     'guild': '```{0}guild```',
                     'settings': '```{0}settings [-L] [значение]\r\n{0}settings -L ru_RU```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
+                    'publish': '```{0}publish Вот так выглядит публикация!```',
                 }
             elif where == "button":
                 locale = {
@@ -167,6 +172,7 @@ def translate(where, str, language):
                     'rngen': 'Random Number Generator',
                     'calc': 'Calculator',
                     'settings': 'Settings',
+                    'msg_author': 'Post by {0}#{1}',
                 }
             elif where == "embed_description":
                 locale = {
@@ -183,7 +189,7 @@ def translate(where, str, language):
                     'help_preff': 'Prefixes',
                     'help_prefv': '`>` or `/`',
                     'help_cmdsf': 'Commands',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish`',
                     'help_exampf': 'Examples',
                     'eval_codelf': 'Code listing',
                     'eval_resulf': 'Result',
@@ -196,7 +202,7 @@ def translate(where, str, language):
                     'about_statsf': 'Statistics',
                     'about_statsv': '{0} servers\r\n{0} users',
                     'about_basedf': 'Powered by',
-                    'about_basedv': 'Python {0}\r\nDisnake {1}',
+                    'about_basedv': 'Python {0}\r\nDisnake {1}\r\nSQLite {2}',
                     'about_hardwf': 'Hardware',
                     'about_hardwv': '**CPU:** {0} ({1} MHz)\r\n**RAM:** {2}\r\n**Platform:** {3}',
                     'about_linksf': 'Links',
@@ -259,6 +265,7 @@ def translate(where, str, language):
                     'calc': 'Simplest calculator.',
                     'settings': 'Bot settings.',
                     'settings_lang': 'Changing bot language.',
+                    'publish': 'Publishes messages from news channel without extra clicks on the mouse button.',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -276,6 +283,7 @@ def translate(where, str, language):
                     'calc': '```{0}calc [expression]```',
                     'settings': '```{0}settings [-L] [value]\r\n{0}settings -L en_US```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
+                    'publish': '```{0}publish This is what the post looks like!```',
                 }
             elif where == "button":
                 locale = {

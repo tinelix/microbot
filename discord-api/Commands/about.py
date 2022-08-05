@@ -3,6 +3,7 @@ import psutil
 import os
 import sys
 import platform
+import sqlite3
 
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
     msg_embed = disnake.Embed(
@@ -64,7 +65,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         translator.translate('embed_fields', 'about_statsf', language), translator.translate('embed_fields', 'about_statsv', language).format(len(bot.guilds), len(bot.users)), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'about_basedf', language), translator.translate('embed_fields', 'about_basedv', language).format(python_version(), disnake.__version__), inline=True
+        translator.translate('embed_fields', 'about_basedf', language), translator.translate('embed_fields', 'about_basedv', language).format(python_version(), disnake.__version__, sqlite3.sqlite_version), inline=True
     )
 
     msg_embed.add_field(

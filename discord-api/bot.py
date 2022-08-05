@@ -165,6 +165,13 @@ async def settings_cmd(ctx, *arg):
     language = guild_data[1]
     await settings.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
 
+@bot.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'))
+async def publish_cmd(ctx, *, arg):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+
+
 @bot.event
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
