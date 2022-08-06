@@ -3,22 +3,23 @@ def translate(where, str, language):
         if language == "ru_RU": # Russian
             if where == "embed_title":
                 locale = {
-                    'error': 'Ошибка',
-                    'help': 'Справка',
+                    'error': '❎ Ошибка',
+                    'help': '❔ Справка',
                     'cmd_help': 'Команда `{0}`',
-                    'bug_reporter': 'Баг обнаружен!',
-                    'about': 'О боте',
+                    'bug_reporter': '🪲 Баг обнаружен!',
+                    'about': '🤖 О боте',
                     'user': '👤 {0}#{1}',
                     'user_bot': '🤖 {0}#{1}',
                     'user_owner': '👑 {0}#{1}',
-                    'avatar': 'Аватар пользователя {0}#{1}',
-                    'forbidden': 'Доступ запрещен',
-                    'eval': 'Интерпретатор',
-                    '8ball': 'Генератор случайных ответов',
-                    'rngen': 'Генератор случайных чисел',
-                    'calc': 'Калькулятор',
-                    'settings': 'Настройки',
-                    'msg_author': 'Публикация от {0}#{1}',
+                    'avatar': '🖼 Аватар пользователя {0}#{1}',
+                    'forbidden': '🚫 Доступ запрещен',
+                    'eval': '⌨ Интерпретатор',
+                    '8ball': '🎱 Генератор случайных ответов',
+                    'rngen': '🎱 Генератор случайных чисел',
+                    'calc': '🔢 Калькулятор',
+                    'settings': '⚙ Настройки',
+                    'msg_author': '📣 Публикация от {0}#{1}',
+                    'ping': '🏓 Понг!'
                 }
             elif where == "embed_description":
                 locale = {
@@ -100,6 +101,9 @@ def translate(where, str, language):
                     'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение',
                     'settings_availoptf': 'Доступные параметры',
                     'settings_availoptv': '🚩 Язык (Language)',
+                    'ping_statisticsf': 'Статистика',
+                    'ping_statisticsv': '**Задержка:** {0} мсек',
+                    'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -118,6 +122,7 @@ def translate(where, str, language):
                     'settings': 'Настройки бота.',
                     'settings_lang': 'Смена языка.',
                     'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
+                    'ping': 'Пни меня.',
                 }
             elif where == "command_examples":
                 locale = {
@@ -131,6 +136,7 @@ def translate(where, str, language):
                     'settings': '```{0}settings [-L] [значение]\r\n{0}settings -L ru_RU```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish Вот так выглядит публикация!```',
+                    'ping': '```{0}ping```'
                 }
             elif where == "button":
                 locale = {
@@ -158,22 +164,23 @@ def translate(where, str, language):
         else: # English, if not
             if where == "embed_title":
                 locale = {
-                    'error': 'Error',
-                    'help': 'Help',
+                    'error': '❎ Error',
+                    'help': '❔ Help',
                     'cmd_help': '`{0}` command',
-                    'about': 'About',
+                    'about': '❔ About',
                     'user': '👤 {0}#{1}',
                     'user_bot': '🤖 {0}#{1}',
                     'user_owner': '👑 {0}#{1}',
-                    'avatar': '{0}#{1}\'s avatar',
-                    'bug_reporter': 'Bug detected!',
-                    'forbidden': 'Access forbidden',
-                    'eval': 'Interpreter',
-                    '8ball': 'Random Answer Generator',
-                    'rngen': 'Random Number Generator',
-                    'calc': 'Calculator',
-                    'settings': 'Settings',
-                    'msg_author': 'Post by {0}#{1}',
+                    'avatar': '🖼 {0}#{1}\'s avatar',
+                    'bug_reporter': '🪲 Bug detected!',
+                    'forbidden': '🚫 Access forbidden',
+                    'eval': '⌨ Interpreter',
+                    '8ball': '🎱 Random Answer Generator',
+                    'rngen': '🎱 Random Number Generator',
+                    'calc': '🔢 Calculator',
+                    'settings': '⚙ Settings',
+                    'msg_author': '📣 Post by {0}#{1}',
+                    'ping': '🏓 Pong!',
                 }
             elif where == "embed_description":
                 locale = {
@@ -254,6 +261,9 @@ def translate(where, str, language):
                     'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication',
                     'settings_availoptf': 'Available options',
                     'settings_availoptv': '🚩 Язык (Language)',
+                    'ping_statisticsf': 'Statistics',
+                    'ping_statisticsv': '**Latency:** {0} msec',
+                    'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
                 }
             elif where == "command_description":
                 locale = {
@@ -268,6 +278,7 @@ def translate(where, str, language):
                     'settings': 'Bot settings.',
                     'settings_lang': 'Changing bot language.',
                     'publish': 'Publishes messages from news channel without extra clicks on the mouse button.',
+                    'ping': 'Ping me.',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -286,6 +297,7 @@ def translate(where, str, language):
                     'settings': '```{0}settings [-L] [value]\r\n{0}settings -L en_US```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish This is what the post looks like!```',
+                    'ping': '```{0}ping```'
                 }
             elif where == "button":
                 locale = {

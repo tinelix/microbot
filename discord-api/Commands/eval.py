@@ -5,9 +5,9 @@ import platform
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     if(ctx.message.author.id == config['owner_id']):  # only bot owner!
         msg_embed = disnake.Embed(
-            title=str(translator.translate('embed_title', 'eval', language)),
             colour=config['accent_def'],
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'eval', language)))
         if(arg == 'guilds'): # guild list for statistical data
             eval_r = ''
             for guild in bot.guilds:
@@ -29,10 +29,10 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         msg_embed.add_field(translator.translate('embed_fields', 'eval_resulf', language), '```py\r\n{0}```'.format(eval_r), inline=False)
     else:
         msg_embed = disnake.Embed(
-            title=str(translator.translate('embed_title', 'forbidden', language)),
             description=str(translator.translate('embed_description', 'forbidden', language)),
             colour=config['accent_err']
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'forbidden', language)))
     return msg_embed
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):

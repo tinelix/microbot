@@ -27,18 +27,21 @@ async def generateBrEmbed(ctx, bot, config, language, disnake, translator, error
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, error):
     msg_embed = disnake.Embed(
-        title=translator.translate('embed_title', 'bug_reporter', language),
         description=translator.translate('embed_description', 'bug_reporter', language),
         colour=config['accent_err']
     )
+    msg_embed.set_author(name=translator.translate('embed_title', 'bug_reporter', language))
     return msg_embed
 
 async def send(ctx, bot, config, language, disnake, translator, error):
     channel = bot.get_channel(config['bugs_ch'])
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, error)
     if(config['bugs_ch'] > 0):
-        msg_bug_embed = await generateBrEmbed(ctx, bot, config, language, disnake, translator, error)
-        await channel.send(embed=msg_bug_embed)
+        try:
+            msg_bug_embed = await generateBrEmbed(ctx, bot, config, language, disnake, translator, error)
+            await channel.send(embed=msg_bug_embed)
+        except:
+            print(' BUG DETECTED!\r\n\r\n {0}\r\n\r\n How to reproduce the bug? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), config['version'], config['version_date']))
     else:
-        print('BUG DETECTED!\r\n\r\n{0}\r\n\r\nHow to reproduce the bug? {1}\r\nVersion: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), config['version'], config['version_date']))
+        print(' BUG DETECTED!\r\n\r\n {0}\r\n\r\n How to reproduce the bug? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), config['version'], config['version_date']))
     await ctx.reply(embed=msg_embed, mention_author=False)

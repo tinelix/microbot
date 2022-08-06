@@ -3,10 +3,10 @@ import random
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     random_numb = random.randint(int(arg.split('-')[0]), int(arg.split('-')[1]))
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'rngen', language)),
         colour=config['accent_def'],
     )
     msg_embed.add_field(translator.translate('embed_fields', 'rngen_numbf', language), random_numb)
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'rngen', language)))
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):

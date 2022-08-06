@@ -177,6 +177,17 @@ async def publish_cmd(ctx, *, arg):
     language = guild_data[1]
     await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
+@bot.command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
+async def ping_cmd(ctx):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await ping.sendRegularMsg(ctx, bot, config, language, disnake, translator)
+
+@bot.slash_command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
+async def ping_scmd(ctx):
+    guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
+    await ping.sendSlashMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.event
 async def on_command_error(ctx, error):

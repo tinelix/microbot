@@ -5,9 +5,9 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     user = bot.get_user(query)
     member = ctx.guild.get_member(query)
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator),
         colour=config['accent_def'],
     ).set_image(user.display_avatar.url)
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):

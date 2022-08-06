@@ -9,3 +9,4 @@ import Commands.guild
 import Commands.calc
 import Commands.settings
 import Commands.publish
+import Commands.ping

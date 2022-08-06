@@ -4,9 +4,9 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     try:
         result = str(numexpr.evaluate(arg.replace(':', '/')))
         msg_embed = disnake.Embed(
-            title=str(translator.translate('embed_title', 'calc', language)),
             colour=config['accent_def'],
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'calc', language)))
         msg_embed.add_field(translator.translate('embed_fields', 'calc_resulf', language), '```py\r\n{0}```'.format(result), inline=False)
         msg_embed.add_field(translator.translate('embed_fields', 'calc_asignf', language), translator.translate('embed_fields', 'calc_asignv', language), inline=False)
     except Exception as e:

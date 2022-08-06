@@ -5,10 +5,10 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
             community = "COMMUNITY"
     if(community != "COMMUNITY"):
         msg_embed = disnake.Embed(
-            title=translator.translate('embed_title', 'error', language),
             colour=config['accent_err'],
             description=translator.translate('embed_description', 'publish_isntcomm', language)
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
     elif(str(ctx.message.channel.type) == "news"):
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
@@ -17,10 +17,10 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.message.author.name, ctx.message.author.discriminator))
     else:
         msg_embed = disnake.Embed(
-            title=translator.translate('embed_title', 'error', language),
             colour=config['accent_err'],
             description=translator.translate('embed_description', 'publish_isntnewsch', language)
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
     return msg_embed
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):

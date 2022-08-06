@@ -7,26 +7,29 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
 
     if(user == None):
         msg_embed = disnake.Embed(
-            title=str(translator.translate('embed_title', 'error', language)),
             description=translator.translate('embed_description', 'error_unf', language),
             colour=config['accent_err'],
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
         return await ctx.send(embed=msg_embed)
     if(member != None and member.bot == True):
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.name, user.discriminator))
     elif user.id == ctx.guild.owner_id:
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.name, user.discriminator))
     else:
         msg_embed = disnake.Embed(
             title=str(translator.translate('embed_title', 'user', language)).format(user.name, user.discriminator),
             colour=config['accent_def'],
         )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.name, user.discriminator))
 
-    msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.name, user.discriminator))
+
 
     msg_embed.set_thumbnail(url=user.display_avatar)
 
@@ -90,9 +93,8 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
         async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
             avatar_embed = disnake.Embed(
-                title=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator),
                 colour=config['accent_def'],
-            ).set_image(user.display_avatar.url)
+            ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
             await interaction.response.send_message(embed=avatar_embed)
     await ctx.response.send_message(embed=msg_embed, view=AvatarByButton())
 
@@ -105,9 +107,8 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
         async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
             avatar_embed = disnake.Embed(
-                title=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator),
                 colour=config['accent_def'],
-            ).set_image(user.display_avatar.url)
+            ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
             await interaction.response.send_message(embed=avatar_embed)
     await ctx.reply(embed=msg_embed, view=AvatarByButton(), mention_author=False)
 

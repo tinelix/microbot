@@ -1,6 +1,5 @@
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'help', language)),
         description=str(translator.translate('embed_description', 'help', language)).format(config['name'], links['invite']),
         colour=config['accent_def']
     ).add_field(
@@ -8,6 +7,7 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
     ).add_field(
         translator.translate('embed_fields', 'help_cmdsf', language), translator.translate('embed_fields', 'help_cmdsv', language), inline=False
     )
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'help', language)))
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator):

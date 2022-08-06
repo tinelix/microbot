@@ -7,10 +7,10 @@ import sqlite3
 
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'about', language)),
         description=translator.translate('embed_description', 'please_wait', language),
         colour=config['accent_def'],
     )
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'about', language)))
     return msg_embed
 
 async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
@@ -49,9 +49,9 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         ram = translator.translate('numb_with_unit', 'gigabytes2', language).format(round(psutil.virtual_memory().used / 1024 / 1024 / 1024, 2), round(psutil.virtual_memory().total / 1024 / 1024 / 1024, 2))
 
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'about', language)),
         colour=config['accent_def']
     )
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'about', language)))
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(config['version'], config['version_date']), inline=True
     )
