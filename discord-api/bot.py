@@ -48,13 +48,19 @@ async def on_ready():
     await db.create_tables(database, cursor)
 
 @bot.event
+async def on_disconnect():
+    print(" ERROR: Connection failed.")
+
+@bot.event
 async def on_guild_join(guild):
     await notifer.refreshStatus(disnake, bot, config)
+    await notifer.updateWelcomeMessage(disnake, bot, config)
     if(await db.if_guild_existed(database, cursor, ctx.message.guild.id) == False):
         await db.add_guild_value(database, guild, cursor)
 
 @bot.event
 async def on_guild_leave(guild):
+    await notifer.updateWelcomeMessage(disnake, bot, config)
     await notifer.refreshStatus(disnake, bot, config)
 
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
@@ -69,7 +75,7 @@ async def help_scmd(ctx):
     language = guild_data[1]
     await help.sendSlashMsg(ctx, bot, config, links, language, disnake, translator)
 
-@bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
+@bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
 async def about_cmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -81,7 +87,7 @@ async def about_scmd(ctx):
     language = guild_data[1]
     await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version)
 
-@bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
+@bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
 async def user_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -117,7 +123,7 @@ async def eightball_scmd(ctx, question):
     language = guild_data[1]
     await eightball.sendSlashMsg(ctx, bot, config, language, disnake, translator, question)
 
-@bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
+@bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'), aliases=['rand'])
 async def rngen_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -135,7 +141,7 @@ async def eval_cmd(ctx, arg):
     language = guild_data[1]
     await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
+@bot.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
 async def guild_cmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -153,19 +159,19 @@ async def calc_cmd(ctx, arg):
     language = guild_data[1]
     await calc.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
-@bot.slash_command(name="calc", description=translator.translate('command_description', 'guild', 'en_US'))
+@bot.slash_command(name="calc", description=translator.translate('command_description', 'calc', 'en_US'))
 async def calc_scmd(ctx, expression):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
     language = guild_data[1]
     await calc.sendSlashMsg(ctx, bot, config, language, disnake, translator, expression)
 
-@bot.command(name="settings", description=translator.translate('command_description', 'calc', 'en_US'))
+@bot.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
 async def settings_cmd(ctx, *arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     await settings.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
 
-@bot.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'))
+@bot.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
 async def publish_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
