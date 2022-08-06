@@ -10,11 +10,17 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
     elif(str(ctx.message.channel.type) == "news"):
+        if(len(ctx.message.attachments) >= 1):
+            attachment_url = ctx.message.attachments[0].url
+        else:
+            attachment_url = None
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
             description=arg
         )
         msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.message.author.name, ctx.message.author.discriminator))
+        if(attachment_url != None):
+            msg_embed.set_image(attachment_url)
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_err'],
