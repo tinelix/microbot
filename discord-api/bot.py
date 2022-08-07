@@ -189,6 +189,18 @@ async def ping_scmd(ctx):
     language = guild_data[1]
     await ping.sendSlashMsg(ctx, bot, config, language, disnake, translator)
 
+@bot.command(name="weather", description=translator.translate('command_description', 'weather', 'en_US'))
+async def weather_cmd(ctx, *, arg):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await weather.sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
+
+@bot.slash_command(name="weather", description=translator.translate('command_description', 'weather', 'en_US'))
+async def weather_scmd(ctx, *, arg):
+    guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
+    await weather.sendSlashMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
+
 @bot.event
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
@@ -258,4 +270,4 @@ async def sync_db(ctx, table, message_type):
         else:
             return user_data
 
-bot.run(config['token'])
+bot.run(tokens['discord_api'])

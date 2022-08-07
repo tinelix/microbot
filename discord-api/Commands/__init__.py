@@ -10,3 +10,4 @@ import Commands.calc
 import Commands.settings
 import Commands.publish
 import Commands.ping
+import Commands.weather

@@ -2,14 +2,19 @@ import re
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator):
     guild = ctx.guild
-    guild_pr = await bot.fetch_guild_preview(ctx.guild.id)
+    try:
+        guild_pr = await bot.fetch_guild_preview(ctx.guild.id)
+    except:
+        guild_pr = None
     owner = bot.get_user(guild.owner_id)
 
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
     )
-
-    msg_embed.set_thumbnail(url=guild_pr.icon)
+    if(guild_pr == None):
+        pass
+    else:
+        msg_embed.set_thumbnail(url=guild_pr.icon)
 
     msg_embed.set_author(name=ctx.guild.name)
 

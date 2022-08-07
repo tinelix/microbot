@@ -2,16 +2,20 @@ import os
 from dotenv import load_dotenv # loading environment variables module, for install 'pip install python-dotenv'
 dotenv_path = os.path.join('../', '.env')
 
+tokens = {
+    'discord_api': os.environ['DISCORD_TOKEN'],    # Discord API token from system environment
+    'owm_api': os.environ['OPENWEATHERMAP_TOKEN']  # for OpenWeatherMap API
+}
+
 config = {
-    'token': os.environ['TOKEN'], # Discord API token from system environment
     'name': 'Microbot',
-    'version': '0.1.5',
-    'version_date': '2022-08-06',
+    'version': '0.2.0',
+    'version_date': '2022-08-07',
     'prefix': '>',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,
     'owner_id': 741883312108339231, # Bot developer ID
-    'bugs_ch': 995275176029732894, # To show a bug report in the console, set the value to 0
+    'bugs_ch': 995275176029732894,  # To show a bug report in the console, set the value to 0
 }
 
 links = {

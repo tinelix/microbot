@@ -19,7 +19,9 @@ def translate(where, str, language):
                     'calc': '🔢 Калькулятор',
                     'settings': '⚙ Настройки',
                     'msg_author': '📣 Публикация от {0}#{1}',
-                    'ping': '🏓 Понг!'
+                    'ping': '🏓 Понг!',
+                    'weather': '⛅ Погода',
+                    'weather2': '⛅ {0}, {1}'
                 }
             elif where == "embed_description":
                 locale = {
@@ -32,13 +34,44 @@ def translate(where, str, language):
                     'settings_done': '✅ Готово!',
                     'publish_isntcomm': '❌ Сервер не обладает функциями сообщества. Включите в настройках сервера.',
                     'publish_isntnewsch': '❌ Канал не является новостным каналом или каналом с объявлениями. Включите в настройках канала.',
+                    'weather_conditions_200': '**⛈ Гроза с умеренным дождем**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_201': '**⛈ Гроза с дождем**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_202': '**⛈ Гроза с ливнем**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_300-321': '**🌨 Гололедица**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_500-501': '**🌧 Умеренный дождь**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_502': '**🌧 Дождь**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/) на_',
+                    'weather_conditions_503-504': '**🌧 Ливень**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_511': '**🌧 Дождь**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_600-601': '**🌨 Снег**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_602': '**🌨 Метель**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_615-616': '**🌨 Дождь со снегом**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_800': '**☀ Солнечно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_801': '**🌤 Малооблачно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_802-803': '**⛅ Облачно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_804': '**🌥 Пасмурно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_sconditions_200': '⛈ Гроза с умеренным дождем',
+                    'weather_sconditions_201': '⛈ Гроза с дождем',
+                    'weather_sconditions_202': '⛈ Гроза с ливнем',
+                    'weather_sconditions_300-321': '🌨 Гололедица',
+                    'weather_sconditions_500-501': '🌧 Умеренный дождь',
+                    'weather_sconditions_502': '🌧 Дождь',
+                    'weather_sconditions_503-504': '🌧 Ливень',
+                    'weather_sconditions_511': '🌧 Дождь',
+                    'weather_sconditions_600-601': '🌨 Снег',
+                    'weather_sconditions_602': '🌨 Метель',
+                    'weather_sconditions_615-616': '🌨 Дождь со снегом',
+                    'weather_sconditions_800': '☀ Солнечно',
+                    'weather_sconditions_801': '🌤 Малооблачно',
+                    'weather_sconditions_802-803': '⛅ Облачно',
+                    'weather_sconditions_804': '🌥 Пасмурно',
+                    'weather_notfound': '😔 К сожалению, мы ничего не нашли. Может, попробуете другой запрос?',
                 }
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Префиксы',
                     'help_prefv': '`>` или `/`',
                     'help_cmdsf': 'Команды',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping` `weather`',
                     'help_exampf': 'Пример',
                     'help_aliasf': 'Аналогичные названия',
                     'eval_codelf': 'Листинг',
@@ -104,6 +137,19 @@ def translate(where, str, language):
                     'ping_statisticsf': 'Статистика',
                     'ping_statisticsv': '**Задержка:** {0} мсек',
                     'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
+                    'weather_resultf': 'Результаты поиска',
+                    'weather_resultv': '```{0}```',
+                    'weather_tempf': 'Температура воздуха',
+                    'weather_tempv': '**{0}°C**\r\nмин. {1}°C\r\nмакс. {2}°C',
+                    'weather_pressuref': 'Давление',
+                    'weather_pressurev': '{0} мм. рт. ст.',
+                    'weather_humidityf': 'Влажность',
+                    'weather_humidityv': '{0}%',
+                    'weather_windspeedf': 'Скорость ветра',
+                    'weather_windspeedv': '{0} м/сек',
+                    'weather_selyc': 'Выберите город',
+                    'weather_upforecastsf': 'Ближайшие прогнозы',
+                    'weather_upforecastsv': '```{0}```',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -123,6 +169,7 @@ def translate(where, str, language):
                     'settings_lang': 'Смена языка.',
                     'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
                     'ping': 'Пни меня.',
+                    'weather': 'Отображает прогноз погоды на ближайшие 24 часа. Для этого используется сервис [OpenWeatherMap](https://openweathermap.org).'
                 }
             elif where == "command_examples":
                 locale = {
@@ -136,7 +183,8 @@ def translate(where, str, language):
                     'settings': '```{0}settings [-L] [значение]\r\n{0}settings -L ru_RU```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish Вот так выглядит публикация!```',
-                    'ping': '```{0}ping```'
+                    'ping': '```{0}ping```',
+                    'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург```'
                 }
             elif where == "button":
                 locale = {
@@ -181,6 +229,8 @@ def translate(where, str, language):
                     'settings': '⚙ Settings',
                     'msg_author': '📣 Post by {0}#{1}',
                     'ping': '🏓 Pong!',
+                    'weather': '⛅ Weather',
+                    'weather2': '⛅ {0}, {1}',
                 }
             elif where == "embed_description":
                 locale = {
@@ -191,13 +241,46 @@ def translate(where, str, language):
                     'please_wait': '⌛ Wait...',
                     'settings': '**Server settings:** 🇺🇸',
                     'settings_done': '✅ Done!',
+                    'weather_conditions_200': '**⛈ Thunderstorm with moderate rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_201': '**⛈ Thunderstorm with rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_202': '**⛈ Thunderstorm with heavy rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_300-321': '**🌧 Rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_500-501': '**🌧 Moderate rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_502': '**🌧 Rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_503-504': '**🌧 Shower rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_511': '**🌧 Rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_600-601': '**🌨 Show**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_602': '**🌨 Snowstorm**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_615-616': '**🌨 Rain with snow**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_800': '**☀ Sunny**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_801': '**🌤 Partly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_802-803': '**⛅ Cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_804': '**🌥 Mainly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_sconditions_200': '⛈ Thunderstorm with moderate rain',
+                    'weather_sconditions_201': '⛈ Thunderstorm with rain',
+                    'weather_sconditions_202': '⛈ Thunderstorm with heavy rain',
+                    'weather_sconditions_300-321': '🌧 Rain',
+                    'weather_sconditions_500-501': '🌧 Moderate rain',
+                    'weather_sconditions_502': '🌧 Rain',
+                    'weather_sconditions_503-504': '🌧 Shower rain',
+                    'weather_sconditions_511': '🌧 Rain',
+                    'weather_sconditions_600-601': '🌨 Show',
+                    'weather_sconditions_602': '🌨 Snowstorm',
+                    'weather_sconditions_615-616': '**🌨 Rain with snow',
+                    'weather_sconditions_800': '☀ Sunny',
+                    'weather_sconditions_801': '🌤 Partly cloudy',
+                    'weather_sconditions_802-803': '⛅ Cloudy',
+                    'weather_sconditions_804': '🌥 Mainly cloudy',
+                    'weather_upforecastsf': 'Upcoming forecasts',
+                    'weather_upforecastsv': '```{0}```',
+                    'weather_notfound': '😔 Sorry, we didn\'t find anything. Maybe try another query?',
                 }
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Prefixes',
                     'help_prefv': '`>` or `/`',
                     'help_cmdsf': 'Commands',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping` `weather`',
                     'help_exampf': 'Examples',
                     'help_aliasf': 'Aliases',
                     'eval_codelf': 'Code listing',
@@ -264,6 +347,19 @@ def translate(where, str, language):
                     'ping_statisticsf': 'Statistics',
                     'ping_statisticsv': '**Latency:** {0} msec',
                     'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
+                    'weather_resultf': 'Search results',
+                    'weather_resultv': '```{0}```',
+                    'weather_tempf': 'Air temperature',
+                    'weather_tempv': '{0}°C\r\nmin. {1}°C\r\nmax. {2}°C',
+                    'weather_pressuref': 'Pressure',
+                    'weather_pressurev': '{0} mmHg',
+                    'weather_humidityf': 'Humidity',
+                    'weather_humidityv': '{0}%',
+                    'weather_windspeedf': 'Wind speed',
+                    'weather_windspeedv': '{0} m/sec',
+                    'weather_selyc': 'Select city',
+                    'weather_7daysf': '7 days forecast',
+                    'weather_7daysv': '```{0}```',
                 }
             elif where == "command_description":
                 locale = {
@@ -279,6 +375,7 @@ def translate(where, str, language):
                     'settings_lang': 'Changing bot language.',
                     'publish': 'Publishes messages from news channel without extra clicks on the mouse button.',
                     'ping': 'Ping me.',
+                    'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.'
                 }
             elif where == "embed_footer":
                 locale = {
@@ -297,7 +394,8 @@ def translate(where, str, language):
                     'settings': '```{0}settings [-L] [value]\r\n{0}settings -L en_US```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish This is what the post looks like!```',
-                    'ping': '```{0}ping```'
+                    'ping': '```{0}ping```',
+                    'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg```'
                 }
             elif where == "button":
                 locale = {
