@@ -56,7 +56,7 @@ def getConditionsDescription(code, translator, language):
         conditions = translator.translate('embed_description', 'weather_conditions_800', language)
     elif(code == 801):
         conditions = translator.translate('embed_description', 'weather_conditions_801', language)
-    elif(code == 802 and code <= 803):
+    elif(code >= 802 and code <= 803):
         conditions = translator.translate('embed_description', 'weather_conditions_802-803', language)
     elif(code == 804):
         conditions = translator.translate('embed_description', 'weather_conditions_804', language)
@@ -91,7 +91,7 @@ def getConditionsShortDescription(code, translator, language):
         conditions = translator.translate('embed_description', 'weather_sconditions_800', language)
     elif(code == 801):
         conditions = translator.translate('embed_description', 'weather_sconditions_801', language)
-    elif(code == 802 and code <= 803):
+    elif(code >= 802 and code <= 803):
         conditions = translator.translate('embed_description', 'weather_sconditions_802-803', language)
     elif(code == 804):
         conditions = translator.translate('embed_description', 'weather_sconditions_804', language)
@@ -175,6 +175,7 @@ async def sendSlashMsg(ctx, bot, config, tokens, language, disnake, translator, 
         view = disnake.ui.View()
         view.add_item(select)
         await ctx.response.send_message(embed=msg_embed, view=view)
+        cities_list.clear()
     else:
         await ctx.response.send_message(embed=msg_embed)
 
@@ -196,6 +197,7 @@ async def sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator
         view = disnake.ui.View()
         view.add_item(select)
         await ctx.reply(embed=msg_embed, view=view, mention_author=False)
+        cities_list.clear()
     else:
         await ctx.reply(embed=msg_embed, mention_author=False)
 
