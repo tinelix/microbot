@@ -19,7 +19,7 @@ async def generateEmbed(ctx, bot, config, tokens, language, disnake, translator,
             colour=config['accent_def'],
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'weather', language)))
-        msg_embed.add_field(translator.translate('embed_fields', 'weather_resultf', language), translator.translate('embed_fields', 'weather_resultv', language).format(cities))
+        msg_embed.add_field(translator.translate('embed_fields', 'weather_resultf', language).format(len(cities_list)), translator.translate('embed_fields', 'weather_resultv', language).format(cities))
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_err'],

@@ -48,7 +48,7 @@ def translate(where, str, language):
                     'weather_conditions_800': '**☀ Солнечно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
                     'weather_conditions_801': '**🌤 Малооблачно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
                     'weather_conditions_802-803': '**⛅ Облачно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
-                    'weather_conditions_804': '**🌥 Пасмурно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_804': '**☁ Пасмурно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
                     'weather_sconditions_200': '⛈ Гроза с умеренным дождем',
                     'weather_sconditions_201': '⛈ Гроза с дождем',
                     'weather_sconditions_202': '⛈ Гроза с ливнем',
@@ -63,7 +63,7 @@ def translate(where, str, language):
                     'weather_sconditions_800': '☀ Солнечно',
                     'weather_sconditions_801': '🌤 Малооблачно',
                     'weather_sconditions_802-803': '⛅ Облачно',
-                    'weather_sconditions_804': '🌥 Пасмурно',
+                    'weather_sconditions_804': '☁ Пасмурно',
                     'weather_notfound': '😔 К сожалению, мы ничего не нашли. Может, попробуете другой запрос?',
                 }
             elif where == "embed_fields":
@@ -108,7 +108,7 @@ def translate(where, str, language):
                     'user_rolesf': 'Роли ({0})',
                     'user_rolesv': '{0}',
                     'guild_ownerf': 'Владелец',
-                    'guild_ownerv': '{0}#{1}',
+                    'guild_ownerv': '`{0}#{1}`',
                     'guild_crtf': 'Дата создания',
                     'guild_crtv': '{0}',
                     'guild_blvlf': 'Уровень бустов',
@@ -137,7 +137,7 @@ def translate(where, str, language):
                     'ping_statisticsf': 'Статистика',
                     'ping_statisticsv': '**Задержка:** {0} мсек',
                     'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
-                    'weather_resultf': 'Результаты поиска',
+                    'weather_resultf': 'Результаты поиска ({0})',
                     'weather_resultv': '```{0}```',
                     'weather_tempf': 'Температура воздуха',
                     'weather_tempv': '**{0}°C**\r\nмин. {1}°C\r\nмакс. {2}°C',
@@ -147,7 +147,7 @@ def translate(where, str, language):
                     'weather_humidityv': '{0}%',
                     'weather_windspeedf': 'Скорость ветра',
                     'weather_windspeedv': '{0} м/сек',
-                    'weather_selyc': 'Выберите город',
+                    'weather_selyc': 'Выберите город или населенный пункт',
                     'weather_upforecastsf': 'Ближайшие прогнозы',
                     'weather_upforecastsv': '```{0}```',
                 }
@@ -184,7 +184,7 @@ def translate(where, str, language):
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish Вот так выглядит публикация!```',
                     'ping': '```{0}ping```',
-                    'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург```'
+                    'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```'
                 }
             elif where == "button":
                 locale = {
@@ -255,7 +255,7 @@ def translate(where, str, language):
                     'weather_conditions_800': '**☀ Sunny**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
                     'weather_conditions_801': '**🌤 Partly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
                     'weather_conditions_802-803': '**⛅ Cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
-                    'weather_conditions_804': '**🌥 Mainly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_804': '**☁ Mainly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
                     'weather_sconditions_200': '⛈ Thunderstorm with moderate rain',
                     'weather_sconditions_201': '⛈ Thunderstorm with rain',
                     'weather_sconditions_202': '⛈ Thunderstorm with heavy rain',
@@ -270,7 +270,7 @@ def translate(where, str, language):
                     'weather_sconditions_800': '☀ Sunny',
                     'weather_sconditions_801': '🌤 Partly cloudy',
                     'weather_sconditions_802-803': '⛅ Cloudy',
-                    'weather_sconditions_804': '🌥 Mainly cloudy',
+                    'weather_sconditions_804': '☁ Mainly cloudy',
                     'weather_upforecastsf': 'Upcoming forecasts',
                     'weather_upforecastsv': '```{0}```',
                     'weather_notfound': '😔 Sorry, we didn\'t find anything. Maybe try another query?',
@@ -347,7 +347,7 @@ def translate(where, str, language):
                     'ping_statisticsf': 'Statistics',
                     'ping_statisticsv': '**Latency:** {0} msec',
                     'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
-                    'weather_resultf': 'Search results',
+                    'weather_resultf': 'Search results ({0})',
                     'weather_resultv': '```{0}```',
                     'weather_tempf': 'Air temperature',
                     'weather_tempv': '{0}°C\r\nmin. {1}°C\r\nmax. {2}°C',
@@ -357,7 +357,7 @@ def translate(where, str, language):
                     'weather_humidityv': '{0}%',
                     'weather_windspeedf': 'Wind speed',
                     'weather_windspeedv': '{0} m/sec',
-                    'weather_selyc': 'Select city',
+                    'weather_selyc': 'Select city or locality',
                     'weather_7daysf': '7 days forecast',
                     'weather_7daysv': '```{0}```',
                 }
@@ -395,7 +395,7 @@ def translate(where, str, language):
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish This is what the post looks like!```',
                     'ping': '```{0}ping```',
-                    'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg```'
+                    'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```'
                 }
             elif where == "button":
                 locale = {
