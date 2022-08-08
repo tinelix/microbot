@@ -124,20 +124,16 @@ async def generateWeatherEmbed(ctx, bot, config, tokens, language, disnake, tran
     weather = data.json()
     forecast = forecast_data.json()
 
-    conditions = getConditionsDescription(weather['weather'][0]['id'], translator, language)
+    current_conditions = getConditionsDescription(weather['weather'][0]['id'], translator, language)
 
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
-        description=conditions
+        description=current_conditions
     )
 
-    temp = "±0.0"
-    min_temp = "±0.0"
-    max_temp = "±0.0"
-
-    temp = formatTemperature(weather['main']['temp'])
-    min_temp = formatTemperature(weather['main']['temp_min'])
-    max_temp = formatTemperature(weather['main']['temp_max'])
+    current_temp = formatTemperature(weather['main']['temp'])
+    current_min_temp = formatTemperature(weather['main']['temp_min'])
+    current_max_temp = formatTemperature(weather['main']['temp_max'])
 
     day7_forecast = ""
 
@@ -150,7 +146,7 @@ async def generateWeatherEmbed(ctx, bot, config, tokens, language, disnake, tran
             day7_forecast += "{0} | {1}°C\r\n{2}\r\n".format(day['dt_txt'], temp, conditions)
 
     msg_embed.set_author(name=str(translator.translate('embed_title', 'weather2', language)).format(weather['name'], weather['sys']['country']))
-    msg_embed.add_field(translator.translate('embed_fields', 'weather_tempf', language), translator.translate('embed_fields', 'weather_tempv', language).format(temp, min_temp, max_temp), inline=False)
+    msg_embed.add_field(translator.translate('embed_fields', 'weather_tempf', language), translator.translate('embed_fields', 'weather_tempv', language).format(current_temp, current_min_temp, current_max_temp), inline=False)
     msg_embed.add_field(translator.translate('embed_fields', 'weather_pressuref', language), translator.translate('embed_fields', 'weather_pressurev', language).format(round(weather['main']['pressure'] * 0.75006)))
     msg_embed.add_field(translator.translate('embed_fields', 'weather_humidityf', language), translator.translate('embed_fields', 'weather_humidityv', language).format(weather['main']['humidity']))
     msg_embed.add_field(translator.translate('embed_fields', 'weather_windspeedf', language), translator.translate('embed_fields', 'weather_windspeedv', language).format(round(weather['wind']['speed'], 1)))
