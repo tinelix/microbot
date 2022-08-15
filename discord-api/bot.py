@@ -6,6 +6,8 @@ import json
 import traceback
 import glob
 import sys
+import datetime
+import time
 from platform import python_version
 import sqlite3
 
@@ -27,6 +29,7 @@ bot.remove_command('help')
 language = 'ru_RU'
 user_col = None
 guild_col = None
+connectionStartTime = time.time()
 
 # 6. Initializing SQLite3 server
 try:
@@ -44,6 +47,7 @@ async def no_DM(ctx):
 # 6. Events and message triggers
 @bot.event
 async def on_ready():
+    connectionStartTime = time.time()
     await notifer.showWelcomeMessage(disnake, bot, config)
     await db.create_tables(database, cursor)
 
@@ -55,7 +59,7 @@ async def on_disconnect():
 async def on_guild_join(guild):
     await notifer.refreshStatus(disnake, bot, config)
     await notifer.updateWelcomeMessage(disnake, bot, config)
-    if(await db.if_guild_existed(database, cursor, ctx.message.guild.id) == False):
+    if(await db.if_guild_existed(database, cursor, guild.id) == False):
         await db.add_guild_value(database, guild, cursor)
 
 @bot.event
@@ -77,15 +81,17 @@ async def help_scmd(ctx):
 
 @bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
 async def about_cmd(ctx):
+    uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
-    await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version)
+    await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
 async def about_scmd(ctx):
+    uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'slash')
     language = guild_data[1]
-    await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version)
+    await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
 async def user_cmd(ctx, arg):
