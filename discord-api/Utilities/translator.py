@@ -190,7 +190,7 @@ def translate(where, str, language):
                     'publish': '```{0}publish Вот так выглядит публикация!```',
                     'ping': '```{0}ping```',
                     'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```',
-                    'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи',
+                    'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи```',
                 }
             elif where == "button":
                 locale = {
@@ -406,7 +406,7 @@ def translate(where, str, language):
                     'publish': '```{0}publish This is what the post looks like!```',
                     'ping': '```{0}ping```',
                     'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```',
-                    'wiki': '```{0}wiki Sinus\r\n{0}wiki Android\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji',
+                    'wiki': '```{0}wiki Sinus\r\n{0}wiki Android\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji```',
                 }
             elif where == "button":
                 locale = {
