@@ -21,7 +21,8 @@ def translate(where, str, language):
                     'msg_author': '📣 Публикация от {0}#{1}',
                     'ping': '🏓 Понг!',
                     'weather': '⛅ Погода',
-                    'weather2': '⛅ {0}, {1}'
+                    'weather2': '⛅ {0}, {1}',
+                    'wikipedia': '🌐 Википедия'
                 }
             elif where == "embed_description":
                 locale = {
@@ -64,7 +65,8 @@ def translate(where, str, language):
                     'weather_sconditions_801': '🌤 Малооблачно',
                     'weather_sconditions_802-803': '⛅ Облачно',
                     'weather_sconditions_804': '☁ Пасмурно',
-                    'weather_notfound': '😔 К сожалению, мы ничего не нашли. Может, попробуете другой запрос?',
+                    'query_notfound': '😔 К сожалению, мы ничего не нашли. Может, попробуете другой запрос?',
+                    'wikipedia': '{0}\r\n[Подробнее...]({1})'
                 }
             elif where == "embed_fields":
                 locale = {
@@ -171,7 +173,8 @@ def translate(where, str, language):
                     'settings_lang': 'Смена языка.',
                     'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
                     'ping': 'Пни меня.',
-                    'weather': 'Отображает прогноз погоды на ближайшие 24 часа. Для этого используется сервис [OpenWeatherMap](https://openweathermap.org).'
+                    'weather': 'Отображает прогноз погоды на ближайшие 24 часа. Для этого используется сервис [OpenWeatherMap](https://openweathermap.org).',
+                    'wiki': 'Показывает статью в Википедии в краткой форме.'
                 }
             elif where == "command_examples":
                 locale = {
@@ -186,7 +189,8 @@ def translate(where, str, language):
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish Вот так выглядит публикация!```',
                     'ping': '```{0}ping```',
-                    'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```'
+                    'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```',
+                    'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи',
                 }
             elif where == "button":
                 locale = {
@@ -233,6 +237,7 @@ def translate(where, str, language):
                     'ping': '🏓 Pong!',
                     'weather': '⛅ Weather',
                     'weather2': '⛅ {0}, {1}',
+                    'wikipedia': '🌐 Wikipedia'
                 }
             elif where == "embed_description":
                 locale = {
@@ -273,9 +278,8 @@ def translate(where, str, language):
                     'weather_sconditions_801': '🌤 Partly cloudy',
                     'weather_sconditions_802-803': '⛅ Cloudy',
                     'weather_sconditions_804': '☁ Mainly cloudy',
-                    'weather_upforecastsf': 'Upcoming forecasts',
-                    'weather_upforecastsv': '```{0}```',
-                    'weather_notfound': '😔 Sorry, we didn\'t find anything. Maybe try another query?',
+                    'query_notfound': '😔 Sorry, we didn\'t find anything. Maybe try another query?',
+                    'wikipedia': '{0}\r\n[More...]({1})'
                 }
             elif where == "embed_fields":
                 locale = {
@@ -354,7 +358,7 @@ def translate(where, str, language):
                     'weather_resultf': 'Search results ({0})',
                     'weather_resultv': '```{0}```',
                     'weather_tempf': 'Air temperature',
-                    'weather_tempv': '{0}°C\r\nmin. {1}°C\r\nmax. {2}°C',
+                    'weather_tempv': '**{0}°C**\r\nmin. {1}°C\r\nmax. {2}°C',
                     'weather_pressuref': 'Pressure',
                     'weather_pressurev': '{0} mmHg',
                     'weather_humidityf': 'Humidity',
@@ -362,8 +366,9 @@ def translate(where, str, language):
                     'weather_windspeedf': 'Wind speed',
                     'weather_windspeedv': '{0} m/sec',
                     'weather_selyc': 'Select city or locality',
-                    'weather_7daysf': '7 days forecast',
-                    'weather_7daysv': '```{0}```',
+                    'weather_upforecastsf': 'Upcoming forecasts',
+                    'weather_upforecastsv': '```{0}```',
+
                 }
             elif where == "command_description":
                 locale = {
@@ -379,7 +384,8 @@ def translate(where, str, language):
                     'settings_lang': 'Changing bot language.',
                     'publish': 'Publishes messages from news channel without extra clicks on the mouse button.',
                     'ping': 'Ping me.',
-                    'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.'
+                    'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.',
+                    'wiki': 'Displays a Wikipedia article in short form.'
                 }
             elif where == "embed_footer":
                 locale = {
@@ -399,7 +405,8 @@ def translate(where, str, language):
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'publish': '```{0}publish This is what the post looks like!```',
                     'ping': '```{0}ping```',
-                    'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```'
+                    'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```',
+                    'wiki': '```{0}wiki Sinus\r\n{0}wiki Android\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji',
                 }
             elif where == "button":
                 locale = {

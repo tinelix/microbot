@@ -207,6 +207,18 @@ async def weather_scmd(ctx, *, arg):
     language = guild_data[1]
     await weather.sendSlashMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
 
+@bot.command(name="wiki", description=translator.translate('command_description', 'wiki', 'en_US'))
+async def wiki_cmd(ctx, *, arg):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+
+@bot.slash_command(name="wiki", description=translator.translate('command_description', 'wiki', 'en_US'))
+async def wiki_scmd(ctx, *, arg):
+    guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
+    await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+
 @bot.event
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')

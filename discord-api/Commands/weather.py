@@ -23,7 +23,7 @@ async def generateEmbed(ctx, bot, config, tokens, language, disnake, translator,
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_err'],
-            description=translator.translate('embed_description', 'weather_notfound', language)
+            description=translator.translate('embed_description', 'query_notfound', language)
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
     return msg_embed
