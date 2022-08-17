@@ -58,6 +58,10 @@ async def sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator
     elif(ctx.message.content.startswith('{0}server'.format(config['prefix']))):
         query = 'guild'
         aliases = ['`server`']
+    elif(ctx.message.content.startswith('{0}weather'.format(config['prefix']))):
+        query = 'weather'
+    elif(ctx.message.content.startswith('{0}wiki'.format(config['prefix']))):
+        query = 'wiki'
     else:
         return
     msg_embed = disnake.Embed(
