@@ -7,6 +7,6 @@ Microbot is a simple and compact bot for Discord. Powered by Disnake (discord.py
 
 ### License
 
-Apache License 2.0
+Apache License 2.0 & GNU Affero GPL 3.0 (or higher)
 
 ###### Created by Dmitry Tretyakov (aka Tinelix)
