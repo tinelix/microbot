@@ -115,8 +115,8 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
 async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
     msg_embed = disnake.Embed(
         title=str(translator.translate('embed_title', 'cmd_help', language)).format('user'),
-        description=str(translator.translate('command_description', 'avatar', 'ru_RU')),
+        description=str(translator.translate('command_description', 'avatar', language)),
         colour=config['accent_def'],
     )
-    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', 'ru_RU'), translator.translate('command_examples', 'user', 'ru_RU').format(config['prefix']), inline=False)
+    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'user', language).format(config['prefix']), inline=False)
     await ctx.send(embed=msg_embed)

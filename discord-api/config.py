@@ -9,8 +9,8 @@ tokens = {
 
 config = {
     'name': 'Microbot',
-    'version': '0.2.4',
-    'version_date': '2022-08-17',
+    'version': '0.2.5',
+    'version_date': '2022-08-18',
     'prefix': '>',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,

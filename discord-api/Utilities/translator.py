@@ -22,7 +22,8 @@ def translate(where, str, language):
                     'ping': '🏓 Понг!',
                     'weather': '⛅ Погода',
                     'weather2': '⛅ {0}, {1}',
-                    'wikipedia': '🌐 Википедия'
+                    'wikipedia': '🌐 Википедия',
+                    'codec': '🔡 Кодек'
                 }
             elif where == "embed_description":
                 locale = {
@@ -73,7 +74,7 @@ def translate(where, str, language):
                     'help_preff': 'Префиксы',
                     'help_prefv': '`>` или `/`',
                     'help_cmdsf': 'Команды',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping` `weather` `wiki`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping` `weather` `wiki` `codec`',
                     'help_exampf': 'Пример',
                     'help_aliasf': 'Аналогичные названия',
                     'eval_codelf': 'Листинг',
@@ -154,6 +155,13 @@ def translate(where, str, language):
                     'weather_selyc': 'Выберите город или населенный пункт',
                     'weather_upforecastsf': 'Ближайшие прогнозы',
                     'weather_upforecastsv': '```{0}```',
+                    'codec_resulf': 'Результат',
+                    'codec_resulv': '```{0}```',
+                    'codec_algf': 'Алгоритм',
+                    'codec_algv': '{0}',
+                    'codec_algv2': 'Двоичный код',
+                    'codec_derrv': 'Ошибка декодирования',
+                    'codec_eerrv': 'Ошибка кодирования',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -174,7 +182,8 @@ def translate(where, str, language):
                     'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
                     'ping': 'Пни меня.',
                     'weather': 'Отображает прогноз погоды на ближайшие 24 часа. Для этого используется сервис [OpenWeatherMap](https://openweathermap.org).',
-                    'wiki': 'Показывает статью в Википедии в краткой форме.'
+                    'wiki': 'Показывает статью в Википедии в краткой форме.',
+                    'codec': 'Расшифровка и зашифровка текста'
                 }
             elif where == "command_examples":
                 locale = {
@@ -191,6 +200,7 @@ def translate(where, str, language):
                     'ping': '```{0}ping```',
                     'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```',
                     'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи```',
+                    'codec': '```{0}codec -e base64 Base64 text encoding.\r\n{0}codec -e binary Это перевод текста в двоичный код.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```'
                 }
             elif where == "button":
                 locale = {
@@ -237,7 +247,8 @@ def translate(where, str, language):
                     'ping': '🏓 Pong!',
                     'weather': '⛅ Weather',
                     'weather2': '⛅ {0}, {1}',
-                    'wikipedia': '🌐 Wikipedia'
+                    'wikipedia': '🌐 Wikipedia',
+                    'codec': '🔡 Codec',
                 }
             elif where == "embed_description":
                 locale = {
@@ -286,7 +297,7 @@ def translate(where, str, language):
                     'help_preff': 'Prefixes',
                     'help_prefv': '`>` or `/`',
                     'help_cmdsf': 'Commands',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping` `weather` `wiki`',
+                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `settings` `publish` `ping` `weather` `wiki` `codec`',
                     'help_exampf': 'Examples',
                     'help_aliasf': 'Aliases',
                     'eval_codelf': 'Code listing',
@@ -368,7 +379,11 @@ def translate(where, str, language):
                     'weather_selyc': 'Select city or locality',
                     'weather_upforecastsf': 'Upcoming forecasts',
                     'weather_upforecastsv': '```{0}```',
-
+                    'codec_resulf': 'Result',
+                    'codec_resulv': '```{0}```',
+                    'codec_algf': 'Algorithm',
+                    'codec_algv': '{0}',
+                    'codec_algv2': 'Binary code',
                 }
             elif where == "command_description":
                 locale = {
@@ -385,7 +400,8 @@ def translate(where, str, language):
                     'publish': 'Publishes messages from news channel without extra clicks on the mouse button.',
                     'ping': 'Ping me.',
                     'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.',
-                    'wiki': 'Displays a Wikipedia article in short form.'
+                    'wiki': 'Displays a Wikipedia article in short form.',
+                    'codec': 'Decoding and coding of text.'
                 }
             elif where == "embed_footer":
                 locale = {
@@ -407,6 +423,7 @@ def translate(where, str, language):
                     'ping': '```{0}ping```',
                     'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```',
                     'wiki': '```{0}wiki Sinus\r\n{0}wiki Android\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji```',
+                    'codec': '```{0}codec -e base64 Base64 encoding text example.\r\n{0}codec -e binary Binary text decoding example.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```'
                 }
             elif where == "button":
                 locale = {

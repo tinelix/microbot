@@ -12,3 +12,4 @@ import Commands.publish
 import Commands.ping
 import Commands.weather
 import Commands.wiki
+import Commands.codec
