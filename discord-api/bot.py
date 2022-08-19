@@ -27,7 +27,7 @@ from config import *
 
 # 5. Creating Discord bot instance with all intents
 intents = disnake.Intents.all()
-bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands=True)
+bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
 
 language = 'ru_RU'
@@ -52,7 +52,7 @@ async def no_DM(ctx):
 @bot.event
 async def on_ready():
     connectionStartTime = time.time()
-    await notifer.showWelcomeMessage(disnake, bot, config)
+    await notifier.showWelcomeMessage(disnake, bot, config)
     await db.create_tables(database, cursor)
 
 @bot.event
@@ -61,15 +61,15 @@ async def on_disconnect():
 
 @bot.event
 async def on_guild_join(guild):
-    await notifer.refreshStatus(disnake, bot, config)
-    await notifer.updateWelcomeMessage(disnake, bot, config)
+    await notifier.refreshStatus(disnake, bot, config)
+    await notifier.updateWelcomeMessage(disnake, bot, config)
     if(await db.if_guild_existed(database, cursor, guild.id) == False):
         await db.add_guild_value(database, guild, cursor)
 
 @bot.event
 async def on_guild_leave(guild):
-    await notifer.updateWelcomeMessage(disnake, bot, config)
-    await notifer.refreshStatus(disnake, bot, config)
+    await notifier.updateWelcomeMessage(disnake, bot, config)
+    await notifier.refreshStatus(disnake, bot, config)
 
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_cmd(ctx, arg):
@@ -205,7 +205,7 @@ async def weather_cmd(ctx, *, arg):
     language = guild_data[1]
     await weather.sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
 
-@bot.slash_command(name="weather", description=translator.translate('command_description', 'weather', 'en_US'))
+@bot.slash_command(name="weather", description=translator.translate('command_description', 'weather2', 'en_US'))
 async def weather_scmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
     language = guild_data[1]

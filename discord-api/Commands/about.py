@@ -85,34 +85,19 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         translator.translate('embed_fields', 'about_hardwf', language), translator.translate('embed_fields', 'about_hardwv', language).format(cpuinfo.get_cpu_info()['brand_raw'], round(cpuinfo.get_cpu_info()['hz_advertised'][0] / 1000000, 2), ram, os_ver), inline=False
     )
 
-    if(len(links['website']) > 0 and len(links['support']) > 0 and len(links['repo']) > 0):
+    if(len(links['invite']) > 0):
+        links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv', language).format(links['invite']))
+    if(len(links['website']) > 0):
+        links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv2', language).format(links['website']))
+    if(len(links['repo']) > 0):
+        links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv3', language).format(links['repo']))
+    if(len(links['support']) > 0):
+        links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv4', language).format(links['support']))
+    if(len(links_str) > 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv7', language).format(links['invite'], links['support'], links['website'], links['repo']), inline=True
+            translator.translate('embed_fields', 'about_linksf', language), links_str, inline=True
         )
-    elif(len(links['support']) > 0 and len(links['repo']) > 0):
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv6', language).format(links['invite'], links['support'], links['repo']), inline=True
-        )
-    elif(len(links['website']) > 0 and len(links['support']) > 0):
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv5', language).format(links['invite'], links['support'], links['website']), inline=True
-        )
-    elif(len(links['support']) > 0):
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv4', language).format(links['invite'], links['support']), inline=True
-        )
-    elif(len(links['repo']) > 0):
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv3', language).format(links['invite'], links['website']), inline=True
-        )
-    elif(len(links['website']) > 0):
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv2', language).format(links['invite'], links['website']), inline=True
-        )
-    else:
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv', language).format(links['invite']), inline=True
-        )
+
 
     msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)')
     return msg_embed

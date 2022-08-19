@@ -38,10 +38,10 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, error):
     return msg_embed
 
 async def send(ctx, bot, config, language, disnake, translator, error):
-    channel = bot.get_channel(config['bugs_ch'])
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, error)
     if(config['bugs_ch'] > 0):
         try:
+            channel = bot.get_channel(config['bugs_ch'])
             msg_bug_embed = await generateBrEmbed(ctx, bot, config, language, disnake, translator, error)
             await channel.send(embed=msg_bug_embed)
         except:
