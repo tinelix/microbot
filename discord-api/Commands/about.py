@@ -85,6 +85,8 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         translator.translate('embed_fields', 'about_hardwf', language), translator.translate('embed_fields', 'about_hardwv', language).format(cpuinfo.get_cpu_info()['brand_raw'], round(cpuinfo.get_cpu_info()['hz_advertised'][0] / 1000000, 2), ram, os_ver), inline=False
     )
 
+    links_str = ''
+
     if(len(links['invite']) > 0):
         links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv', language).format(links['invite']))
     if(len(links['website']) > 0):
