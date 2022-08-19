@@ -221,7 +221,7 @@ async def wiki_cmd(ctx, *, arg):
 async def wiki_scmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
     language = guild_data[1]
-    await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+    await wiki.sendSlashMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.command(name="codec", description=translator.translate('command_description', 'codec', 'en_US'))
 async def codec_cmd(ctx, *arg):
