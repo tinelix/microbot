@@ -24,9 +24,9 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             msg_embed = disnake.Embed(
             description=str(translator.translate('embed_description', 'settings', language)),
             colour=config['accent_def'],
-        )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-        msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
+            )
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+            msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
     else:
         msg_embed = disnake.Embed(
             description=str(translator.translate('embed_description', 'settings', language)),
@@ -47,8 +47,11 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
                 language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
                 language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_lang', language).format(config['prefix']), inline=False)
                 await interaction.response.send_message(embed=language_embed)
-    if(len(arg) == 0):
-        await ctx.reply(embed=msg_embed, view=ChangeLanguageByButton(), mention_author=False)
+    if(len(arg) >= 2):
+        if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
+            await ctx.reply(embed=msg_embed, mention_author=False)
+        else:
+            await ctx.reply(embed=msg_embed, view=ChangeLanguageByButton(), mention_author=False)
     else:
         await ctx.reply(embed=msg_embed, mention_author=False)
 

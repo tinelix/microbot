@@ -44,8 +44,9 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
+    await ctx.response.defer()
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
-    await ctx.response.send_message(embed=msg_embed)
+    await ctx.send(embed=msg_embed)
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
