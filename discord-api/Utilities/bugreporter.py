@@ -1,3 +1,7 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
 async def generateBrEmbed(ctx, bot, config, language, disnake, translator, error):
     if(ctx.message.content.startswith('{0}help'.format(config['prefix']))):
         command_example = translator.translate('command_examples', 'help', 'en_US')

@@ -1,3 +1,7 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
 def translate(where, str, language):
     try:
         if language == "ru_RU": # Russian
@@ -96,8 +100,11 @@ def translate(where, str, language):
                     'about_linksf': 'Ссылки',
                     'about_linksv': '[Пригласить]({0})',
                     'about_linksv2': '[Пригласить]({0})\r\n[Сайт]({1})',
-                    'about_linksv3': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})',
-                    'about_linksv4': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})\r\n[Репозиторий]({3}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv3': '[Пригласить]({0})\r\n[Репозиторий]({1}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv4': '[Пригласить]({0})\r\n[Сервер поддержки]({1})',
+                    'about_linksv5': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})',
+                    'about_linksv6': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Репозиторий]({2})',
+                    'about_linksv7': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})\r\n[Репозиторий]({3}) (Apache License 2.0 & AGPL 3.0+)',
                     'user_nickf': 'Псевдоним',
                     'user_nickv': '{0}',
                     'user_nickvn': '*Отсутствует*',
@@ -176,7 +183,7 @@ def translate(where, str, language):
                     '8ball': 'Генерирует для любого вопроса случайный ответ. Все совпадения случайны!',
                     'rngen': 'Генерирует случайное число в указанном диапазоне.',
                     'guild': 'Показывает информацию о гильдии (сервере)',
-                    'calc': 'Простойшей калькулятор.',
+                    'calc': 'Простейший калькулятор.',
                     'settings': 'Настройки бота.',
                     'settings_lang': 'Смена языка.',
                     'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
@@ -200,7 +207,8 @@ def translate(where, str, language):
                     'ping': '```{0}ping```',
                     'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```',
                     'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи```',
-                    'codec': '```{0}codec -e base64 Base64 text encoding.\r\n{0}codec -e binary Это перевод текста в двоичный код.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```'
+                    'codec': '```{0}codec -e base64 Base64 text encoding.\r\n{0}codec -e binary Это перевод текста в двоичный код.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
+                    'calc': '```{0}calc [выражение]```',
                 }
             elif where == "button":
                 locale = {
@@ -319,8 +327,11 @@ def translate(where, str, language):
                     'about_linksf': 'Links',
                     'about_linksv': '[Invite]({0})',
                     'about_linksv2': '[Invite]({0})\r\n[Website]({1})',
-                    'about_linksv3': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})',
-                    'about_linksv4': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})\r\n[Repository]({3}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv3': '[Invite]({0})\r\n[Repository]({1}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv4': '[Invite]({0})\r\n[Support server]({1})',
+                    'about_linksv5': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})',
+                    'about_linksv6': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Repository]({2}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv7': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})\r\n[Repository]({3}) (Apache License 2.0 & AGPL 3.0+)',
                     'about_linksv': '{0}',
                     'user_nickf': 'Nickname',
                     'user_nickv': '{0}',

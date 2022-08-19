@@ -1,3 +1,7 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
     msg_embed = disnake.Embed(
         description=str(translator.translate('embed_description', 'help', language)).format(config['name'], links['invite']),

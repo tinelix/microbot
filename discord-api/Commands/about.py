@@ -1,3 +1,7 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License 2.0 & GNU Affero General Public License v3.0 and higher
+
 import cpuinfo # for install 'pip install py-cpuinfo'
 import psutil
 import os
@@ -14,7 +18,10 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator, 
     return msg_embed
 
 async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
-    owner = bot.get_user(config['owner_id'])
+    try:
+        dev = bot.get_user(config['dev_id'])
+    except:
+        dev = None
 
     plt_system = platform.system()
     plt_version = platform.version()
@@ -55,9 +62,12 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(config['version'], config['version_date']), inline=True
     )
-    msg_embed.add_field(
-        translator.translate('embed_fields', 'about_devsf', language), translator.translate('embed_fields', 'about_devsv', language).format(owner.name, owner.discriminator), inline=True
-    )
+    if(dev == None):
+        pass
+    else:
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_devsf', language), translator.translate('embed_fields', 'about_devsv', language).format(dev.name, dev.discriminator), inline=True
+        )
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_regdf', language), translator.translate('embed_fields', 'about_regdv', language).format(bot.user.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=True
     )
@@ -77,11 +87,23 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
 
     if(len(links['website']) > 0 and len(links['support']) > 0 and len(links['repo']) > 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv4', language).format(links['invite'], links['support'], links['website'], links['repo']), inline=True
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv7', language).format(links['invite'], links['support'], links['website'], links['repo']), inline=True
+        )
+    elif(len(links['support']) > 0 and len(links['repo']) > 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv6', language).format(links['invite'], links['support'], links['repo']), inline=True
         )
     elif(len(links['website']) > 0 and len(links['support']) > 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv3', language).format(links['invite'], links['support'], links['website']), inline=True
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv5', language).format(links['invite'], links['support'], links['website']), inline=True
+        )
+    elif(len(links['support']) > 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv4', language).format(links['invite'], links['support']), inline=True
+        )
+    elif(len(links['repo']) > 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv3', language).format(links['invite'], links['website']), inline=True
         )
     elif(len(links['website']) > 0):
         msg_embed.add_field(

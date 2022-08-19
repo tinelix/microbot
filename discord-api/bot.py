@@ -1,4 +1,8 @@
-# 1. Importing main libraries (2-10)
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
+# 1. Importing main libraries (5-16)
 import disnake
 import platform
 import os
@@ -53,7 +57,7 @@ async def on_ready():
 
 @bot.event
 async def on_disconnect():
-    print(" ERROR: Connection failed.")
+    print(" ERROR: Discord Gateway connection disconnected!")
 
 @bot.event
 async def on_guild_join(guild):
@@ -244,6 +248,7 @@ async def on_command_error(ctx, error):
         else:
             pass
 
+# 7. Database autosynchronization
 async def sync_db(ctx, table, message_type):
     if(message_type == 'regular'):
         cursor = database.cursor()

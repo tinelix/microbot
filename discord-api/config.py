@@ -1,3 +1,7 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License 2.0 & GNU Affero General Public License v3.0 and higher
+
 import os
 from dotenv import load_dotenv # loading environment variables module, for install 'pip install python-dotenv'
 dotenv_path = os.path.join('../', '.env')
@@ -9,12 +13,12 @@ tokens = {
 
 config = {
     'name': 'Microbot',
-    'version': '0.2.5',
-    'version_date': '2022-08-18',
+    'version': '0.2.6',
+    'version_date': '2022-08-19',
     'prefix': '>',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,
-    'owner_id': 741883312108339231, # Bot developer ID
+    'dev_id': 741883312108339231, # Bot developer ID
     'bugs_ch': 995275176029732894,  # To show a bug report in the console, set the value to 0
 }
 
