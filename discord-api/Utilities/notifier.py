@@ -23,7 +23,7 @@ async def showWelcomeMessage(disnake, bot, config):
     async def autostatus():
         await bot.wait_until_ready()
         await bot.change_presence(status=disnake.Status.dnd, activity=disnake.Game(name=next(statuses_cycle)))
-    #autostatus.start()
+    autostatus.start()
 
 async def updateWelcomeMessage(disnake, bot, config):
     if(os.name == 'nt'):
