@@ -252,7 +252,7 @@ async def on_message(message):
         ctx = await bot.get_context(message)
         guild_data = await sync_db(ctx, 'guilds', 'regular')
         language = guild_data[1]
-        await message.reply(translator.translate('message', 'prefix', language), mention_author=False)
+        await message.reply(translator.translate('message', 'prefix', language).format(config['prefix']), mention_author=False)
 
 # 7. Database autosynchronization
 async def sync_db(ctx, table, message_type):
