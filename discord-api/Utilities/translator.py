@@ -5,7 +5,11 @@
 def translate(where, str, language):
     try:
         if language == "ru_RU": # Russian
-            if where == "embed_title":
+            if where == "message":
+                locale = {
+                    'prefix': '**Префикс:** `{0}`\r\nПоддерживаются также слэш-команды.'
+                }
+            elif where == "embed_title":
                 locale = {
                     'error': '❎ Ошибка',
                     'help': '❔ Справка',
@@ -232,7 +236,11 @@ def translate(where, str, language):
             else:
                 return locale[str]
         else: # English, if not
-            if where == "embed_title":
+            if where == "message":
+                locale = {
+                    'prefix': '**Prefix:** `{0}`\r\nSlash commands are also supported.'
+                }
+            elif where == "embed_title":
                 locale = {
                     'error': '❎ Error',
                     'help': '❔ Help',

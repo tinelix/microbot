@@ -61,7 +61,6 @@ async def on_disconnect():
 
 @bot.event
 async def on_guild_join(guild):
-    await notifier.refreshStatus(disnake, bot, config)
     await notifier.updateWelcomeMessage(disnake, bot, config)
     if(await db.if_guild_existed(database, cursor, guild.id) == False):
         await db.add_guild_value(database, guild, cursor)
@@ -69,7 +68,6 @@ async def on_guild_join(guild):
 @bot.event
 async def on_guild_leave(guild):
     await notifier.updateWelcomeMessage(disnake, bot, config)
-    await notifier.refreshStatus(disnake, bot, config)
 
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_cmd(ctx, arg):
@@ -247,6 +245,14 @@ async def on_command_error(ctx, error):
             await bugreporter.send(ctx, bot, config, language, disnake, translator, error_text)
         else:
             pass
+
+@bot.event
+async def on_message(message):
+    if message.content.startswith('{0}'.format(bot.user.mention)):
+        ctx = await bot.get_context(message)
+        guild_data = await sync_db(ctx, 'guilds', 'regular')
+        language = guild_data[1]
+        await message.reply(translator.translate('message', 'prefix', language), mention_author=False)
 
 # 7. Database autosynchronization
 async def sync_db(ctx, table, message_type):

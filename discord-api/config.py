@@ -13,8 +13,8 @@ tokens = {
 
 config = {
     'name': 'Microbot',
-    'version': '0.2.8',
-    'version_date': '2022-08-19',
+    'version': '0.3.0',
+    'version_date': '2022-08-21',
     'prefix': '>',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,

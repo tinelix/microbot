@@ -7,7 +7,7 @@ import psutil
 import platform
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
-    if(ctx.message.author.id == config['owner_id']):  # only bot owner!
+    if(ctx.message.author.id == config['dev_id']):  # only bot owner!
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
