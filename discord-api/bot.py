@@ -246,14 +246,6 @@ async def on_command_error(ctx, error):
         else:
             pass
 
-@bot.event
-async def on_message(message):
-    if message.content.startswith('{0}'.format(bot.user.mention)):
-        ctx = await bot.get_context(message)
-        guild_data = await sync_db(ctx, 'guilds', 'regular')
-        language = guild_data[1]
-        await message.reply(translator.translate('message', 'prefix', language).format(config['prefix']), mention_author=False)
-
 # 7. Database autosynchronization
 async def sync_db(ctx, table, message_type):
     if(message_type == 'regular'):
