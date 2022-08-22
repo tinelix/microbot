@@ -53,7 +53,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
         else:
             await ctx.reply(embed=msg_embed, view=ChangeLanguageByButton(), mention_author=False)
     else:
-        await ctx.reply(embed=msg_embed, mention_author=False)
+        await ctx.reply(embed=msg_embed, view=ChangeLanguageByButton(), mention_author=False)
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
