@@ -28,11 +28,12 @@ from config import *
 class HelpCommand:
     def __init__(self, client: commands.CommandsClient):
         self.client = client
+        self.commands_list = ['help', 'about', 'user', 'guild', '8ball', 'rngen', 'calc', 'settings', 'publish', 'ping', 'weather', 'wiki', 'codec']
 
     async def send_help(self, ctx: commands.CommandContext):
         #server_data = await sync_db(ctx, 'servers', 'regular')
         #language = guild_data[1]
-        await help.sendRegularMsg(ctx, bot, config, links, language, voltage, translator)
+        await help.sendRegularMsg(ctx, bot, config, links, language, voltage, self.commands_list, translator)
 
     async def send_command_help(self, ctx: commands.CommandContext, cmd):
         #server_data = await sync_db(ctx, 'servers', 'regular')
@@ -42,7 +43,7 @@ class HelpCommand:
     async def send_not_found(self, ctx: commands.CommandContext, arg):
         #server_data = await sync_db(ctx, 'servers', 'regular')
         #language = guild_data[1]
-        await help.sendRegularMsg(ctx, bot, config, links, language, voltage, translator)
+        await help.sendRegularMsg(ctx, bot, config, links, language, voltage, self.commands_list, translator)
 
 
 # 6. Creating Revolt bot instance with all intents
@@ -99,6 +100,14 @@ async def eval_cmd(ctx, *, arg):
 async def rngen_cmd(ctx, *, arg):
     await rngen.sendRegularMsg(ctx, bot, config, language, voltage, translator, arg)
 
+@bot.command(name="8ball", description=translator.translate('command_description', "8ball", "en_US"))
+async def eightball_cmd(ctx, *, arg):
+    await eightball.sendRegularMsg(ctx, bot, config, language, voltage, translator, arg)
+
+@bot.command(name="avatar", description=translator.translate('command_description', "avatar", "en_US"))
+async def avatar_cmd(ctx, arg):
+    await avatar.sendRegularMsg(ctx, bot, config, language, voltage, translator, arg)
+
 @bot.error("message")
 async def on_message_error(error: Exception, message):
     if isinstance(error, voltage.errors.NotEnoughArgs):
@@ -108,10 +117,10 @@ async def on_message_error(error: Exception, message):
     else:
         error_list = []
         error_text = "".join(traceback.TracebackException.from_exception(error).format())
-        if(config['bugs_ch'] > 0):
+        if(config['bugs_ch'] != ''):
             await bugreporter.send(message, bot, config, language, voltage, translator, error_text)
         else:
-            pass
+            print(error_text)
 
 # 9. Database autosynchronization
 async def sync_db(ctx, table, message_type):

@@ -13,8 +13,8 @@ tokens = {
 
 config = {
     'name': 'Microbot',
-    'version': '0.2.8 for Revolt',
-    'version_date': '2022-08-19',
+    'version': '0.3.2 for Revolt',
+    'version_date': '2022-08-20',
     'prefix': '.',
     'accent_def': '#33b5e5',
     'accent_err': '#ff4444',
@@ -24,7 +24,7 @@ config = {
 
 links = {
     'invite': 'https://app.revolt.chat/bot/01GAWYPXPN741ESRZS6T0ZBVGQ',
-    'support': 'https://discord.gg/saEHAWzYt3',
+    'support': '',
     'website': 'https://tinelix.github.io',
     'repo': 'https://github.com/tinelix/microbot',
 }

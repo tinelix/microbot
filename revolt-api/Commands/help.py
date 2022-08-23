@@ -2,7 +2,13 @@
 # Repo: https://github.com/tinelix/microbot
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
-async def generateEmbed(ctx, bot, config, links, language, voltage, translator):
+async def generateEmbed(ctx, bot, config, links, language, voltage, commands_list, translator):
+    commands_list_str = ""
+    for command in commands_list:
+        if(commands_list.index(command) < len(commands_list) - 1):
+            commands_list_str += "`{0}` ".format(command)
+        else:
+            commands_list_str += "`{0}`".format(command)
     msg_embed = voltage.SendableEmbed(
         title=str(translator.translate('embed_title', 'help', language)),
         description="{0}".format(str(translator.translate('embed_description', 'help', language)).format(config['name'], links['invite'])),
@@ -13,16 +19,15 @@ async def generateEmbed(ctx, bot, config, links, language, voltage, translator):
             translator.translate('embed_fields', 'help_preff', language),
             translator.translate('embed_fields', 'help_prefv', language),
             translator.translate('embed_fields', 'help_cmdsf', language),
-            translator.translate('embed_fields', 'help_cmdsv', language)
-        )
+            commands_list_str)
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, links, language, voltage, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, links, language, voltage, translator)
+async def sendSlashMsg(ctx, bot, config, links, language, voltage, commands_list, translator):
+    msg_embed = await generateEmbed(ctx, bot, config, links, language, voltage, commands_list, translator)
     await ctx.response.send_message(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, links, language, voltage, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, links, language, voltage, translator)
+async def sendRegularMsg(ctx, bot, config, links, language, voltage, commands_list, translator):
+    msg_embed = await generateEmbed(ctx, bot, config, links, language, voltage, commands_list, translator)
     await ctx.reply(" ", embed=msg_embed)
 
 async def sendCmdHelpMsg(ctx, bot, links, config, language, voltage, translator, arg):

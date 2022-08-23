@@ -3,6 +3,7 @@
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
 import re
+import datetime
 
 async def generateEmbed(ctx, bot, config, language, voltage, translator):
     server = ctx.server
@@ -34,6 +35,7 @@ async def generateEmbed(ctx, bot, config, language, voltage, translator):
             online += 1
 
     msg_embed.description = '### {0}\r\n{1}\r\n'.format(translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format(owner.name))
+    msg_embed.description = '### {0}\r\n{1}\r\n'.format(translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(datetime.datetime.fromtimestamp(server.created_at[0] / 1000).strftime("%Y-%m-%d %H:%M:%S")))
     msg_embed.description += '### {0}\r\n{1}\r\n'.format(translator.translate('embed_fields', 'guild_statsf', language), translator.translate('embed_fields', 'guild_statsv', language).format(len(server.members), people, round(people / (len(server.members) * 0.01), 2), bots, round(bots / (len(server.members) * 0.01), 2), online, round(online / (len(server.members) * 0.01), 2), 0))
 
     msg_embed.description += '###### ID: {0}'.format(server.id)

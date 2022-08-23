@@ -3,6 +3,7 @@
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
 import re
+import datetime
 
 async def generateEmbed(ctx, bot, config, language, voltage, translator, arg):
     if(arg.startswith("<@") and arg.endswith(">")):
@@ -62,6 +63,7 @@ async def generateEmbed(ctx, bot, config, language, voltage, translator, arg):
         pass
     else:
         msg_embed.description = '### {0}\r\n{1}\r\n'.format(translator.translate('embed_fields', 'user_statusf', language), status)
+        msg_embed.description = '### {0}\r\n{1}\r\n'.format(translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(datetime.datetime.fromtimestamp(user.created_at / 1000).strftime("%Y-%m-%d %H:%M:%S")))
         if(len(member.roles) > 0):
             msg_embed.description += '### {0}\r\n{1}\r\n'.format(translator.translate('embed_fields', 'user_rolesf', language).format(len(member.roles)), roles)
     msg_embed.description += '###### ID: {0}'.format(user.id)
