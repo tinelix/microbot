@@ -30,6 +30,8 @@ intents = disnake.Intents.all()
 bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
 
+bot.commands_list = ['help', 'about', 'user', 'guild', '8ball', 'rngen', 'calc', 'settings', 'publish', 'ping', 'weather', 'wiki', 'codec']
+
 language = 'ru_RU'
 user_col = None
 guild_col = None

@@ -4,6 +4,9 @@
 
 import numexpr
 
+name = 'calc'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     try:
         result = str(numexpr.evaluate(arg.replace(':', '/')))

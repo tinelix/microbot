@@ -4,6 +4,9 @@
 
 import random
 
+name = '8ball'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, python_version):
     random_numb = random.randint(0, len(translator.translate('embed_fields', '8ball_answv', language)) - 1)
     msg_embed = disnake.Embed(

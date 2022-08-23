@@ -5,6 +5,9 @@
 import re
 import wikipedia
 
+name = 'wiki'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         if(language == "ru_RU"):
             wikipedia.set_lang("ru")

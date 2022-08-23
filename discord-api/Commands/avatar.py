@@ -4,6 +4,9 @@
 
 import re
 
+name = 'avatar'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     query = int(re.search(r'\d+', arg).group())
     user = bot.get_user(query)

@@ -4,6 +4,9 @@
 
 import random
 
+name = 'rngen'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     random_numb = random.randint(int(arg.split('-')[0]), int(arg.split('-')[1]))
     msg_embed = disnake.Embed(

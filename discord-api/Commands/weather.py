@@ -5,6 +5,9 @@
 import re
 import requests
 
+name = 'settings'
+hidden = False
+
 cities_list = []
 
 async def generateEmbed(ctx, bot, config, tokens, language, disnake, translator, arg):

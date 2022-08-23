@@ -9,6 +9,9 @@ import sys
 import platform
 import sqlite3
 
+name = 'about'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
     msg_embed = disnake.Embed(
         description=translator.translate('embed_description', 'please_wait', language),

@@ -4,6 +4,9 @@
 
 import numexpr
 
+name = 'settings'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):

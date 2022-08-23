@@ -5,6 +5,9 @@
 import random
 import time
 
+name = 'ping'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, ping):
     msg_embed = disnake.Embed(
         colour=config['accent_def'],

@@ -2,14 +2,23 @@
 # Repo: https://github.com/tinelix/microbot
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
+name = 'help'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
+    commands_list = ""
+    for command in bot.commands_list:
+        if(bot.commands_list.index(command) < len(bot.commands_list) - 1):
+            commands_list += "`{0}` ".format(command)
+        else:
+            commands_list += "`{0}`".format(command)
     msg_embed = disnake.Embed(
         description=str(translator.translate('embed_description', 'help', language)).format(config['name'], links['invite']),
         colour=config['accent_def']
     ).add_field(
         translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language), inline=False
     ).add_field(
-        translator.translate('embed_fields', 'help_cmdsf', language), translator.translate('embed_fields', 'help_cmdsv', language), inline=False
+        translator.translate('embed_fields', 'help_cmdsf', language), translator.translate('embed_fields', 'help_cmdsv', language).format(commands_list), inline=False
     )
     msg_embed.set_author(name=str(translator.translate('embed_title', 'help', language)))
     return msg_embed

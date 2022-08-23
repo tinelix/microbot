@@ -2,6 +2,9 @@
 # Repo: https://github.com/tinelix/microbot
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
+name = 'publish'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     community = ""
     for guild_feature in ctx.message.guild.features:

@@ -4,6 +4,9 @@
 
 import re
 
+name = 'guild'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator):
     guild = ctx.guild
     try:

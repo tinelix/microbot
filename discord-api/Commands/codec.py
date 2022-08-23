@@ -5,6 +5,9 @@
 import base64
 import binascii
 
+name = 'codec'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary):
     if(len(arg) >= 2):
         if(arg[0] == '-d'):
