@@ -238,6 +238,7 @@ async def publish_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
+    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
@@ -249,7 +250,6 @@ async def ping_cmd(ctx):
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
     now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    print((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())))
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await ping.sendRegularMsg(ctx, bot, config, language, disnake, translator)
     else:
@@ -265,7 +265,8 @@ async def ping_scmd(ctx):
 async def weather_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + datetime.datetime.now().utcoffset().total_seconds())) >= 1000):
+    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
+    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await weather.sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
     else:
         ctx.message.add_reaction('🥸')
@@ -280,7 +281,8 @@ async def weather_scmd(ctx, *, arg):
 async def wiki_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + datetime.datetime.now().utcoffset().total_seconds())) >= 1000):
+    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
+    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
         ctx.message.add_reaction('🥸')
@@ -295,7 +297,8 @@ async def wiki_scmd(ctx, *, arg):
 async def codec_cmd(ctx, *arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
-    if((datetime.datetime.now(datetime.timezone.utc).astimezone().timestamp() - datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp()) >= 1000):
+    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
+    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await codec.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, binary)
     else:
         ctx.message.add_reaction('🥸')
