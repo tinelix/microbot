@@ -13,13 +13,14 @@ tokens = {
 
 config = {
     'name': 'Microbot',
-    'version': '0.3.2',
+    'version': '0.3.3',
     'version_date': '2022-08-23',
     'prefix': '>',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,
     'dev_id': 741883312108339231, # Bot developer ID
     'bugs_ch': 995275176029732894,  # To show a bug report in the console, set the value to 0
+    'cooldown': 1.5,
 }
 
 links = {
