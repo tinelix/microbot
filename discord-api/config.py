@@ -20,7 +20,7 @@ config = {
     'accent_err': 0xff4444,
     'dev_id': 741883312108339231, # Bot developer ID
     'bugs_ch': 995275176029732894,  # To show a bug report in the console, set the value to 0
-    'cooldown': 1.5,
+    'cooldown': 0.8, # i'm not sure what the 0.8 seconds cooldown is, maybe more, but still.
 }
 
 links = {
