@@ -239,7 +239,7 @@ async def publish_cmd(ctx, *, arg):
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
     now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    print((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())))
+    #print((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())))
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
