@@ -92,32 +92,38 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
-    query = int(re.search(r'\d+', arg).group())
-    user = bot.get_user(query)
-    member = ctx.guild.get_member(query)
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
-    class AvatarByButton(disnake.ui.View):
-        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
-        async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
-            avatar_embed = disnake.Embed(
-                colour=config['accent_def'],
-            ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
-            await interaction.response.send_message(embed=avatar_embed)
-    await ctx.response.send_message(embed=msg_embed, view=AvatarByButton())
+    try:
+        query = int(re.search(r'\d+', arg).group())
+        user = bot.get_user(query)
+        member = ctx.guild.get_member(query)
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        class AvatarByButton(disnake.ui.View):
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
+            async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+                avatar_embed = disnake.Embed(
+                    colour=config['accent_def'],
+                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
+                await interaction.response.send_message(embed=avatar_embed)
+        await ctx.response.send_message(embed=msg_embed, view=AvatarByButton())
+    except:
+        pass
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
-    query = int(re.search(r'\d+', arg).group())
-    user = bot.get_user(query)
-    member = ctx.message.guild.get_member(query)
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
-    class AvatarByButton(disnake.ui.View):
-        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
-        async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
-            avatar_embed = disnake.Embed(
-                colour=config['accent_def'],
-            ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
-            await interaction.response.send_message(embed=avatar_embed)
-    await ctx.reply(embed=msg_embed, view=AvatarByButton(), mention_author=False)
+    try:
+        query = int(re.search(r'\d+', arg).group())
+        user = bot.get_user(query)
+        member = ctx.message.guild.get_member(query)
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        class AvatarByButton(disnake.ui.View):
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
+            async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+                avatar_embed = disnake.Embed(
+                    colour=config['accent_def'],
+                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
+                await interaction.response.send_message(embed=avatar_embed)
+        await ctx.reply(embed=msg_embed, view=AvatarByButton(), mention_author=False)
+    except:
+        pass
 
 async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
     msg_embed = disnake.Embed(
