@@ -74,15 +74,12 @@ async def on_guild_leave(guild):
     await notifier.updateWelcomeMessage(disnake, bot, config)
 
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def help_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await help.sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await help.sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_scmd(ctx):
@@ -91,18 +88,16 @@ async def help_scmd(ctx):
     await help.sendSlashMsg(ctx, bot, config, links, language, disnake, translator)
 
 @bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def about_cmd(ctx):
     uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def about_scmd(ctx):
     uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'slash')
@@ -110,15 +105,12 @@ async def about_scmd(ctx):
     await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def user_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await user.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await user.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
 async def user_scmd(ctx, member):
@@ -127,15 +119,12 @@ async def user_scmd(ctx, member):
     await user.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
 @bot.command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def avatar_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await avatar.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await avatar.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 async def avatar_scmd(ctx, member):
@@ -144,15 +133,12 @@ async def avatar_scmd(ctx, member):
     await avatar.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
 @bot.command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def eightball_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await eightball.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await eightball.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
 async def eightball_scmd(ctx, question):
@@ -161,15 +147,11 @@ async def eightball_scmd(ctx, question):
     await eightball.sendSlashMsg(ctx, bot, config, language, disnake, translator, question)
 
 @bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'), aliases=['rand'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def rngen_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await rngen.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
 async def rngen_scmd(ctx, range):
@@ -178,26 +160,20 @@ async def rngen_scmd(ctx, range):
     await rngen.sendSlashMsg(ctx, bot, config, language, disnake, translator, range)
 
 @bot.command(name="eval")
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def eval_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def guild_cmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await guild.sendRegularMsg(ctx, bot, config, language, disnake, translator)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await guild.sendRegularMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.slash_command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
 async def guild_scmd(ctx):
@@ -206,15 +182,12 @@ async def guild_scmd(ctx):
     await guild.sendSlashMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.command(name="calc", description=translator.translate('command_description', 'calc', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def calc_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await calc.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await calc.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="calc", description=translator.translate('command_description', 'calc', 'en_US'))
 async def calc_scmd(ctx, expression):
@@ -223,38 +196,30 @@ async def calc_scmd(ctx, expression):
     await calc.sendSlashMsg(ctx, bot, config, language, disnake, translator, expression)
 
 @bot.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def settings_cmd(ctx, *arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await settings.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await settings.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
 
 @bot.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def publish_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
     now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    #print((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())))
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+
 
 @bot.command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def ping_cmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     user_data = await sync_db(ctx, 'users', 'regular')
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await ping.sendRegularMsg(ctx, bot, config, language, disnake, translator)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await ping.sendRegularMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.slash_command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
 async def ping_scmd(ctx):
@@ -263,14 +228,11 @@ async def ping_scmd(ctx):
     await ping.sendSlashMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.command(name="weather", description=translator.translate('command_description', 'weather', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def weather_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await weather.sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await weather.sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
 
 @bot.slash_command(name="weather", description=translator.translate('command_description', 'weather2', 'en_US'))
 async def weather_scmd(ctx, *, arg):
@@ -279,14 +241,11 @@ async def weather_scmd(ctx, *, arg):
     await weather.sendSlashMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
 
 @bot.command(name="wiki", description=translator.translate('command_description', 'wiki', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def wiki_cmd(ctx, *, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
-    now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="wiki", description=translator.translate('command_description', 'wiki', 'en_US'))
 async def wiki_scmd(ctx, *, arg):
@@ -295,14 +254,12 @@ async def wiki_scmd(ctx, *, arg):
     await wiki.sendSlashMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.command(name="codec", description=translator.translate('command_description', 'codec', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def codec_cmd(ctx, *arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-    if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
-        await codec.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, binary)
-    else:
-        await ctx.message.add_reaction('🥸')
+    await codec.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, binary)
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -315,6 +272,8 @@ async def on_command_error(ctx, error):
             await help.sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator)
     elif isinstance(error, commands.CommandNotFound):
         pass
+    elif isinstance(error, commands.CommandOnCooldown):
+        await ctx.message.add_reaction('🥸')
     else:
         error_list = []
         error_text = "".join(traceback.TracebackException.from_exception(error).format())
