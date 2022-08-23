@@ -82,7 +82,7 @@ async def help_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await help.sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_scmd(ctx):
@@ -100,7 +100,7 @@ async def about_cmd(ctx):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
 async def about_scmd(ctx):
@@ -118,7 +118,7 @@ async def user_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await user.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
 async def user_scmd(ctx, member):
@@ -135,7 +135,7 @@ async def avatar_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await avatar.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 async def avatar_scmd(ctx, member):
@@ -152,7 +152,7 @@ async def eightball_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await eightball.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
 async def eightball_scmd(ctx, question):
@@ -186,7 +186,7 @@ async def eval_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
 async def guild_cmd(ctx):
@@ -197,7 +197,7 @@ async def guild_cmd(ctx):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await guild.sendRegularMsg(ctx, bot, config, language, disnake, translator)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
 async def guild_scmd(ctx):
@@ -214,7 +214,7 @@ async def calc_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await calc.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="calc", description=translator.translate('command_description', 'calc', 'en_US'))
 async def calc_scmd(ctx, expression):
@@ -231,7 +231,7 @@ async def settings_cmd(ctx, *arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await settings.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
 async def publish_cmd(ctx, *, arg):
@@ -269,7 +269,7 @@ async def weather_cmd(ctx, *, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await weather.sendRegularMsg(ctx, bot, config, tokens, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="weather", description=translator.translate('command_description', 'weather2', 'en_US'))
 async def weather_scmd(ctx, *, arg):
@@ -285,7 +285,7 @@ async def wiki_cmd(ctx, *, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await wiki.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="wiki", description=translator.translate('command_description', 'wiki', 'en_US'))
 async def wiki_scmd(ctx, *, arg):
@@ -301,7 +301,7 @@ async def codec_cmd(ctx, *arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await codec.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, binary)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.event
 async def on_command_error(ctx, error):
