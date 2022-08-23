@@ -169,7 +169,7 @@ async def rngen_cmd(ctx, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await rngen.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.slash_command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
 async def rngen_scmd(ctx, range):
@@ -242,7 +242,7 @@ async def publish_cmd(ctx, *, arg):
     if((datetime.datetime.now().timestamp() - (datetime.datetime.strptime(user_data[3], '%Y-%m-%d %H:%M:%S').timestamp() + now.utcoffset().total_seconds())) >= config['cooldown']):
         await publish.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
     else:
-        ctx.message.add_reaction('🥸')
+        await ctx.message.add_reaction('🥸')
 
 @bot.command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
 async def ping_cmd(ctx):
