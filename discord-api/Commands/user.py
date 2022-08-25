@@ -31,7 +31,6 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.name, user.discriminator))
     else:
         msg_embed = disnake.Embed(
-            title=str(translator.translate('embed_title', 'user', language)).format(user.name, user.discriminator),
             colour=config['accent_def'],
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.name, user.discriminator))

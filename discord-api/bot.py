@@ -280,7 +280,7 @@ async def on_command_error(ctx, error):
         if(config['bugs_ch'] > 0):
             await bugreporter.send(ctx, bot, config, language, disnake, translator, error_text)
         else:
-            pass
+            print(' BUGREPORT:\r\n{0}'.format(error_text))
 
 # 7. Database autosynchronization
 async def sync_db(ctx, table, message_type):

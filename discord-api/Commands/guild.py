@@ -54,14 +54,19 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
     msg_embed.add_field(
         translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(guild.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=True
     )
-    msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_blvlf', language), translator.translate('embed_fields', 'guild_blvlv', language).format(guild.premium_tier), inline=True
-    )
+    if(guild.premium_tier == 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'guild_blvlf', language), translator.translate('embed_fields', 'guild_blvlv', language).format(guild.premium_tier), inline=True
+        )
+    else:
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'guild_blvlf', language), translator.translate('embed_fields', 'guild_blvlv2', language).format(guild.premium_tier, guild.premium_subscription_count), inline=True
+        )
     msg_embed.add_field(
         translator.translate('embed_fields', 'guild_mlvlf', language), verif_lvl, inline=False
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_statsf', language), translator.translate('embed_fields', 'guild_statsv', language).format(guild.member_count, people, round(people / (guild.member_count * 0.01), 2), bots, round(bots / (guild.member_count * 0.01), 2), online, round(online / (guild.member_count * 0.01), 2), len(guild.channels)), inline=False
+        translator.translate('embed_fields', 'guild_statsf', language), translator.translate('embed_fields', 'guild_statsv', language).format(guild.member_count, people, round(people / (guild.member_count * 0.01), 2), bots, round(bots / (guild.member_count * 0.01), 2), online, round(online / (guild.member_count * 0.01), 2), len(guild.channels)), inline=True
     )
 
     msg_embed.set_footer(text='ID: {0}'.format(guild.id))
