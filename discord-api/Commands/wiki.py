@@ -19,7 +19,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
             article = search_results[0]
             if(len(search_results) > 0):
                 page = wikipedia.page(article)
-                full_content = page.content.replace('_', '\_').replace('`', '\`').replace('*', '\*').replace('~', '\~')
+                full_content = page.content.replace('_', '\_').replace('`', '\`').replace('*', '\*').replace('~', '\~').replace('|', '\|').replace('>', '\>')
                 short_content_split = full_content.split(' ', 159)
                 if(len(full_content.split(' ')) > 160):
                     short_content = " ".join(short_content_split[0:159]) + "..."

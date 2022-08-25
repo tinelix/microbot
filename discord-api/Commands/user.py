@@ -35,8 +35,6 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.name, user.discriminator))
 
-
-
     msg_embed.set_thumbnail(url=user.display_avatar)
 
     if(member == None):
