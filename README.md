@@ -19,7 +19,7 @@ Microbot is a simple and compact bot for Discord and Revolt. Powered by Disnake 
 2. In `revolt_api` folder, create `Database` required folder for SQLite DB storage.
 3. If running Windows, in `revolt.bat` file replace `your_token_here` to your Revolt bot token. If running Linux or UNIX-like OS, in `revolt.sh` file replace `your_token_here` to your Revolt bot token.
 
-   ###### The token can be obtained from Revolt client: 'Settings' → 'My Bots' → 'Token' → 'Reveal'.
+   ###### The token can be obtained from Revolt web client: 'Settings' → 'My Bots' → 'Token' → 'Reveal'.
 
 4. Run script.
 
