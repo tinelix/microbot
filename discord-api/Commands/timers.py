@@ -71,8 +71,8 @@ async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, d
                 msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dcr', language).format(remaining_time.days, remaining_hours, remaining_minutes, remaining_time.seconds % 60), inline=False)
             elif(timer[4] == 'elapsed'):
                 elapsed_time = current_dt - timer_actiondt
-                elapsed_hours = (remaining_time.seconds // 3600) % 24
-                elapsed_minutes = (remaining_time.seconds % 3600) // 60
+                elapsed_hours = (elapsed_time.seconds // 3600) % 24
+                elapsed_minutes = (elapsed_time.seconds % 3600) // 60
                 msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dce', language).format(elapsed_time.days, elapsed_hours, elapsed_minutes, elapsed_time.seconds % 60), inline=False)
     else:
         msg_embed.description = translator.translate('embed_description', 'timers', language)
