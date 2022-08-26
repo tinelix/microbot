@@ -31,7 +31,8 @@ def translate(where, str, language):
                     'weather': '⛅ Погода',
                     'weather2': '⛅ {0}, {1}',
                     'wikipedia': '🌐 Википедия',
-                    'codec': '🔡 Кодек'
+                    'codec': '🔡 Кодек',
+                    'timers': '⏲️ Таймеры',
                 }
             elif where == "embed_description":
                 locale = {
@@ -75,7 +76,10 @@ def translate(where, str, language):
                     'weather_sconditions_802-803': '⛅ Облачно',
                     'weather_sconditions_804': '☁ Пасмурно',
                     'query_notfound': '😔 К сожалению, мы ничего не нашли. Может, попробуете другой запрос?',
-                    'wikipedia': '{0}\r\n[Подробнее...]({1})'
+                    'wikipedia': '{0}\r\n[Подробнее...]({1})',
+                    'timers': '⏲️ Тут ничего нет, но вы можете создать хоть один таймер.',
+                    'timers_created': '✅ Таймер создан.',
+                    'timers_deleted': '✅ Таймер удален.',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -172,6 +176,9 @@ def translate(where, str, language):
                     'codec_algv2': 'Двоичный код',
                     'codec_derrv': 'Ошибка декодирования',
                     'codec_eerrv': 'Ошибка кодирования',
+                    'timers_dcr': 'Осталось {0} дн. {1} ч. {2} мин. {3} сек.',
+                    'timers_dce': 'Прошло {0} дн. {1} ч. {2} мин. {3} сек.',
+                    'timers_dco': 'Время закончилось',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -193,7 +200,8 @@ def translate(where, str, language):
                     'ping': 'Пни меня.',
                     'weather': 'Отображает прогноз погоды на ближайшие 24 часа. Для этого используется сервис [OpenWeatherMap](https://openweathermap.org).',
                     'wiki': 'Показывает статью в Википедии в краткой форме.',
-                    'codec': 'Расшифровка и зашифровка текста'
+                    'codec': 'Расшифровка и зашифровка текста',
+                    'timers': 'Создание и управление таймерами в прошедшее и оставшиеся времени.',
                 }
             elif where == "command_examples":
                 locale = {
@@ -212,11 +220,16 @@ def translate(where, str, language):
                     'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи```',
                     'codec': '```{0}codec -e base64 Base64 text encoding.\r\n{0}codec -e binary Это перевод текста в двоичный код.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
                     'calc': '```{0}calc [выражение]```',
+                    'timers': '```{0}timers```',
+                    'timers_create': '```{0}timers -Cr Оставшееся время -t 2022-09-01 00:00:00 -e 🍁\r\n{0}timers -Ce Прошедшее время -t 2016-03-27 00:00:00 -e 📹```',
+                    'timers_delete': '```{0}timers -D Оставшееся время```',
                 }
             elif where == "button":
                 locale = {
                     'user_avatar': 'Показать аватар',
                     'rngen_retry': 'Повторить',
+                    'timers_create': 'Создать',
+                    'timers_delete': 'Удалить',
                 }
             elif where == "numb_with_unit":
                 locale = {
@@ -264,6 +277,7 @@ def translate(where, str, language):
                     'weather2': '⛅ {0}, {1}',
                     'wikipedia': '🌐 Wikipedia',
                     'codec': '🔡 Codec',
+                    'timers': '⏲️ Timers',
                 }
             elif where == "embed_description":
                 locale = {
@@ -305,7 +319,10 @@ def translate(where, str, language):
                     'weather_sconditions_802-803': '⛅ Cloudy',
                     'weather_sconditions_804': '☁ Mainly cloudy',
                     'query_notfound': '😔 Sorry, we didn\'t find anything. Maybe try another query?',
-                    'wikipedia': '{0}\r\n[More...]({1})'
+                    'wikipedia': '{0}\r\n[More...]({1})',
+                    'timers': '⏲️ There\'s nothing there, but you can create at least one timer.',
+                    'timers_created': '✅ Timer created.',
+                    'timers_deleted': '✅ Timer deleted.',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -400,6 +417,9 @@ def translate(where, str, language):
                     'codec_algf': 'Algorithm',
                     'codec_algv': '{0}',
                     'codec_algv2': 'Binary code',
+                    'timers_dcr': '{0} d. {1} h. {2} min. {3} sec. remaining',
+                    'timers_dce': '{0} d. {1} h. {2} min. {3} sec. elapsed',
+                    'timers_dco': 'Time is over',
                 }
             elif where == "command_description":
                 locale = {
@@ -418,7 +438,8 @@ def translate(where, str, language):
                     'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.',
                     'weather2': 'Displays the weather forecast for the next 24 hours.',
                     'wiki': 'Displays a Wikipedia article in short form.',
-                    'codec': 'Decoding and coding of text.'
+                    'codec': 'Decoding and coding of text.',
+                    'timers': 'Creating and managing timers in elapsed and remaining time.',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -440,12 +461,17 @@ def translate(where, str, language):
                     'ping': '```{0}ping```',
                     'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```',
                     'wiki': '```{0}wiki Sinus\r\n{0}wiki Android\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji```',
-                    'codec': '```{0}codec -e base64 Base64 encoding text example.\r\n{0}codec -e binary Binary text decoding example.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```'
+                    'codec': '```{0}codec -e base64 Base64 encoding text example.\r\n{0}codec -e binary Binary text decoding example.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
+                    'timers': '```{0}timers```',
+                    'timers_create': '```{0}timers -Cr Remaining time -t 2022-09-01 00:00:00 -e 🍁\r\n{0}timers -Ce Elapsed time -t 2016-03-27 00:00:00 -e 📹```',
+                    'timers_delete': '```{0}timers -D Remaining time```',
                 }
             elif where == "button":
                 locale = {
                     'user_avatar': 'Show avatar',
                     'rngen_retry': 'Retry',
+                    'timers_create': 'Create',
+                    'timers_delete': 'Delete',
                 }
             elif where == "numb_with_unit":
                 locale = {

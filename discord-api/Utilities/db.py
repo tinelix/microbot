@@ -21,6 +21,14 @@ async def create_tables(database, cursor):
                 sended_msg_timestamp DATETIME NOT NULL,
                 blocked INTEGER NOT NULL);'''
     cursor.execute(users_query)
+    timers_query = '''CREATE TABLE IF NOT EXISTS timers (
+                name TEXT NOT NULL,
+                author_id INTEGER NOT NULL,
+                icon TEXT NOT NULL,
+                timer_action_date DATETIME NOT NULL,
+                timer_action TEXT NOT NULL,
+                over INTEGER NOT NULL);'''
+    cursor.execute(timers_query)
     database.commit()
 
 async def add_guild_value(database, guild, cursor):
@@ -35,8 +43,19 @@ async def add_user_value(database, message, cursor):
     cursor.executemany(query, values)
     database.commit()
 
+async def add_timer_value(database, id, icon, name, time, action, cursor):
+    query = """INSERT INTO timers VALUES (?, ?, ?, ?, ?, ?);"""
+    values = [(name, id, icon, time, action, 0)]
+    cursor.executemany(query, values)
+    database.commit()
+
 async def update_value(ctx, database, cursor, table, key, value, id):
     query = """UPDATE {0} SET {1} = {2} WHERE id = {3}""".format(table, key, value, id)
+    cursor.execute(query)
+    database.commit()
+
+async def update_timer_value(ctx, database, cursor, key, value, name):
+    query = """UPDATE timers SET {1} = {2} WHERE name = {3}""".format(key, value, name)
     cursor.execute(query)
     database.commit()
 
@@ -55,3 +74,13 @@ async def if_guild_existed(database, cursor, id):
         return True
     else:
         return False
+
+async def get_timers_by_user(database, cursor, id):
+    cursor.execute("SELECT * FROM timers WHERE author_id='{0}';".format(id))
+    timers_data = cursor.fetchall()
+    return timers_data
+
+async def delete_timer(database, cursor, name, id):
+    cursor.execute("""DELETE FROM timers WHERE name = '{0}' AND author_id = {1};""".format(name, id))
+    database.commit()
+    return "OK!"

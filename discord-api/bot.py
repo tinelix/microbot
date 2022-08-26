@@ -261,6 +261,15 @@ async def codec_cmd(ctx, *arg):
     now = datetime.datetime.now(datetime.timezone.utc).astimezone()
     await codec.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, binary)
 
+
+@bot.command(name="timers", description=translator.translate('command_examples', 'timers', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+async def timers_cmd(ctx, *, arg):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    user_data = await sync_db(ctx, 'users', 'regular')
+    await timers.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
+
 @bot.event
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
@@ -268,6 +277,8 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         if(ctx.message.content == '{0}help'.format(config['prefix'])):
             await help.sendRegularMsg(ctx, bot, config, links, language, disnake, translator)
+        elif(ctx.message.content == '{0}timers'.format(config['prefix'])):
+            await timers.sendRegularMsgWithoutArgs(ctx, bot, config, language, disnake, translator, db, database, cursor)
         else:
             await help.sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator)
     elif isinstance(error, commands.CommandNotFound):
@@ -286,7 +297,7 @@ async def on_command_error(ctx, error):
 async def sync_db(ctx, table, message_type):
     if(message_type == 'regular'):
         cursor = database.cursor()
-        # for user values sync and cooldown
+        # for user values sync
         if(await db.if_user_existed(database, cursor, ctx.message.author.id) == True):
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.message.author.id))
             user_data = cursor.fetchone()
@@ -310,7 +321,7 @@ async def sync_db(ctx, table, message_type):
             return user_data
     else:
         cursor = database.cursor()
-        # for user values sync and cooldown
+        # for user values sync
         if(await db.if_user_existed(database, cursor, ctx.author.id) == True):
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
             user_data = cursor.fetchone()
