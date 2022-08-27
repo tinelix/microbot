@@ -8,7 +8,7 @@ hidden = False
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
     prefixes_list = ""
     commands_list = ""
-    prefixes = await bot.get_prefix(ctx.message)
+    prefixes = await bot.get_prefix(ctx)
 
     for prefix in prefixes:
         if(prefixes.index(prefix) < len(prefixes) - 1):

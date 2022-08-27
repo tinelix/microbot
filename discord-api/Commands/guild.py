@@ -15,15 +15,42 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
         guild_pr = None
     owner = bot.get_user(guild.owner_id)
 
+    badges = ''
+
+    for guild_feature in guild.features:
+        if(guild.features.index(guild_feature) == 0):
+            if guild_feature == "AUTO_MODERATION":
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv', language))
+            elif guild_feature == "COMMUNITY":
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv2', language))
+            elif guild_feature == "NEWS":
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv3', language))
+            elif guild_feature == "TEXT_IN_VOICE_ENABLED":
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv4', language))
+            elif guild_feature == "WELCOME_SCREEN_ENABLED":
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv5', language))
+        else:
+            if guild_feature == "AUTO_MODERATION":
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv', language))
+            elif guild_feature == "COMMUNITY":
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv2', language))
+            elif guild_feature == "NEWS":
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv3', language))
+            elif guild_feature == "TEXT_IN_VOICE_ENABLED":
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv4', language))
+            elif guild_feature == "WELCOME_SCREEN_ENABLED":
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv5', language))
+
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
+        description=guild.description
     )
     if(guild_pr == None):
         pass
     else:
         msg_embed.set_thumbnail(url=guild_pr.icon)
 
-    msg_embed.set_author(name=ctx.guild.name)
+    msg_embed.set_author(name='🏠 {0}'.format(ctx.guild.name))
 
     if(guild.verification_level == disnake.VerificationLevel.none):
         verif_lvl = translator.translate('embed_fields', 'guild_mlvlv', language)
@@ -49,7 +76,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
             online += 1
 
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format(owner.name, owner.discriminator), inline=True
+        translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format('<@{0}>'.format(owner.id), owner.name, owner.discriminator), inline=True
     )
     msg_embed.add_field(
         translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(guild.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=True
@@ -68,6 +95,16 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
     msg_embed.add_field(
         translator.translate('embed_fields', 'guild_statsf', language), translator.translate('embed_fields', 'guild_statsv', language).format(guild.member_count, people, round(people / (guild.member_count * 0.01), 2), bots, round(bots / (guild.member_count * 0.01), 2), online, round(online / (guild.member_count * 0.01), 2), len(guild.channels)), inline=True
     )
+
+    if(len(badges) > 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'guild_featurf', language), badges, inline=True
+        )
+
+    if(guild.rules_channel != None):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'guild_rulesf', language), translator.translate('embed_fields', 'guild_rulesv', language).format(f'<#{guild.rules_channel.id}>'), inline=False
+        )
 
     msg_embed.set_footer(text='ID: {0}'.format(guild.id))
     return msg_embed
