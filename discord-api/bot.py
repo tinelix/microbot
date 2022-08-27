@@ -26,7 +26,33 @@ from Utilities import *
 # 4. Importing bot configuration
 from config import *
 
-# 5. Creating Discord bot instance with all intents
+# 5. Initializing SQLite3 server
+try:
+    database = sqlite3.connect('Database/main.db')
+    print(" SQLite datebase connected!")
+    cursor = database.cursor()
+except sqlite3.Error as e:
+    print(" Exception: {0}".format(e))
+
+# 6. Getting custom guild prefix
+prefixes = {}
+
+#async def get_guild_prefix(bot, message):  /// custom prefixes does not working
+#    cursor.execute("SELECT id, prefix FROM guilds;")
+#    guild_data = cursor.fetchall()
+#    for guild in guild_data:
+#        prefixes[f'{guild[0]}'] = guild[1]
+#    if message.guild:
+#        custom_prefixes = [config['prefix']]
+#        try:
+#            custom_prefixes.append(prefixes[f'{message.guild.id}'])
+#        finally:
+#            print(f" PREFIXES FOR {message.guild.id}: {custom_prefixes}")
+#            return custom_prefixes
+#    else:
+#        return config['prefix']
+
+# 7. Creating Discord bot instance with all intents
 intents = disnake.Intents.all()
 bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
@@ -39,20 +65,12 @@ guild_col = None
 connectionStartTime = time.time()
 MSK = pytz.timezone('Europe/Moscow')
 
-# 6. Initializing SQLite3 server
-try:
-    database = sqlite3.connect('Database/main.db')
-    print(" SQLite datebase connected!")
-    cursor = database.cursor()
-except sqlite3.Error as e:
-    print(" Exception: {0}".format(e))
-
-# 5. Globally blocking all DMs
+# 8. Globally blocking all DMs
 @bot.check
 async def no_DM(ctx):
     return ctx.guild is not None
 
-# 6. Events and message triggers
+# 9. Events and message triggers
 @bot.event
 async def on_ready():
     connectionStartTime = time.time()
@@ -293,7 +311,7 @@ async def on_command_error(ctx, error):
         else:
             print(' BUGREPORT:\r\n{0}'.format(error_text))
 
-# 7. Database autosynchronization
+# 10. Database autosynchronization
 async def sync_db(ctx, table, message_type):
     if(message_type == 'regular'):
         cursor = database.cursor()
