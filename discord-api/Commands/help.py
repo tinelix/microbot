@@ -6,17 +6,27 @@ name = 'help'
 hidden = False
 
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
+    prefixes_list = ""
     commands_list = ""
+    prefixes = await bot.get_prefix(ctx.message)
+
+    for prefix in prefixes:
+        if(prefixes.index(prefix) < len(prefixes) - 1):
+            prefixes_list += "`{0}`, ".format(prefix)
+        else:
+            prefixes_list += "`{0}`".format(prefix)
+
     for command in bot.commands_list:
         if(bot.commands_list.index(command) < len(bot.commands_list) - 1):
             commands_list += "`{0}` ".format(command)
         else:
             commands_list += "`{0}`".format(command)
+
     msg_embed = disnake.Embed(
         description=str(translator.translate('embed_description', 'help', language)).format(config['name'], links['invite']),
         colour=config['accent_def']
     ).add_field(
-        translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language), inline=False
+        translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language).format(prefixes_list), inline=False
     ).add_field(
         translator.translate('embed_fields', 'help_cmdsf', language), translator.translate('embed_fields', 'help_cmdsv', language).format(commands_list), inline=False
     )

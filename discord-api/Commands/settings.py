@@ -27,10 +27,10 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             if ctx.author.guild_permissions.administrator:
                 await db.update_value(ctx, database, cursor, 'guilds', 'prefix', '\'{0}\''.format(arg[1]), ctx.message.guild.id)
                 msg_embed = disnake.Embed(
-                    description=str(translator.translate('embed_description', 'settings_done', arg[1])),
+                    description=str(translator.translate('embed_description', 'settings_done', language)),
                     colour=config['accent_def']
                 )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', arg[1])))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
             else:
                 msg_embed = disnake.Embed(
                     description=str(translator.translate('embed_description', 'forbidden', language)),
@@ -64,16 +64,18 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
             language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
             language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_lang', language).format(config['prefix']), inline=False)
             await interaction.response.send_message(embed=language_embed)
-        #@disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🪄') // custom prefixes does not work
-        #async def show_changing_prefix_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
-        #    language_embed = disnake.Embed(
-        #        colour=config['accent_def'],
-        #    )
-        #    language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-        #    language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_prefix', language).format(config['prefix']), inline=False)
-        #    await interaction.response.send_message(embed=language_embed)
+        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🪄')
+        async def show_changing_prefix_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+            language_embed = disnake.Embed(
+                colour=config['accent_def'],
+            )
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_prefix', language).format(config['prefix']), inline=False)
+            await interaction.response.send_message(embed=language_embed)
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
+            await ctx.reply(embed=msg_embed, mention_author=False)
+        elif(arg[0] == '-P'):
             await ctx.reply(embed=msg_embed, mention_author=False)
         else:
             await ctx.reply(embed=msg_embed, view=SettingsByButton(), mention_author=False)

@@ -37,24 +37,23 @@ except sqlite3.Error as e:
 # 6. Getting custom guild prefix
 prefixes = {}
 
-#async def get_guild_prefix(bot, message):  /// custom prefixes does not working
-#    cursor.execute("SELECT id, prefix FROM guilds;")
-#    guild_data = cursor.fetchall()
-#    for guild in guild_data:
-#        prefixes[f'{guild[0]}'] = guild[1]
-#    if message.guild:
-#        custom_prefixes = [config['prefix']]
-#        try:
-#            custom_prefixes.append(prefixes[f'{message.guild.id}'])
-#        finally:
-#            print(f" PREFIXES FOR {message.guild.id}: {custom_prefixes}")
-#            return custom_prefixes
-#    else:
-#        return config['prefix']
+async def get_guild_prefix(bot, message):
+    cursor.execute("SELECT id, prefix FROM guilds;")
+    guild_data = cursor.fetchall()
+    for guild in guild_data:
+        if message.guild.id == guild[0]:
+            prefixes[f'{guild[0]}'] = guild[1]
+    try:
+        if(prefixes[f'{message.guild.id}']):
+            return [config['prefix'], prefixes[f'{message.guild.id}']]
+        else:
+            return config['prefix']
+    except Exception as e:
+        return config['prefix']
 
 # 7. Creating Discord bot instance with all intents
 intents = disnake.Intents.all()
-bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
+bot = commands.Bot(command_prefix=get_guild_prefix, intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
 
 bot.commands_list = ['help', 'about', 'user', 'guild', '8ball', 'rngen', 'calc', 'settings', 'publish', 'ping', 'weather', 'wiki', 'codec', 'timers']
@@ -292,10 +291,14 @@ async def timers_cmd(ctx, *, arg):
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
+    custom_prefix = ''
+    for prefix in await bot.get_prefix(ctx.message):
+        if(ctx.message.content.startswith(prefix)):
+            custom_prefix = prefix
     if isinstance(error, commands.MissingRequiredArgument):
-        if(ctx.message.content == '{0}help'.format(config['prefix'])):
+        if(ctx.message.content == '{0}help'.format(config['prefix']) or ctx.message.content == '{0}help'.format(custom_prefix)):
             await help.sendRegularMsg(ctx, bot, config, links, language, disnake, translator)
-        elif(ctx.message.content == '{0}timers'.format(config['prefix'])):
+        elif(ctx.message.content == '{0}timers'.format(config['prefix']) or ctx.message.content == '{0}timers'.format(custom_prefix)):
             await timers.sendRegularMsgWithoutArgs(ctx, bot, config, language, disnake, translator, db, database, cursor)
         else:
             await help.sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator)

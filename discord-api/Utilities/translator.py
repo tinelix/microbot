@@ -84,7 +84,7 @@ def translate(where, str, language):
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Префиксы',
-                    'help_prefv': '`>` или `/`',
+                    'help_prefv': '{0} или `/`',
                     'help_cmdsf': 'Команды',
                     'help_cmdsv': '{0}',
                     'help_exampf': 'Пример',
@@ -152,7 +152,7 @@ def translate(where, str, language):
                     'calc_asignf': 'Доступные знаки',
                     'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение',
                     'settings_availoptf': 'Доступные параметры',
-                    'settings_availoptv': '🚩 Язык (Language)',
+                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Префикс',
                     'ping_statisticsf': 'Статистика',
                     'ping_statisticsv': '**Задержка:** {0} мсек',
                     'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
@@ -396,7 +396,7 @@ def translate(where, str, language):
                     'calc_asignf': 'Available signs',
                     'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication',
                     'settings_availoptf': 'Available options',
-                    'settings_availoptv': '🚩 Язык (Language)',
+                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Prefix',
                     'ping_statisticsf': 'Statistics',
                     'ping_statisticsv': '**Latency:** {0} msec',
                     'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
