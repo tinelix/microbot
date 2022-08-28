@@ -52,39 +52,48 @@ async def sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator,
 
 async def sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator):
     aliases = None
-    if(ctx.message.content.startswith('{0}help'.format(config['prefix']))):
+    custom_prefix = ''
+    for prefix in await bot.get_prefix(ctx.message):
+        if(ctx.message.content.startswith(prefix)):
+            custom_prefix = prefix
+    if(ctx.message.content.startswith('{0}help'.format(config['prefix'])) or ctx.message.content.startswith('{0}help'.format(custom_prefix))):
         query = 'help'
-    elif(ctx.message.content.startswith('{0}about'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}about'.format(config['prefix'])) or ctx.message.content.startswith('{0}about'.format(custom_prefix))):
         query = 'about'
         aliases = ['`state`', '`check`']
-    elif(ctx.message.content.startswith('{0}user'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}state'.format(config['prefix'])) or ctx.message.content.startswith('{0}state'.format(custom_prefix))):
+        query = 'about'
+        aliases = ['`state`', '`check`']
+    elif(ctx.message.content.startswith('{0}user'.format(config['prefix'])) or ctx.message.content.startswith('{0}user'.format(custom_prefix))):
         query = 'user'
         aliases = ['`member`']
-    elif(ctx.message.content.startswith('{0}member'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}member'.format(config['prefix'])) or ctx.message.content.startswith('{0}member'.format(custom_prefix))):
         query = 'user'
         aliases = ['`member`']
-    elif(ctx.message.content.startswith('{0}avatar'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}avatar'.format(config['prefix'])) or ctx.message.content.startswith('{0}avatar'.format(custom_prefix))):
         query = 'avatar'
-    elif(ctx.message.content.startswith('{0}8ball'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}8ball'.format(config['prefix'])) or ctx.message.content.startswith('{0}8ball'.format(custom_prefix))):
         query = '8ball'
-    elif(ctx.message.content.startswith('{0}rngen'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}rngen'.format(config['prefix'])) or ctx.message.content.startswith('{0}rngen'.format(custom_prefix))):
         query = 'rngen'
         aliases = ['`rand`']
-    elif(ctx.message.content.startswith('{0}rand'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}rand'.format(config['prefix'])) or ctx.message.content.startswith('{0}rand'.format(custom_prefix))):
         query = 'rngen'
         aliases = ['`rand`']
-    elif(ctx.message.content.startswith('{0}calc'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}calc'.format(config['prefix'])) or ctx.message.content.startswith('{0}calc'.format(custom_prefix))):
         query = 'calc'
-    elif(ctx.message.content.startswith('{0}guild'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}guild'.format(config['prefix'])) or ctx.message.content.startswith('{0}guild'.format(custom_prefix))):
         query = 'guild'
         aliases = ['`server`']
-    elif(ctx.message.content.startswith('{0}server'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}server'.format(config['prefix'])) or ctx.message.content.startswith('{0}server'.format(custom_prefix))):
         query = 'guild'
         aliases = ['`server`']
-    elif(ctx.message.content.startswith('{0}weather'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}weather'.format(config['prefix'])) or ctx.message.content.startswith('{0}weather'.format(custom_prefix))):
         query = 'weather'
-    elif(ctx.message.content.startswith('{0}wiki'.format(config['prefix']))):
+    elif(ctx.message.content.startswith('{0}wiki'.format(config['prefix'])) or ctx.message.content.startswith('{0}wiki'.format(custom_prefix))):
         query = 'wiki'
+    elif(ctx.message.content.startswith('{0}publish'.format(config['prefix'])) or ctx.message.content.startswith('{0}publish'.format(custom_prefix))):
+        query = 'publish'
     else:
         return
     msg_embed = disnake.Embed(
