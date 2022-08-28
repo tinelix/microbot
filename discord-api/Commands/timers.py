@@ -38,8 +38,8 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             except Exception as ex:
                 print(ex)
                 msg_embed = disnake.Embed(
-                    colour=config['accent_def'],
-                    description=translator.translate('command_examples', 'timers_create', language).format(config['prefix'])
+                    colour=config['accent_err'],
+                    description='{0}\r\n{1}'.format(translator.translate('embed_description', 'invalid_cmd_usage', language), translator.translate('command_examples', 'timers_create', language).format(config['prefix']))
                 )
                 msg_embed.set_author(name=translator.translate('embed_title', 'timers', language))
         elif(args[0] == '-Ce'):
@@ -61,8 +61,8 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             except Exception as ex:
                 print(ex)
                 msg_embed = disnake.Embed(
-                    colour=config['accent_def'],
-                    description=translator.translate('command_examples', 'timers_create', language)
+                    colour=config['accent_err'],
+                    description='{0}\r\n{1}'.format(translator.translate('embed_description', 'invalid_cmd_usage', language), translator.translate('command_examples', 'timers_create', language).format(config['prefix']))
                 )
                 msg_embed.set_author(name=translator.translate('embed_title', 'timers', language))
         elif(args[0] == '-D'):
@@ -72,7 +72,8 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
                 msg_embed.description = translator.translate('embed_description', 'timers_deleted', language).format(config['prefix'])
             else:
                 msg_embed.description = translator.translate('command_examples', 'timers_delete', language).format(config['prefix'])
-
+        else:
+            return await generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor)
     return msg_embed
 
 async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor):

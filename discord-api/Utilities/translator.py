@@ -82,6 +82,7 @@ def translate(where, str, language):
                     'timers_deleted': '✅ Таймер удален.',
                     'timers_invelapsdt': '❌ Указанная дата должна быть не позднее сегодняшней!',
                     'timers_invupcomdt': '❌ Указанная дата должна быть не раньше сегодняшней!',
+                    'invalid_cmd_usage': 'Вы используете эту команду неправильно или не указали одно из требуемых параметров. Смотрите её синтаксис и пример.',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -334,8 +335,9 @@ def translate(where, str, language):
                     'timers': '⏲️ There\'s nothing there, but you can create at least one timer.',
                     'timers_created': '✅ Timer created.',
                     'timers_deleted': '✅ Timer deleted.',
-                    'timers_invelapsdt': '❌ Указанная дата должна быть не позднее сегодняшней!',
-                    'timers_invupcomdt': '❌ Указанная дата должна быть не раньше сегодняшней!',
+                    'timers_invelapsdt': '❌ The specified date must be no later than today!',
+                    'timers_invupcomdt': '❌ The specified date must not be earlier than today!',
+                    'invalid_cmd_usage': 'You are using this command incorrectly, or you have not provided one of the required parameters. See its syntax and example.',
                 }
             elif where == "embed_fields":
                 locale = {
