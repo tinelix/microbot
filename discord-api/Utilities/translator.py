@@ -391,7 +391,7 @@ def translate(where, str, language):
                     'guild_blvlv': '_No boosts yet_',
                     'guild_blvlv2': 'Level {0} / {1} boosts',
                     'guild_statsf': 'Statistics',
-                    'guild_statsv': '{0} members total\r\n{1} people ({2}%)\r\n{3} bots ({4}%)\r\n{5} online ({6}%)\r\n{7} channels',
+                    'guild_statsv': '**{0} members total**\r\n👤 {1} ({2}%)\r\n🤖 {3} ({4}%)\r\n<:online:1012294415731146765> {5} ({6}%)\r\n<:channels:1012296573364998196> {7}',
                     'guild_rulesf': 'Rules',
                     'guild_rulesv': '{0}',
                     'guild_featurf': 'Features',
