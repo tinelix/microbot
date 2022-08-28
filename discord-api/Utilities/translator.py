@@ -80,6 +80,8 @@ def translate(where, str, language):
                     'timers': '⏲️ Тут ничего нет, но вы можете создать хоть один таймер.',
                     'timers_created': '✅ Таймер создан.',
                     'timers_deleted': '✅ Таймер удален.',
+                    'timers_invelapsdt': '❌ Указанная дата должна быть не позднее сегодняшней!',
+                    'timers_invupcomdt': '❌ Указанная дата должна быть не раньше сегодняшней!',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -332,6 +334,8 @@ def translate(where, str, language):
                     'timers': '⏲️ There\'s nothing there, but you can create at least one timer.',
                     'timers_created': '✅ Timer created.',
                     'timers_deleted': '✅ Timer deleted.',
+                    'timers_invelapsdt': '❌ Указанная дата должна быть не позднее сегодняшней!',
+                    'timers_invupcomdt': '❌ Указанная дата должна быть не раньше сегодняшней!',
                 }
             elif where == "embed_fields":
                 locale = {

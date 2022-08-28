@@ -18,14 +18,25 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
 
     if(len(args) >= 1):
         author_id = ctx.message.author.id
+        current_dt = datetime.datetime.now()
         if(args[0] == '-Cr'):
             try:
                 timer_name = re.search('-Cr (.+?) -t', arg).group(1)
                 timer_action_date = re.search('-t (.+?) -e', arg).group(1)
-                emoji = re.search('-e (.+?)', arg).group(1)
-                await db.add_timer_value(database, author_id, emoji, timer_name, timer_action_date, 'remaining', cursor)
-                msg_embed.description = translator.translate('embed_description', 'timers_created', language)
+                timer_actiondt = datetime.datetime.strptime(timer_action_date, "%Y-%m-%d %H:%M:%S")
+                remaining_time = timer_actiondt - current_dt
+                if(remaining_time.total_seconds() >= 0):
+                    emoji = re.search('-e (.+?)', arg).group(1)
+                    await db.add_timer_value(database, author_id, emoji, timer_name, timer_action_date, 'remaining', cursor)
+                    msg_embed.description = translator.translate('embed_description', 'timers_created', language)
+                else:
+                    msg_embed = disnake.Embed(
+                        colour=config['accent_err'],
+                        description=translator.translate('embed_description', 'timers_invupcomdt', language).format(config['prefix'])
+                    )
+                    msg_embed.set_author(name=translator.translate('embed_title', 'error', language))
             except Exception as ex:
+                print(ex)
                 msg_embed = disnake.Embed(
                     colour=config['accent_def'],
                     description=translator.translate('command_examples', 'timers_create', language).format(config['prefix'])
@@ -35,10 +46,20 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             try:
                 timer_name = re.search('-Ce (.+?) -t', arg).group(1)
                 timer_action_date = re.search('-t (.+?) -e', arg).group(1)
-                emoji = re.search('-e (.+?)', arg).group(1)
-                await db.add_timer_value(database, author_id, emoji, timer_name, timer_action_date, 'elapsed', cursor)
-                msg_embed.description = translator.translate('embed_description', 'timers_created', language).format(config['prefix'])
+                timer_actiondt = datetime.datetime.strptime(timer_action_date, "%Y-%m-%d %H:%M:%S")
+                elapsed_time = current_dt - timer_actiondt
+                if(elapsed_time.total_seconds() >= 0):
+                    emoji = re.search('-e (.+?)', arg).group(1)
+                    await db.add_timer_value(database, author_id, emoji, timer_name, timer_action_date, 'elapsed', cursor)
+                    msg_embed.description = translator.translate('embed_description', 'timers_created', language).format(config['prefix'])
+                else:
+                    msg_embed = disnake.Embed(
+                        colour=config['accent_err'],
+                        description=translator.translate('embed_description', 'timers_invelapsdt', language).format(config['prefix'])
+                    )
+                    msg_embed.set_author(name=translator.translate('embed_title', 'error', language))
             except Exception as ex:
+                print(ex)
                 msg_embed = disnake.Embed(
                     colour=config['accent_def'],
                     description=translator.translate('command_examples', 'timers_create', language)
@@ -66,14 +87,20 @@ async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, d
             timer_actiondt = datetime.datetime.strptime(timer[3], "%Y-%m-%d %H:%M:%S")
             if(timer[4] == 'remaining'):
                 remaining_time = timer_actiondt - current_dt
-                remaining_hours = (remaining_time.seconds // 3600) % 24
-                remaining_minutes = (remaining_time.seconds % 3600) // 60
-                msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dcr', language).format(remaining_time.days, remaining_hours, remaining_minutes, remaining_time.seconds % 60), inline=False)
+                if(remaining_time.total_seconds() >= 0):
+                    remaining_hours = (remaining_time.seconds // 3600) % 24
+                    remaining_minutes = (remaining_time.seconds % 3600) // 60
+                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dcr', language).format(remaining_time.days, remaining_hours, remaining_minutes, remaining_time.seconds % 60), inline=False)
+                else:
+                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dco', language), inline=False)
             elif(timer[4] == 'elapsed'):
                 elapsed_time = current_dt - timer_actiondt
-                elapsed_hours = (elapsed_time.seconds // 3600) % 24
-                elapsed_minutes = (elapsed_time.seconds % 3600) // 60
-                msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dce', language).format(elapsed_time.days, elapsed_hours, elapsed_minutes, elapsed_time.seconds % 60), inline=False)
+                if(elapsed_time.total_seconds() >= 0):
+                    elapsed_hours = (elapsed_time.seconds // 3600) % 24
+                    elapsed_minutes = (elapsed_time.seconds % 3600) // 60
+                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dce', language).format(elapsed_time.days, elapsed_hours, elapsed_minutes, elapsed_time.seconds % 60), inline=False)
+                else:
+                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dco', language), inline=False)
     else:
         msg_embed.description = translator.translate('embed_description', 'timers', language)
     return msg_embed
