@@ -7,6 +7,10 @@ import glob
 import sys
 import datetime
 import time
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
 from platform import python_version
 import sqlite3
 import pytz
@@ -43,7 +47,7 @@ class Commands(commands.Cog):
     @commands.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def about_cmd(self, ctx):
-        uptime = str(datetime.timedelta(seconds=int(round(time.time()- self.connectionStartTime))))
+        uptime = str(datetime.timedelta(seconds=int(round(time.time() - self.connectionStartTime))))
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[1]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
@@ -52,7 +56,7 @@ class Commands(commands.Cog):
     @commands.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def about_scmd(self, ctx):
-        uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
+        uptime = str(datetime.timedelta(seconds=int(round(time.time() - self.connectionStartTime))))
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         language = guild_data[1]
         await about.sendSlashMsg(ctx, self.bot, config, links, language, disnake, translator, python_version, uptime)
