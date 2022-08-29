@@ -43,14 +43,15 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
 
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
-        description=guild.description
     )
-    if(guild_pr == None):
-        pass
-    else:
+
+    if(guild_pr):
         msg_embed.set_thumbnail(url=guild_pr.icon)
 
     msg_embed.set_author(name='🏠 {0}'.format(ctx.guild.name))
+
+    if(guild.description):
+        msg_embed.description = guild.description
 
     if(guild.verification_level == disnake.VerificationLevel.none):
         verif_lvl = translator.translate('embed_fields', 'guild_mlvlv', language)
