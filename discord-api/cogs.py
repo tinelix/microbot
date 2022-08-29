@@ -1,3 +1,7 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
 import disnake
 import platform
 import os
@@ -7,9 +11,6 @@ import glob
 import sys
 import datetime
 import time
-# Microbot Discord bot
-# Repo: https://github.com/tinelix/microbot
-# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
 from platform import python_version
 import sqlite3
