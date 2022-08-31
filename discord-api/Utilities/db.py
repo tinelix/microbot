@@ -31,9 +31,9 @@ async def create_tables(database, cursor):
     cursor.execute(timers_query)
     database.commit()
 
-async def add_guild_value(database, guild, cursor):
+async def add_guild_value(config, database, guild, cursor):
     query = """INSERT INTO guilds VALUES (?, ?, ?, ?, ?);"""
-    values = [(guild.id, "en_US", ">", 0, now.strftime('%Y-%m-%d %H:%M:%S'))]
+    values = [(guild.id, "en_US", config['prefix'], 0, now.strftime('%Y-%m-%d %H:%M:%S'))]
     cursor.executemany(query, values)
     database.commit()
 
