@@ -7,11 +7,7 @@ import re
 name = 'user'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
-    query = int(re.search(r'\d+', arg).group())
-    user = bot.get_user(query)
-    member = ctx.guild.get_member(query)
-
+async def generateEmbed(ctx, bot, config, language, disnake, translator, user, member):
     if(user == None):
         msg_embed = disnake.Embed(
             description=translator.translate('embed_description', 'error_unf', language),
@@ -90,10 +86,19 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
     try:
-        query = int(re.search(r'\d+', arg).group())
-        user = bot.get_user(query)
-        member = ctx.guild.get_member(query)
-        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        try:
+            query = int(re.search(r'\d+', arg).group())
+            user = bot.get_user(query)
+            member = ctx.guild.get_member(query)
+        except:
+            search_result = await ctx.guild.search_members(arg)
+            if(len(search_result) > 0):
+                member = search_result[0]
+                user = bot.get_user(member.id)
+            else:
+                member = None
+                user = None
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, user, member)
         class AvatarByButton(disnake.ui.View):
             @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
@@ -107,10 +112,19 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     try:
-        query = int(re.search(r'\d+', arg).group())
-        user = bot.get_user(query)
-        member = ctx.message.guild.get_member(query)
-        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        try:
+            query = int(re.search(r'\d+', arg).group())
+            user = bot.get_user(query)
+            member = ctx.guild.get_member(query)
+        except:
+            search_result = await ctx.guild.search_members(arg)
+            if(len(search_result) > 0):
+                member = search_result[0]
+                user = bot.get_user(member.id)
+            else:
+                member = None
+                user = None
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, user, member)
         class AvatarByButton(disnake.ui.View):
             @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
@@ -119,7 +133,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
                 ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
                 await interaction.response.send_message(embed=avatar_embed)
         await ctx.reply(embed=msg_embed, view=AvatarByButton(), mention_author=False)
-    except:
+    except Exception as e:
         pass
 
 async def sendHelpMsg(ctx, bot, config, language, disnake, translator):

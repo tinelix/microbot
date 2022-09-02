@@ -218,8 +218,8 @@ def translate(where, str, language):
                 locale = {
                     'help': '```{0}help```',
                     'about': '```{0}about```',
-                    'user': '```{0}user [@упоминание или ID участника]```',
-                    'avatar': '```{0}avatar [@упоминание или ID участника]```',
+                    'user': '```{0}user [@упоминание | ID участника | юзернейм]```',
+                    'avatar': '```{0}avatar [@упоминание | ID участника | юзернейм]```',
                     '8ball': '```{0}8ball [вопрос]```',
                     'rngen': '```{0}rngen [начало диапазона]-[конец диапазона]```',
                     'guild': '```{0}guild```',
@@ -472,8 +472,8 @@ def translate(where, str, language):
                 locale = {
                     'help': '```{0}help```',
                     'about': '```{0}about```',
-                    'user': '```{0}user [@mention or member ID]```',
-                    'avatar': '```{0}avatar [@mention or member ID]```',
+                    'user': '```{0}user [@mention | member ID | username]```',
+                    'avatar': '```{0}avatar [@mention | member ID | username]```',
                     '8ball': '```{0}8ball [question]```',
                     'rngen': '```{0}rngen [beginning of range]-[end of range]```',
                     'guild': '```{0}guild```',

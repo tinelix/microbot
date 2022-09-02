@@ -8,13 +8,29 @@ name = 'avatar'
 hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
-    query = int(re.search(r'\d+', arg).group())
-    user = bot.get_user(query)
-    member = ctx.guild.get_member(query)
-    msg_embed = disnake.Embed(
-        colour=config['accent_def'],
-    ).set_image(user.display_avatar.url)
-    msg_embed.set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
+    try:
+        query = int(re.search(r'\d+', arg).group())
+        user = bot.get_user(query)
+        member = ctx.guild.get_member(query)
+    except:
+        search_result = await ctx.guild.search_members(arg)
+        if(len(search_result) > 0):
+            member = search_result[0]
+            user = bot.get_user(member.id)
+        else:
+            member = None
+            user = None
+    if(user != None):
+        msg_embed = disnake.Embed(
+            colour=config['accent_def'],
+        ).set_image(user.display_avatar.url)
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
+    else:
+        msg_embed = disnake.Embed(
+            description=translator.translate('embed_description', 'error_unf', language),
+            colour=config['accent_err'],
+        )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
