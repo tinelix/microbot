@@ -1,13 +1,15 @@
-# Den4ik Bot
-# Created by tretdm (aka. tinelix) at 2022-08-18 from Den4ik
-# Repo: https://github.com/den4ikbot/den4ikbot
-# Based on Microbot Discord bot: https://github.com/tinelix/microbot.
-# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher.
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
 def translate(where, str, language):
     try:
         if language == "ru_RU": # Russian
-            if where == "embed_title":
+            if where == "message":
+                locale = {
+                    'prefix': '**Префикс:** `{0}`\r\nПоддерживаются также слэш-команды.'
+                }
+            elif where == "embed_title":
                 locale = {
                     'error': '❎ Ошибка',
                     'help': '❔ Справка',
@@ -23,19 +25,64 @@ def translate(where, str, language):
                     '8ball': '🎱 Генератор случайных ответов',
                     'rngen': '🎱 Генератор случайных чисел',
                     'calc': '🔢 Калькулятор',
-                    'ping': '🏓 Понг!',
                     'settings': '⚙ Настройки',
+                    'msg_author': '📣 Публикация от {0}#{1}',
+                    'ping': '🏓 Понг!',
+                    'weather': '⛅ Погода',
+                    'weather2': '⛅ {0}, {1}',
+                    'wikipedia': '🌐 Википедия',
+                    'codec': '🔡 Кодек',
+                    'timers': '⏲️ Таймеры',
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '{0} - простейший и компактный бот для Discord. На базе [Microbot](https://github.com/tinelix/microbot) от Tinelix.\r\n[Пригласить]({1})',
+                    'help': '{0} - простейший и компактный бот для Discord.\r\n[Пригласить]({1})',
                     'error_unf': '😔 Пользователь не найден. Попробуйте найти другого пользователя.',
                     'bug_reporter': '🪲 Да, у нас и такое случается. Но ничего страшного, сейчас отправим разработчикам на исправление этого бага.',
                     'forbidden': '🚫 Вы не имеете права пользоваться этой командой!',
                     'please_wait': '⌛ Подождите...',
                     'settings': '**Настройки сервера:** 🇷🇺',
                     'settings_done': '✅ Готово!',
+                    'publish_isntcomm': '❌ Сервер не обладает функциями сообщества. Включите в настройках сервера.',
+                    'publish_isntnewsch': '❌ Канал не является новостным каналом или каналом с объявлениями. Включите в настройках канала.',
+                    'weather_conditions_200': '**⛈ Гроза с умеренным дождем**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_201': '**⛈ Гроза с дождем**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_202': '**⛈ Гроза с ливнем**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_300-321': '**🌨 Гололедица**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_500-501': '**🌧 Умеренный дождь**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_502': '**🌧 Дождь**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/) на_',
+                    'weather_conditions_503-504': '**🌧 Ливень**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_511': '**🌧 Дождь**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_600-601': '**🌨 Снег**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_602': '**🌨 Метель**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_615-616': '**🌨 Дождь со снегом**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_800': '**☀ Солнечно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_801': '**🌤 Малооблачно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_802-803': '**⛅ Облачно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_conditions_804': '**☁ Пасмурно**\r\n_по данным сервиса [OpenWeatherMap](https://openweathermap.org/)_',
+                    'weather_sconditions_200': '⛈ Гроза с умеренным дождем',
+                    'weather_sconditions_201': '⛈ Гроза с дождем',
+                    'weather_sconditions_202': '⛈ Гроза с ливнем',
+                    'weather_sconditions_300-321': '🌨 Гололедица',
+                    'weather_sconditions_500-501': '🌧 Умеренный дождь',
+                    'weather_sconditions_502': '🌧 Дождь',
+                    'weather_sconditions_503-504': '🌧 Ливень',
+                    'weather_sconditions_511': '🌧 Дождь',
+                    'weather_sconditions_600-601': '🌨 Снег',
+                    'weather_sconditions_602': '🌨 Метель',
+                    'weather_sconditions_615-616': '🌨 Дождь со снегом',
+                    'weather_sconditions_800': '☀ Солнечно',
+                    'weather_sconditions_801': '🌤 Малооблачно',
+                    'weather_sconditions_802-803': '⛅ Облачно',
+                    'weather_sconditions_804': '☁ Пасмурно',
                     'query_notfound': '😔 К сожалению, мы ничего не нашли. Может, попробуете другой запрос?',
+                    'wikipedia': '{0}\r\n[Подробнее...]({1})',
+                    'timers': '⏲️ Тут ничего нет, но вы можете создать хоть один таймер.',
+                    'timers_created': '✅ Таймер создан.',
+                    'timers_deleted': '✅ Таймер удален.',
+                    'timers_invelapsdt': '❌ Указанная дата должна быть не позднее сегодняшней!',
+                    'timers_invupcomdt': '❌ Указанная дата должна быть не раньше сегодняшней!',
+                    'invalid_cmd_usage': 'Вы используете эту команду неправильно или не указали одно из требуемых параметров. Смотрите её синтаксис и пример.',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -50,9 +97,7 @@ def translate(where, str, language):
                     'about_versf': 'Версия',
                     'about_versv': '{0} ({1})',
                     'about_devsf': 'Разработчик',
-                    'about_devsf2': 'Разработчики',
                     'about_devsv': '`{0}#{1}`',
-                    'about_devsv2': '`{0}#{1}` и `{2}#{3}`',
                     'about_regdf': 'Дата регистрации',
                     'about_regdv': '{0}',
                     'about_statsf': 'Статистика',
@@ -66,9 +111,9 @@ def translate(where, str, language):
                     'about_linksf': 'Ссылки',
                     'about_linksv': '[Пригласить]({0})',
                     'about_linksv2': '[Сайт]({0})',
-                    'about_linksv3': '[Исходный код]({0}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv3': '[Репозиторий]({0}) (Apache License 2.0 & AGPL 3.0+)',
                     'about_linksv4': '[Сервер поддержки]({0})',
-                    'about_linksv5': '[YouTube-канал]({0})',
+                    'about_linksv5': '[Сайт]({0})',
                     'user_nickf': 'Псевдоним',
                     'user_nickv': '{0}',
                     'user_nickvn': '*Отсутствует*',
@@ -88,15 +133,16 @@ def translate(where, str, language):
                     'guild_crtf': 'Дата создания',
                     'guild_crtv': '{0}',
                     'guild_blvlf': 'Уровень бустов',
-                    'guild_blvlv': 'Уровень {0}',
-                    'guild_mlvlf': 'Степень модерации',
-                    'guild_mlvlv': 'Без ограничений',
+                    'guild_blvlv': '_Пока еще нет бустов_',
+                    'guild_blvlv2': 'Уровень {0} / {1} бустов',
+                    'guild_mlvlf': 'Уровень модерации',
+                    'guild_mlvlv': 'Нет ограничений',
                     'guild_mlvlv2': 'Только подтвержденный e-mail',
                     'guild_mlvlv3': 'Регистрация более 5 минут',
                     'guild_mlvlv4': 'Присутствие более 10 минут',
                     'guild_mlvlv5': 'Только подтвержденный телефон',
                     'guild_statsf': 'Статистика',
-                    'guild_statsv': '**Всего {0} участников**\r\n👤 {1} ({2}%)\r\n🤖 {3} ({4}%)\r\n<:online:1012294415731146765> {5} ({6}%)\r\n<:channels:1012296573364998196> {7}',
+                    'guild_statsv': '**Всего {0} участников**\r\n<:users:1014484889732653066> {1} ({2}%)\r\n<:bots:1014484886515630080> {3} ({4}%)\r\n<:online:1012294415731146765> {5} ({6}%)\r\n<:channels:1012296573364998196> {7}',
                     'guild_rulesf': 'Правила',
                     'guild_rulesv': '{0}',
                     'guild_featurf': 'Функции',
@@ -116,11 +162,34 @@ def translate(where, str, language):
                     'calc_rlerrv4': 'ОШИБКА: {0}',
                     'calc_asignf': 'Доступные знаки',
                     'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение',
+                    'settings_availoptf': 'Доступные параметры',
+                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Префикс',
                     'ping_statisticsf': 'Статистика',
                     'ping_statisticsv': '**Задержка:** {0} мсек',
                     'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
-                    'settings_availoptf': 'Доступные параметры',
-                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Префикс',
+                    'weather_resultf': 'Результаты поиска ({0})',
+                    'weather_resultv': '```{0}```',
+                    'weather_tempf': 'Температура воздуха',
+                    'weather_tempv': '**{0}°C**\r\nмин. {1}°C\r\nмакс. {2}°C',
+                    'weather_pressuref': 'Давление',
+                    'weather_pressurev': '{0} мм. рт. ст.',
+                    'weather_humidityf': 'Влажность',
+                    'weather_humidityv': '{0}%',
+                    'weather_windspeedf': 'Скорость ветра',
+                    'weather_windspeedv': '{0} м/сек',
+                    'weather_selyc': 'Выберите город или населенный пункт',
+                    'weather_upforecastsf': 'Ближайшие прогнозы',
+                    'weather_upforecastsv': '```{0}```',
+                    'codec_resulf': 'Результат',
+                    'codec_resulv': '```{0}```',
+                    'codec_algf': 'Алгоритм',
+                    'codec_algv': '{0}',
+                    'codec_algv2': 'Двоичный код',
+                    'codec_derrv': 'Ошибка декодирования',
+                    'codec_eerrv': 'Ошибка кодирования',
+                    'timers_dcr': 'Осталось {0} дн. {1} ч. {2} мин. {3} сек.',
+                    'timers_dce': 'Прошло {0} дн. {1} ч. {2} мин. {3} сек.',
+                    'timers_dco': 'Время закончилось',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -136,7 +205,14 @@ def translate(where, str, language):
                     'rngen': 'Генерирует случайное число в указанном диапазоне.',
                     'guild': 'Показывает информацию о гильдии (сервере)',
                     'calc': 'Простейший калькулятор.',
+                    'settings': 'Настройки бота.',
+                    'settings_lang': 'Смена языка.',
+                    'publish': 'Публикует сообщения с новостного канала без лишнего клика по кнопке мыши.',
                     'ping': 'Пни меня.',
+                    'weather': 'Отображает прогноз погоды на ближайшие 24 часа. Для этого используется сервис [OpenWeatherMap](https://openweathermap.org).',
+                    'wiki': 'Показывает статью в Википедии в краткой форме.',
+                    'codec': 'Расшифровка и зашифровка текста',
+                    'timers': 'Создание и управление таймерами в прошедшее и оставшиеся времени.',
                 }
             elif where == "command_examples":
                 locale = {
@@ -147,14 +223,25 @@ def translate(where, str, language):
                     '8ball': '```{0}8ball [вопрос]```',
                     'rngen': '```{0}rngen [начало диапазона]-[конец диапазона]```',
                     'guild': '```{0}guild```',
-                    'ping': '```{0}ping```',
+                    'settings': '```{0}settings [-L] [значение]\r\n{0}settings -L ru_RU```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'settings_prefix': '```{0}settings -P m!```',
+                    'publish': '```{0}publish Вот так выглядит публикация!```',
+                    'ping': '```{0}ping```',
+                    'weather': '```{0}weather Париж\r\n{0}weather Лондон\r\n{0}weather Санкт-Петербург\r\n{0}weather Барнаул```',
+                    'wiki': '```{0}wiki Синус\r\n{0}wiki Android\r\n{0}wiki Кунсткамера\r\n{0}wiki Прокси-сервер\r\n{0}wiki Эмодзи```',
+                    'codec': '```{0}codec -e base64 Base64 text encoding.\r\n{0}codec -e binary Это перевод текста в двоичный код.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
+                    'calc': '```{0}calc [выражение]```',
+                    'timers': '```{0}timers```',
+                    'timers_create': '```{0}timers [-Cr / -Ce] [имя таймера] -t [ГГГГ-ММ-ДД ЧЧ:ММ:СС] -e [эмодзи]\r\n{0}timers -Cr Оставшееся время -t 2022-09-01 00:00:00 -e 🍁\r\n{0}timers -Ce Прошедшее время -t 2016-03-27 00:00:00 -e 📹```',
+                    'timers_delete': '```{0}timers -D [имя таймера]\r\n{0}timers -D Оставшееся время```',
                 }
             elif where == "button":
                 locale = {
                     'user_avatar': 'Показать аватар',
                     'rngen_retry': 'Повторить',
+                    'timers_create': 'Создать',
+                    'timers_delete': 'Удалить',
                 }
             elif where == "numb_with_unit":
                 locale = {
@@ -175,7 +262,11 @@ def translate(where, str, language):
             else:
                 return locale[str]
         else: # English, if not
-            if where == "embed_title":
+            if where == "message":
+                locale = {
+                    'prefix': '**Prefix:** `{0}`\r\nSlash commands are also supported.'
+                }
+            elif where == "embed_title":
                 locale = {
                     'error': '❎ Error',
                     'help': '❔ Help',
@@ -188,19 +279,65 @@ def translate(where, str, language):
                     'bug_reporter': '🪲 Bug detected!',
                     'forbidden': '🚫 Access forbidden',
                     'eval': '⌨ Interpreter',
+                    '8ball': '🎱 Random Answer Generator',
+                    'rngen': '🎱 Random Number Generator',
                     'calc': '🔢 Calculator',
-                    'ping': '🏓 Pong!',
                     'settings': '⚙ Settings',
+                    'msg_author': '📣 Post by {0}#{1}',
+                    'ping': '🏓 Pong!',
+                    'weather': '⛅ Weather',
+                    'weather2': '⛅ {0}, {1}',
+                    'wikipedia': '🌐 Wikipedia',
+                    'codec': '🔡 Codec',
+                    'timers': '⏲️ Timers',
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '{0} - is a simple and compact bot for Discord. Based on [Microbot](https://github.com/tinelix/microbot) by Tinelix\r\n[Invite]({1})',
+                    'help': '{0} - is a simple and compact bot for Discord.\r\n[Invite]({1})',
                     'error_unf': '😔 User not found. Try to find another user.',
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
                     'please_wait': '⌛ Wait...',
-                    'settings': '**Server settings:** 🇺🇸 | {0}',
+                    'settings': '**Server settings:** 🇺🇸',
                     'settings_done': '✅ Done!',
+                    'weather_conditions_200': '**⛈ Thunderstorm with moderate rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_201': '**⛈ Thunderstorm with rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_202': '**⛈ Thunderstorm with heavy rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_300-321': '**🌧 Rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_500-501': '**🌧 Moderate rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_502': '**🌧 Rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_503-504': '**🌧 Shower rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_511': '**🌧 Rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_600-601': '**🌨 Show**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_602': '**🌨 Snowstorm**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_615-616': '**🌨 Rain with snow**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_800': '**☀ Sunny**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_801': '**🌤 Partly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_802-803': '**⛅ Cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_conditions_804': '**☁ Mainly cloudy**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
+                    'weather_sconditions_200': '⛈ Thunderstorm with moderate rain',
+                    'weather_sconditions_201': '⛈ Thunderstorm with rain',
+                    'weather_sconditions_202': '⛈ Thunderstorm with heavy rain',
+                    'weather_sconditions_300-321': '🌧 Rain',
+                    'weather_sconditions_500-501': '🌧 Moderate rain',
+                    'weather_sconditions_502': '🌧 Rain',
+                    'weather_sconditions_503-504': '🌧 Shower rain',
+                    'weather_sconditions_511': '🌧 Rain',
+                    'weather_sconditions_600-601': '🌨 Show',
+                    'weather_sconditions_602': '🌨 Snowstorm',
+                    'weather_sconditions_615-616': '**🌨 Rain with snow',
+                    'weather_sconditions_800': '☀ Sunny',
+                    'weather_sconditions_801': '🌤 Partly cloudy',
+                    'weather_sconditions_802-803': '⛅ Cloudy',
+                    'weather_sconditions_804': '☁ Mainly cloudy',
+                    'query_notfound': '😔 Sorry, we didn\'t find anything. Maybe try another query?',
+                    'wikipedia': '{0}\r\n[More...]({1})',
+                    'timers': '⏲️ There\'s nothing there, but you can create at least one timer.',
+                    'timers_created': '✅ Timer created.',
+                    'timers_deleted': '✅ Timer deleted.',
+                    'timers_invelapsdt': '❌ The specified date must be no later than today!',
+                    'timers_invupcomdt': '❌ The specified date must not be earlier than today!',
+                    'invalid_cmd_usage': 'You are using this command incorrectly, or you have not provided one of the required parameters. See its syntax and example.',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -215,9 +352,7 @@ def translate(where, str, language):
                     'about_versf': 'Version',
                     'about_versv': '{0} ({1})',
                     'about_devsf': 'Developer',
-                    'about_devsf2': 'Developers',
-                    'about_devsv': '`{0}#{1}`',
-                    'about_devsv2': '`{0}#{1}` and `{2}#{3}`',
+                    'about_devsv': '{0}#{1}',
                     'about_regdf': 'Registration date',
                     'about_regdv': '{0}',
                     'about_statsf': 'Statistics',
@@ -233,7 +368,7 @@ def translate(where, str, language):
                     'about_linksv2': '[Website]({0})',
                     'about_linksv3': '[Source code]({0}) (Apache License 2.0 & AGPL 3.0+)',
                     'about_linksv4': '[Support server]({0})',
-                    'about_linksv5': '[YouTube channel]({0})',
+                    'about_linksv': '{0}',
                     'user_nickf': 'Nickname',
                     'user_nickv': '{0}',
                     'user_nickvn': '*Missing*',
@@ -250,18 +385,19 @@ def translate(where, str, language):
                     'user_rolesv': '{0}',
                     'guild_ownerf': 'Owner',
                     'guild_ownerv': '{0} (`{1}#{2}`)',
-                    'guild_crtf': 'Date of creation',
+                    'guild_crtf': 'Creation date',
                     'guild_crtv': '{0}',
-                    'guild_mlvlf': 'Moderation degree',
-                    'guild_mlvlv': 'Without limits',
+                    'guild_mlvlf': 'Moderation level',
+                    'guild_mlvlv': 'No limits',
                     'guild_mlvlv2': 'Only confirmed e-mail',
                     'guild_mlvlv3': 'Registration over 5 minutes',
                     'guild_mlvlv4': 'Presence over 10 minutes',
                     'guild_mlvlv5': 'Only confirmed phone',
                     'guild_blvlf': 'Boost level',
-                    'guild_blvlv': 'Level {0}',
+                    'guild_blvlv': '_No boosts yet_',
+                    'guild_blvlv2': 'Level {0} / {1} boosts',
                     'guild_statsf': 'Statistics',
-                    'guild_statsv': '**{0} members total**\r\n👤 {1} ({2}%)\r\n🤖 {3} ({4}%)\r\n<:online:1012294415731146765> {5} ({6}%)\r\n<:channels:1012296573364998196> {7}',
+                    'guild_statsv': '**{0} members total**\r\n<:users:1014484889732653066> {1} ({2}%)\r\n<:bots:1014484886515630080> {3} ({4}%)\r\n<:online:1012294415731146765> {5} ({6}%)\r\n<:channels:1012296573364998196> {7}',
                     'guild_rulesf': 'Rules',
                     'guild_rulesv': '{0}',
                     'guild_featurf': 'Features',
@@ -274,11 +410,39 @@ def translate(where, str, language):
                     '8ball_answv': ['Yes.', 'No.', 'Maybe.', 'Time will tell.', 'Wait and see.', 'Unlikely.', 'Of course.', 'Yep.', 'Nope.', 'And there is.', 'I have no idea.', 'I don\'t know', 'No idea.', 'Maybe yes...', 'Maybe no...', 'Who knows!', 'I didn\'t understand your question, can you repeat?', 'Try asking a different question. Maybe I don\'t understand something?', 'Probably.', 'Nothing like this.'],
                     'rngen_numbf': 'Number',
                     'rngen_numbv': '{0}',
+                    'calc_resulf': 'Result',
+                    'calc_rlerrv': 'ERROR: Attempt to divide by zero',
+                    'calc_rlerrv2': 'ERROR: Number too large',
+                    'calc_rlerrv3': 'ERROR: Only numbers are accepted',
+                    'calc_rlerrv4': 'ERROR: {0}',
+                    'calc_asignf': 'Available signs',
+                    'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication',
+                    'settings_availoptf': 'Available options',
+                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Prefix',
                     'ping_statisticsf': 'Statistics',
                     'ping_statisticsv': '**Latency:** {0} msec',
                     'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
-                    'settings_availoptf': 'Available options',
-                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Prefix',
+                    'weather_resultf': 'Search results ({0})',
+                    'weather_resultv': '```{0}```',
+                    'weather_tempf': 'Air temperature',
+                    'weather_tempv': '**{0}°C**\r\nmin. {1}°C\r\nmax. {2}°C',
+                    'weather_pressuref': 'Pressure',
+                    'weather_pressurev': '{0} mmHg',
+                    'weather_humidityf': 'Humidity',
+                    'weather_humidityv': '{0}%',
+                    'weather_windspeedf': 'Wind speed',
+                    'weather_windspeedv': '{0} m/sec',
+                    'weather_selyc': 'Select city or locality',
+                    'weather_upforecastsf': 'Upcoming forecasts',
+                    'weather_upforecastsv': '```{0}```',
+                    'codec_resulf': 'Result',
+                    'codec_resulv': '```{0}```',
+                    'codec_algf': 'Algorithm',
+                    'codec_algv': '{0}',
+                    'codec_algv2': 'Binary code',
+                    'timers_dcr': '{0} d. {1} h. {2} min. {3} sec. remaining',
+                    'timers_dce': '{0} d. {1} h. {2} min. {3} sec. elapsed',
+                    'timers_dco': 'Time is over',
                 }
             elif where == "command_description":
                 locale = {
@@ -295,8 +459,10 @@ def translate(where, str, language):
                     'publish': 'Publishes messages from news channel without extra clicks on the mouse button.',
                     'ping': 'Ping me.',
                     'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.',
+                    'weather2': 'Displays the weather forecast for the next 24 hours.',
                     'wiki': 'Displays a Wikipedia article in short form.',
-                    'codec': 'Decoding and coding of text.'
+                    'codec': 'Decoding and coding of text.',
+                    'timers': 'Creating and managing timers in elapsed and remaining time.',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -312,14 +478,24 @@ def translate(where, str, language):
                     'rngen': '```{0}rngen [beginning of range]-[end of range]```',
                     'guild': '```{0}guild```',
                     'calc': '```{0}calc [expression]```',
+                    'settings': '```{0}settings [-L] [value]\r\n{0}settings -L en_US```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'settings_prefix': '```{0}settings -P m!```',
+                    'publish': '```{0}publish This is what the post looks like!```',
                     'ping': '```{0}ping```',
+                    'weather': '```{0}weather Paris\r\n{0}weather London\r\n{0}weather Saint-Petersburg\r\n{0}weather Barnaul```',
+                    'wiki': '```{0}wiki Sinus\r\n{0}wiki Android\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji```',
+                    'codec': '```{0}codec -e base64 Base64 encoding text example.\r\n{0}codec -e binary Binary text decoding example.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
+                    'timers': '```{0}timers```',
+                    'timers_create': '```{0}timers [-Cr / -Ce] [timer name] -t [YYYY-MM-DD HH:MM:SS] -e [emoji]\r\n{0}timers -Cr Remaining time -t 2022-09-01 00:00:00 -e 🍁\r\n{0}timers -Ce Elapsed time -t 2016-03-27 00:00:00 -e 📹```',
+                    'timers_delete': '```{0}timers -D [timer name]\r\n{0}timers -D Remaining time```',
                 }
             elif where == "button":
                 locale = {
                     'user_avatar': 'Show avatar',
                     'rngen_retry': 'Retry',
+                    'timers_create': 'Create',
+                    'timers_delete': 'Delete',
                 }
             elif where == "numb_with_unit":
                 locale = {
@@ -348,3 +524,31 @@ def translate(where, str, language):
 def getLanguages():
     languages = {'ru_RU': 'Russian', 'en_US': 'English'}
     return languages
+
+def formatDate(datetime, size, language):
+    if(language == 'ru_RU'):
+        if(size == 'full'):
+            days_of_week = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+            months = ['', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour}:{datetime.minute}:{datetime.second}'
+        elif(size == 'normal'):
+            days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+            months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour}:{datetime.minute}:{datetime.second}'
+        elif(size == 'compact'):
+            days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+            months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г.'
+    else:
+        if(size == 'full'):
+            days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'September', 'November', 'December']
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour}:{datetime.minute}:{datetime.second}'
+        elif(size == 'normal'):
+            days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour}:{datetime.minute}:{datetime.second}'
+        elif(size == 'compact'):
+            days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year}'

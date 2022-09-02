@@ -80,7 +80,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
         translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format('<@{0}>'.format(owner.id), owner.name, owner.discriminator), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(guild.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=True
+        translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(translator.formatDate(guild.created_at, 'normal', language)), inline=True
     )
     if(guild.premium_tier == 0):
         msg_embed.add_field(

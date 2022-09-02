@@ -70,13 +70,13 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         )
 
     msg_embed.add_field(
-        translator.translate('embed_fields', 'user_regdf', language), translator.translate('embed_fields', 'user_regdv', language).format(user.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=False
+        translator.translate('embed_fields', 'user_regdf', language), translator.translate('embed_fields', 'user_regdv', language).format(translator.formatDate(user.created_at, 'normal', language)), inline=False
     )
     if(member == None):
         pass
     else:
         msg_embed.add_field(
-            translator.translate('embed_fields', 'user_joinf', language), translator.translate('embed_fields', 'user_joinv', language).format(member.joined_at.strftime("%Y-%m-%d %H:%M:%S")), inline=False
+            translator.translate('embed_fields', 'user_joinf', language), translator.translate('embed_fields', 'user_joinv', language).format(translator.formatDate(member.joined_at, 'normal', language)), inline=False
         )
         msg_embed.add_field(
             translator.translate('embed_fields', 'user_statusf', language), status, inline=True
