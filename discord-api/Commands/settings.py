@@ -7,7 +7,7 @@ import numexpr
 name = 'settings'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
+async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data):
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
             if ctx.author.guild_permissions.administrator:
@@ -39,22 +39,22 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'forbidden', language)))
         else:
             msg_embed = disnake.Embed(
-            description=str(translator.translate('embed_description', 'settings', language)),
-            colour=config['accent_def'],
+                description=str(translator.translate('embed_description', 'settings', language)),
+                colour=config['accent_def'],
             )
             msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
             msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
     else:
         msg_embed = disnake.Embed(
-            description=str(translator.translate('embed_description', 'settings', language)),
+            description=str(translator.translate('embed_description', 'settings', language)).format(f'`{guild_data[2]}`'),
             colour=config['accent_def'],
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
         msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
     return msg_embed
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
+async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data)
     class SettingsByButton(disnake.ui.View):
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🚩')
         async def show_changing_language_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
@@ -82,6 +82,6 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
     else:
         await ctx.reply(embed=msg_embed, view=SettingsByButton(), mention_author=False)
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data)
     await ctx.send(embed=msg_embed)

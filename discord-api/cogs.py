@@ -159,7 +159,7 @@ class Commands(commands.Cog):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[1]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        await settings.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, db, self.bot.database, self.bot.cursor)
+        await settings.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, db, self.bot.database, self.bot.cursor, guild_data)
 
     @commands.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
