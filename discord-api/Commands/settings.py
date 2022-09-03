@@ -46,10 +46,10 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
     else:
         msg_embed = disnake.Embed(
-            description=str(translator.translate('embed_description', 'settings', language)).format(f'`{guild_data[2]}`'),
             colour=config['accent_def'],
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+        msg_embed.add_field(translator.translate('embed_fields', 'settings_gsettf', language), translator.translate('embed_fields', 'settings_gsettv', language).format(f'`{guild_data[2]}`'), inline=False)
         msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language), translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
     return msg_embed
 

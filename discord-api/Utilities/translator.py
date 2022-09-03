@@ -36,12 +36,11 @@ def translate(where, str, language):
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '{0} - простейший и компактный бот для Discord.\r\n[Пригласить]({1})',
+                    'help': '**{0}** - простейший и компактный бот для Discord. Версия {1}.\r\nХотите узнать, для чего нужны команды? Вбейте `{2}help [имя команды]`.\r\n[Пригласить]({3})',
                     'error_unf': '😔 Пользователь не найден. Попробуйте найти другого пользователя.',
                     'bug_reporter': '🪲 Да, у нас и такое случается. Но ничего страшного, сейчас отправим разработчикам на исправление этого бага.',
                     'forbidden': '🚫 Вы не имеете права пользоваться этой командой!',
                     'please_wait': '⌛ Подождите...',
-                    'settings': '**Настройки сервера:** 🇷🇺 | {0}',
                     'settings_done': '✅ Готово!',
                     'publish_isntcomm': '❌ Сервер не обладает функциями сообщества. Включите в настройках сервера.',
                     'publish_isntnewsch': '❌ Канал не является новостным каналом или каналом с объявлениями. Включите в настройках канала.',
@@ -162,6 +161,8 @@ def translate(where, str, language):
                     'calc_rlerrv4': 'ОШИБКА: {0}',
                     'calc_asignf': 'Доступные знаки',
                     'calc_asignv': '[`+`] - сложение\r\n[`-`] - удаление\r\n[`/`], [`:`] - деление\r\n[`*`] - умножение',
+                    'settings_gsettf': 'Настройки сервера',
+                    'settings_gsettv': 'Язык: 🇷🇺\r\nПрефикс: {0}',
                     'settings_availoptf': 'Доступные параметры',
                     'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Префикс',
                     'ping_statisticsf': 'Статистика',
@@ -194,6 +195,14 @@ def translate(where, str, language):
             elif where == "embed_footer":
                 locale = {
                     '8ball': 'Все совпадения случайны!'
+                }
+            elif where == "command_categories":
+                locale = {
+                    'main': '🤖 Главное',
+                    'fun': '🎭 Развлечения',
+                    'interactivity': '🌐 Интерактивность',
+                    'personalization': '🎨 Персонализация',
+                    'other': '*️⃣ Другое'
                 }
             elif where == "command_description":
                 locale = {
@@ -293,12 +302,11 @@ def translate(where, str, language):
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '{0} - is a simple and compact bot for Discord.\r\n[Invite]({1})',
+                    'help': '**{0}** - is a simple and compact bot for Discord. Version {1}.\r\nWant to know what the commands is for? Type `{2}help [command name]`.\r\n[Invite]({3})',
                     'error_unf': '😔 User not found. Try to find another user.',
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
                     'please_wait': '⌛ Wait...',
-                    'settings': '**Server settings:** 🇺🇸 | {0}',
                     'settings_done': '✅ Done!',
                     'weather_conditions_200': '**⛈ Thunderstorm with moderate rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
                     'weather_conditions_201': '**⛈ Thunderstorm with rain**\r\n_data provided by [OpenWeatherMap](https://openweathermap.org/)_ service',
@@ -417,6 +425,8 @@ def translate(where, str, language):
                     'calc_rlerrv4': 'ERROR: {0}',
                     'calc_asignf': 'Available signs',
                     'calc_asignv': '[`+`] - addition\r\n[`-`] - deletion\r\n[`/`], [`:`] - division\r\n[`*`] - multiplication',
+                    'settings_gsettf': 'Guild settings',
+                    'settings_gsettv': 'Language: 🇺🇸\r\nPrefix: {0}',
                     'settings_availoptf': 'Available options',
                     'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Prefix',
                     'ping_statisticsf': 'Statistics',
@@ -443,6 +453,14 @@ def translate(where, str, language):
                     'timers_dcr': '{0} d. {1} h. {2} min. {3} sec. remaining',
                     'timers_dce': '{0} d. {1} h. {2} min. {3} sec. elapsed',
                     'timers_dco': 'Time is over',
+                }
+            elif where == "command_categories":
+                locale = {
+                    'main': '🤖 Main',
+                    'fun': '🎭 Fun',
+                    'interactivity': '🌐 Interactivity',
+                    'personalization': '🎨 Personization',
+                    'other': '*️⃣ Other'
                 }
             elif where == "command_description":
                 locale = {
