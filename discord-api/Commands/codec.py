@@ -57,7 +57,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, bi
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', language), translator.translate('embed_fields', 'codec_algv', language).format(algoritm), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
             elif(arg[1] == 'binary'):
-                algoritm = translator.translate('embed_fields', 'codec_resulv2', language)
+                algoritm = translator.translate('embed_fields', 'codec_algv2', language)
                 try:
                     result = str(binary.decode(" ".join(arg[2:])))
                     msg_embed = disnake.Embed(
@@ -119,7 +119,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, bi
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', language), translator.translate('embed_fields', 'codec_algv', language).format(algoritm), inline=False)
             elif(arg[1] == 'binary'):
-                algoritm = translator.translate('embed_fields', 'codec_resulv2', language)
+                algoritm = translator.translate('embed_fields', 'codec_algv2', language)
                 try:
                     arg_str = " ".join(arg[2:])
                     result = ""
