@@ -550,11 +550,11 @@ def formatDate(datetime, size, language):
         if(size == 'full'):
             days_of_week = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
             months = ['', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
         elif(size == 'normal'):
             days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
             months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
-            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
         elif(size == 'compact'):
             days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
             months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
@@ -563,11 +563,11 @@ def formatDate(datetime, size, language):
         if(size == 'full'):
             days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
             months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'September', 'November', 'December']
-            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
         elif(size == 'normal'):
             days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
         elif(size == 'compact'):
             days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
