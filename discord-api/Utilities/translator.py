@@ -36,7 +36,7 @@ def translate(where, str, language):
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '**{0}** - простейший и компактный бот для Discord. Версия {1}.\r\nХотите узнать, для чего нужны команды? Вбейте `{2}help [имя команды]`.\r\n[Пригласить]({3})',
+                    'help': '**{0}** - простейший и компактный бот для Discord.\r\nХотите узнать, для чего нужны команды? Вбейте `{1}help [имя команды]`.\r\n[Пригласить]({2})',
                     'error_unf': '😔 Пользователь не найден. Попробуйте найти другого пользователя.',
                     'bug_reporter': '🪲 Да, у нас и такое случается. Но ничего страшного, сейчас отправим разработчикам на исправление этого бага.',
                     'forbidden': '🚫 Вы не имеете права пользоваться этой командой!',
@@ -194,7 +194,8 @@ def translate(where, str, language):
                 }
             elif where == "embed_footer":
                 locale = {
-                    '8ball': 'Все совпадения случайны!'
+                    '8ball': 'Все совпадения случайны!',
+                    'help': 'Версия {0}',
                 }
             elif where == "command_categories":
                 locale = {
@@ -302,7 +303,7 @@ def translate(where, str, language):
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '**{0}** - is a simple and compact bot for Discord. Version {1}.\r\nWant to know what the commands is for? Type `{2}help [command name]`.\r\n[Invite]({3})',
+                    'help': '**{0}** - is a simple and compact bot for Discord.\r\nWant to know what the commands is for? Type `{1}help [command name]`.\r\n[Invite]({2})',
                     'error_unf': '😔 User not found. Try to find another user.',
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
@@ -454,6 +455,11 @@ def translate(where, str, language):
                     'timers_dce': '{0} d. {1} h. {2} min. {3} sec. elapsed',
                     'timers_dco': 'Time is over',
                 }
+            elif where == "embed_footer":
+                locale = {
+                    '8ball': 'All matches are random!',
+                    'help': 'Version {0}',
+                }
             elif where == "command_categories":
                 locale = {
                     'main': '🤖 Main',
@@ -481,10 +487,6 @@ def translate(where, str, language):
                     'wiki': 'Displays a Wikipedia article in short form.',
                     'codec': 'Decoding and coding of text.',
                     'timers': 'Creating and managing timers in elapsed and remaining time.',
-                }
-            elif where == "embed_footer":
-                locale = {
-                    '8ball': 'All matches are random!'
                 }
             elif where == "command_examples":
                 locale = {
@@ -548,11 +550,11 @@ def formatDate(datetime, size, language):
         if(size == 'full'):
             days_of_week = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
             months = ['', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour}:{datetime.minute}:{datetime.second}'
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
         elif(size == 'normal'):
             days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
             months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
-            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour}:{datetime.minute}:{datetime.second}'
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
         elif(size == 'compact'):
             days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
             months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
@@ -561,11 +563,11 @@ def formatDate(datetime, size, language):
         if(size == 'full'):
             days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
             months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'September', 'November', 'December']
-            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour}:{datetime.minute}:{datetime.second}'
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
         elif(size == 'normal'):
             days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour}:{datetime.minute}:{datetime.second}'
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:01d}:{datetime.minute:01d}:{datetime.second:01d}'
         elif(size == 'compact'):
             days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']

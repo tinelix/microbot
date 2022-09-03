@@ -18,12 +18,11 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
                 prefixes_list += "`{0}`".format(prefix)
 
     msg_embed = disnake.Embed(
-        description=str(translator.translate('embed_description', 'help', language)).format(config['name'], config['version'], config['prefix'], links['invite']),
+        description=str(translator.translate('embed_description', 'help', language)).format(config['name'], config['prefix'], links['invite']),
         colour=config['accent_def']
     ).add_field(
         translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language).format(prefixes_list), inline=False
-    )
-    msg_embed.set_author(name=str(translator.translate('embed_title', 'help', language)))
+    ).set_footer(text=translator.translate('embed_footer', 'help', language).format(config['version'])).set_author(name=str(translator.translate('embed_title', 'help', language)))
 
     for category in bot.commands_list.keys():
         commands_list = ''

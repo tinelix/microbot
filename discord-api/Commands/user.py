@@ -91,7 +91,7 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
             user = bot.get_user(query)
             member = ctx.guild.get_member(query)
         except:
-            search_result = await ctx.guild.search_members(arg)
+            search_result = await ctx.guild.query_members(arg)
             if(len(search_result) > 0):
                 member = search_result[0]
                 member = ctx.guild.get_member(member.id) # dummy disnake not showing online status in 'search_members' function
@@ -118,7 +118,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
             user = bot.get_user(query)
             member = ctx.guild.get_member(query)
         except:
-            search_result = await ctx.guild.search_members(arg)
+            search_result = await ctx.guild.query_members(arg)
             if(len(search_result) > 0):
                 member = search_result[0]
                 member = ctx.guild.get_member(member.id) # dummy disnake not showing online status in 'search_members' function
