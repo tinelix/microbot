@@ -57,7 +57,7 @@ class Commands(commands.Cog):
         language = guild_data[1]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[4])
-        await about.sendRegularMsg(ctx, self.bot, config, links, language, disnake, translator, python_version, uptime)
+        await about.sendRegularMsg(ctx, self.bot, config, links, language, disnake, translator, python_version, uptime, self.tz)
 
     @commands.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
