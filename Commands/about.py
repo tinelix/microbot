@@ -9,6 +9,9 @@ import sys
 import platform
 import sqlite3
 
+name = 'about'
+hidden = False
+
 async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
     msg_embed = disnake.Embed(
         description=translator.translate('embed_description', 'please_wait', language),
@@ -20,15 +23,8 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator, 
 async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
     try:
         dev = bot.get_user(config['dev_id'])
-    except Exception as e:
-        print(e)
+    except:
         dev = None
-
-    try:
-        codev = bot.get_user(config['codev_id'])
-    except Exception as e:
-        print(e)
-        codev = None
 
     plt_system = platform.system()
     plt_version = platform.version()
@@ -72,16 +68,11 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
     if(dev == None):
         pass
     else:
-        if(codev == None):
-            msg_embed.add_field(
-                translator.translate('embed_fields', 'about_devsf', language), translator.translate('embed_fields', 'about_devsv', language).format(dev.name, dev.discriminator), inline=True
-            )
-        else:
-            msg_embed.add_field(
-                translator.translate('embed_fields', 'about_devsf2', language), translator.translate('embed_fields', 'about_devsv2', language).format(dev.name, dev.discriminator, codev.name, codev.discriminator), inline=True
-            )
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_devsf', language), translator.translate('embed_fields', 'about_devsv', language).format(dev.name, dev.discriminator), inline=True
+        )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'about_regdf', language), translator.translate('embed_fields', 'about_regdv', language).format(translator.formatDate(bot.user.created_at, 'normal', language)), inline=True
+        translator.translate('embed_fields', 'about_regdf', language), translator.translate('embed_fields', 'about_regdv', language).format(translator.formatDate(bot.user.created_at.astimezone(tz), 'normal', language)), inline=True
     )
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_statsf', language), translator.translate('embed_fields', 'about_statsv', language).format(len(bot.guilds), len(bot.users)), inline=True
@@ -103,8 +94,6 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv', language).format(links['invite']))
     if(len(links['website']) > 0):
         links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv2', language).format(links['website']))
-    if(len(links['youtube']) > 0):
-        links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv5', language).format(links['youtube']))
     if(len(links['repo']) > 0):
         links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv3', language).format(links['repo']))
     if(len(links['support']) > 0):
@@ -114,16 +103,17 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
             translator.translate('embed_fields', 'about_linksf', language), links_str, inline=True
         )
 
-    msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix) & Den4ik')
+
+    msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)')
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
+async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
     await ctx.response.defer()
-    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz)
+    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
     await ctx.send(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
+async def sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
     msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version)
     msg = await ctx.reply(embed=msg_embed, mention_author=False)
-    msg_embed_2 = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz)
+    msg_embed_2 = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
     await msg.edit(embed=msg_embed_2)
