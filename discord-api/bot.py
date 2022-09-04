@@ -63,7 +63,6 @@ language = 'ru_RU'
 user_col = None
 guild_col = None
 connectionStartTime = time.time()
-MSK = pytz.timezone('Europe/Moscow')
 
 # 7. Globally blocking all DMs
 @bot.check

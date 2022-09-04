@@ -9,7 +9,7 @@ import re
 name = 'timers'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
+async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, tz):
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
     )
@@ -24,7 +24,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
                 timer_name = re.search('-Cr (.+?) -t', arg).group(1)
                 timer_action_date = re.search('-t (.+?) -e', arg).group(1)
                 timer_actiondt = datetime.datetime.strptime(timer_action_date, "%Y-%m-%d %H:%M:%S")
-                remaining_time = timer_actiondt - current_dt
+                remaining_time = timer_actiondt.astimezone(tz) - current_dt.astimezone(tz)
                 if(remaining_time.total_seconds() >= 0):
                     emoji = re.search('-e (.+?)', arg).group(1)
                     await db.add_timer_value(database, author_id, emoji, timer_name, timer_action_date, 'remaining', cursor)
@@ -47,7 +47,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
                 timer_name = re.search('-Ce (.+?) -t', arg).group(1)
                 timer_action_date = re.search('-t (.+?) -e', arg).group(1)
                 timer_actiondt = datetime.datetime.strptime(timer_action_date, "%Y-%m-%d %H:%M:%S")
-                elapsed_time = current_dt - timer_actiondt
+                elapsed_time = current_dt.astimezone(tz) - timer_actiondt.astimezone(tz)
                 if(elapsed_time.total_seconds() >= 0):
                     emoji = re.search('-e (.+?)', arg).group(1)
                     await db.add_timer_value(database, author_id, emoji, timer_name, timer_action_date, 'elapsed', cursor)
@@ -76,7 +76,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             return await generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor)
     return msg_embed
 
-async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor):
+async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor, tz):
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
     )
@@ -87,7 +87,7 @@ async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, d
         for timer in timers:
             timer_actiondt = datetime.datetime.strptime(timer[3], "%Y-%m-%d %H:%M:%S")
             if(timer[4] == 'remaining'):
-                remaining_time = timer_actiondt - current_dt
+                remaining_time = timer_actiondt.astimezone(tz) - current_dt.astimezone(tz)
                 if(remaining_time.total_seconds() >= 0):
                     remaining_hours = (remaining_time.seconds // 3600) % 24
                     remaining_minutes = (remaining_time.seconds % 3600) // 60
@@ -95,7 +95,7 @@ async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, d
                 else:
                     msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dco', language), inline=False)
             elif(timer[4] == 'elapsed'):
-                elapsed_time = current_dt - timer_actiondt
+                elapsed_time = current_dt.astimezone(tz) - timer_actiondt.astimezone(tz)
                 if(elapsed_time.total_seconds() >= 0):
                     elapsed_hours = (elapsed_time.seconds // 3600) % 24
                     elapsed_minutes = (elapsed_time.seconds % 3600) // 60
@@ -106,8 +106,8 @@ async def generateTimersEmbed(ctx, bot, config, language, disnake, translator, d
         msg_embed.description = translator.translate('embed_description', 'timers', language)
     return msg_embed
 
-async def sendRegularMsgWithoutArgs(ctx, bot, config, language, disnake, translator, db, database, cursor):
-    msg_embed = await generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor)
+async def sendRegularMsgWithoutArgs(ctx, bot, config, language, disnake, translator, db, database, cursor, tz):
+    msg_embed = await generateTimersEmbed(ctx, bot, config, language, disnake, translator, db, database, cursor, tz)
     class TimerByButtons(disnake.ui.View):
         @disnake.ui.button(style=disnake.ButtonStyle.green, label=translator.translate('button', 'timers_create', language))
         async def create_timer(self, button: disnake.ui.Button, interaction: disnake.Interaction):
@@ -127,7 +127,7 @@ async def sendRegularMsgWithoutArgs(ctx, bot, config, language, disnake, transla
             await interaction.response.send_message(embed=timers_creating_embed)
     await ctx.reply(embed=msg_embed, view=TimerByButtons(), mention_author=False)
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
+async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, tz):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, tz)
     await ctx.reply(embed=msg_embed, mention_author=False)
 

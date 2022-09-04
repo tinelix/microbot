@@ -7,7 +7,7 @@ import re
 name = 'guild'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator):
+async def generateEmbed(ctx, bot, config, language, disnake, translator, tz):
     guild = ctx.guild
     try:
         guild_pr = await bot.fetch_guild_preview(ctx.guild.id)
@@ -80,7 +80,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
         translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format('<@{0}>'.format(owner.id), owner.name, owner.discriminator), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(translator.formatDate(guild.created_at, 'normal', language)), inline=True
+        translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(translator.formatDate(guild.created_at.astimezone(tz), 'normal', language)), inline=True
     )
     if(guild.premium_tier == 0):
         msg_embed.add_field(
@@ -110,12 +110,12 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator):
     msg_embed.set_footer(text='ID: {0}'.format(guild.id))
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator)
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, tz):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, tz)
     await ctx.response.send_message(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator)
+async def sendRegularMsg(ctx, bot, config, language, disnake, translator, tz):
+    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, tz)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
 async def sendHelpMsg(ctx, bot, config, language, disnake, translator):

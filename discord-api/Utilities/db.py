@@ -19,6 +19,7 @@ async def create_tables(database, cursor):
                 reputation INTEGER NOT NULL,
                 reg_timestamp DATETIME NOT NULL,
                 sended_msg_timestamp DATETIME NOT NULL,
+                timezone TEXT NOT NULL,
                 blocked INTEGER NOT NULL);'''
     cursor.execute(users_query)
     timers_query = '''CREATE TABLE IF NOT EXISTS timers (
@@ -38,8 +39,8 @@ async def add_guild_value(config, database, guild, cursor):
     database.commit()
 
 async def add_user_value(database, message, cursor):
-    query = """INSERT INTO users VALUES (?, ?, ?, ?, ?);"""
-    values = [(message.author.id, 0, now.strftime('%Y-%m-%d %H:%M:%S'), message.created_at.strftime('%Y-%m-%d %H:%M:%S'), 0)]
+    query = """INSERT INTO users VALUES (?, ?, ?, ?, ?, ?);"""
+    values = [(message.author.id, 0, now.strftime('%Y-%m-%d %H:%M:%S'), message.created_at.strftime('%Y-%m-%d %H:%M:%S'), 'Europe/Moscow', 0)]
     cursor.executemany(query, values)
     database.commit()
 

@@ -7,7 +7,7 @@ import re
 name = 'user'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, user, member):
+async def generateEmbed(ctx, bot, config, language, disnake, translator, user, member, tz):
     if(user == None):
         msg_embed = disnake.Embed(
             description=translator.translate('embed_description', 'error_unf', language),
@@ -66,13 +66,13 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         )
 
     msg_embed.add_field(
-        translator.translate('embed_fields', 'user_regdf', language), translator.translate('embed_fields', 'user_regdv', language).format(translator.formatDate(user.created_at, 'normal', language)), inline=False
+        translator.translate('embed_fields', 'user_regdf', language), translator.translate('embed_fields', 'user_regdv', language).format(translator.formatDate(user.created_at.astimezone(tz), 'normal', language)), inline=False
     )
     if(member == None):
         pass
     else:
         msg_embed.add_field(
-            translator.translate('embed_fields', 'user_joinf', language), translator.translate('embed_fields', 'user_joinv', language).format(translator.formatDate(member.joined_at, 'normal', language)), inline=False
+            translator.translate('embed_fields', 'user_joinf', language), translator.translate('embed_fields', 'user_joinv', language).format(translator.formatDate(member.joined_at.astimezone(tz), 'normal', language)), inline=False
         )
         msg_embed.add_field(
             translator.translate('embed_fields', 'user_statusf', language), status, inline=True
@@ -84,7 +84,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
     msg_embed.set_footer(text='ID: {0}'.format(user.id))
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, tz):
     try:
         try:
             query = int(re.search(r'\d+', arg).group())
@@ -99,7 +99,7 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
             else:
                 member = None
                 user = None
-        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, user, member)
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, user, member, tz)
         class AvatarByButton(disnake.ui.View):
             @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
@@ -111,7 +111,7 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
     except:
         pass
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
+async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, tz):
     try:
         try:
             query = int(re.search(r'\d+', arg).group())
@@ -126,7 +126,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
             else:
                 member = None
                 user = None
-        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, user, member)
+        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, user, member, tz)
         class AvatarByButton(disnake.ui.View):
             @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
