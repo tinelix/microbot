@@ -200,7 +200,7 @@ class Commands(commands.Cog):
         await publish.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
 
     @commands.slash_command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
-    async def publish_cmd(self, ctx, *, text):
+    async def publish_scmd(self, ctx, *, text):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         language = guild_data[1]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')

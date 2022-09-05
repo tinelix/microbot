@@ -7,7 +7,7 @@ hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     community = ""
-    for guild_feature in ctx.guild.features:
+    for guild_feature in ctx.message.guild.features:
         if guild_feature == "COMMUNITY":
             community = "COMMUNITY"
     if(community != "COMMUNITY"):
@@ -76,6 +76,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
         pass
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
+    try:
         msg_embed = await generateSlashEmbed(ctx, bot, config, language, disnake, translator, arg)
         msg = await ctx.channel.send(embed=msg_embed)
         community = ""
@@ -85,7 +86,8 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
         if(community == "COMMUNITY" and str(ctx.channel.type) == "news"):
             await msg.publish()
         await ctx.send('✅', delete_after=5)
-
+    except:
+        pass
 
 async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
     msg_embed = disnake.Embed(
