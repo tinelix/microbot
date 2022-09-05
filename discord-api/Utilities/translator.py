@@ -384,7 +384,6 @@ def translate(where, str, language):
                     'about_linksv2': '[Website]({0})',
                     'about_linksv3': '[Source code]({0})',
                     'about_linksv4': '[Support server]({0})',
-                    'about_linksv': '{0}',
                     'about_licensesf': 'About licenses',
                     'about_licensesv': 'This is free software with open source, designed to work with network APIs and distributed under the terms of the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) и [GNU Affero GPL 3.0 (or higher)](https://www.gnu.org/licenses/agpl-3.0.html).',
                     'user_nickf': 'Nickname',
