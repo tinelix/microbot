@@ -12,11 +12,12 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, ping):
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
     )
+    shard_latency = round(bot.get_shard(ctx.guild.shard_id).latency * 1000, 2)
     msg_embed.set_author(name=str(translator.translate('embed_title', 'ping', language)))
     if(ping > 0):
-        msg_embed.add_field(translator.translate('embed_fields', 'ping_statisticsf', language), translator.translate('embed_fields', 'ping_statisticsv2', language).format(round(bot.latency * 1000), round(ping)))
+        msg_embed.add_field(translator.translate('embed_fields', 'ping_statisticsf', language), translator.translate('embed_fields', 'ping_statisticsv2', language).format(round(bot.latency * 1000, 2), shard_latency, round(ping, 2)))
     else:
-        msg_embed.add_field(translator.translate('embed_fields', 'ping_statisticsf', language), translator.translate('embed_fields', 'ping_statisticsv', language).format(round(bot.latency * 1000)))
+        msg_embed.add_field(translator.translate('embed_fields', 'ping_statisticsf', language), translator.translate('embed_fields', 'ping_statisticsv', language).format(round(bot.latency * 1000, 2), shard_latency))
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator):

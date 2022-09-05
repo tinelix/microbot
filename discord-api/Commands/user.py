@@ -57,9 +57,9 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         for role in member.roles:
             if(str(role) != '@everyone'):
                 if(member.roles.index(role) < int(len(member.roles) - 1)):
-                    roles += '{0}, '.format(str(role))
+                    roles += '<@&{0}>, '.format(role.id)
                 else:
-                    roles += '{0}'.format(str(role))
+                    roles += '<@&{0}>'.format(role.id)
 
         msg_embed.add_field(
             translator.translate('embed_fields', 'user_nickf', language), nick, inline=False

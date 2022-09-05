@@ -20,7 +20,7 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator, 
     msg_embed.set_author(name=str(translator.translate('embed_title', 'about', language)))
     return msg_embed
 
-async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
+async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
     try:
         dev = bot.get_user(config['dev_id'])
     except:
@@ -107,13 +107,13 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
     msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)')
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
+async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
     await ctx.response.defer()
-    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
+    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz)
     await ctx.send(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
+async def sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
     msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version)
     msg = await ctx.reply(embed=msg_embed, mention_author=False)
-    msg_embed_2 = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
+    msg_embed_2 = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz)
     await msg.edit(embed=msg_embed_2)

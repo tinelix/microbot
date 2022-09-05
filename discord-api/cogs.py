@@ -142,7 +142,7 @@ class Commands(commands.Cog):
     async def eval_cmd(self, ctx, arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[1]
-        user_data = await sync_db(self.bot, ctx, 'users', 'slash')
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[4])
         await eval.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
 
@@ -151,7 +151,7 @@ class Commands(commands.Cog):
     async def guild_cmd(self, ctx):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[1]
-        user_data = await sync_db(self.bot, ctx, 'users', 'slash')
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[4])
         await guild.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, self.tz)
 

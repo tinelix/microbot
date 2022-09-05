@@ -46,7 +46,7 @@ async def get_guild_prefix(bot, message):
 
 # 6. Creating Discord bot instance with all intents
 intents = disnake.Intents.all()
-bot = commands.Bot(command_prefix=get_guild_prefix, intents=intents, sync_commands_debug=True)
+bot = commands.AutoShardedBot(command_prefix=get_guild_prefix, intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
 bot.add_cog(Listeners(bot, database, cursor))
 bot.add_cog(Commands(bot, database, cursor))
