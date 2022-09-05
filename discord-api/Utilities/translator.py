@@ -368,7 +368,7 @@ def translate(where, str, language):
                     'about_versf': 'Version',
                     'about_versv': '{0} ({1})',
                     'about_devsf': 'Developer',
-                    'about_devsv': '{0}#{1}',
+                    'about_devsv': '`{0}#{1}`',
                     'about_regdf': 'Registration date',
                     'about_regdv': '{0}',
                     'about_statsf': 'Statistics',
