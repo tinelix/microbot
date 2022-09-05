@@ -7,7 +7,7 @@ hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     community = ""
-    for guild_feature in ctx.message.guild.features:
+    for guild_feature in ctx.guild.features:
         if guild_feature == "COMMUNITY":
             community = "COMMUNITY"
     if(community != "COMMUNITY"):
@@ -36,6 +36,31 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
     return msg_embed
 
+async def generateSlashEmbed(ctx, bot, config, language, disnake, translator, arg):
+    community = ""
+    for guild_feature in ctx.guild.features:
+        if guild_feature == "COMMUNITY":
+            community = "COMMUNITY"
+    if(community != "COMMUNITY"):
+        msg_embed = disnake.Embed(
+            colour=config['accent_err'],
+            description=translator.translate('embed_description', 'publish_isntcomm', language)
+        )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+    elif(str(ctx.channel.type) == "news"):
+        msg_embed = disnake.Embed(
+            colour=config['accent_def'],
+            description=arg
+        )
+        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.author.name, ctx.author.discriminator))
+    else:
+        msg_embed = disnake.Embed(
+            colour=config['accent_err'],
+            description=translator.translate('embed_description', 'publish_isntnewsch', language)
+        )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+    return msg_embed
+
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     try:
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
@@ -49,6 +74,18 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
             await ctx.message.delete()
     except:
         pass
+
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
+        msg_embed = await generateSlashEmbed(ctx, bot, config, language, disnake, translator, arg)
+        msg = await ctx.channel.send(embed=msg_embed)
+        community = ""
+        for guild_feature in ctx.guild.features:
+            if guild_feature == "COMMUNITY":
+                community = "COMMUNITY"
+        if(community == "COMMUNITY" and str(ctx.channel.type) == "news"):
+            await msg.publish()
+        await ctx.send('✅', delete_after=5)
+
 
 async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
     msg_embed = disnake.Embed(

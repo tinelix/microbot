@@ -199,6 +199,15 @@ class Commands(commands.Cog):
         now = datetime.datetime.now(datetime.timezone.utc).astimezone()
         await publish.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
 
+    @commands.slash_command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
+    async def publish_cmd(self, ctx, *, text):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
+        language = guild_data[1]
+        user_data = await sync_db(self.bot, ctx, 'users', 'slash')
+        self.tz = pytz.timezone(user_data[4])
+        now = datetime.datetime.now(datetime.timezone.utc).astimezone()
+        await publish.sendSlashMsg(ctx, self.bot, config, language, disnake, translator, text)
+
     @commands.command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def ping_cmd(self, ctx):
@@ -322,9 +331,23 @@ class Listeners(commands.Cog):
             error_list = []
             error_text = "".join(traceback.TracebackException.from_exception(error).format())
             if(config['bugs_ch'] > 0):
-                await bugreporter.send(ctx, self.bot, config, language, disnake, translator, error_text)
+                await bugreporter.send(ctx, self.bot, config, language, disnake, translator, error_text, 'regular')
             else:
                 print(' BUGREPORT:\r\n{0}'.format(error_text))
+
+    @commands.Cog.listener()
+    async def on_slash_command_error(self, ctx, error):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
+        language = guild_data[1]
+        custom_prefix = ''
+        user_data = await sync_db(self.bot, ctx, 'users', 'slash')
+        self.tz = pytz.timezone(user_data[4])
+        error_list = []
+        error_text = "".join(traceback.TracebackException.from_exception(error).format())
+        if(config['bugs_ch'] > 0):
+            await bugreporter.send(ctx, self.bot, config, language, disnake, translator, error_text, 'slash')
+        else:
+            print(' BUGREPORT:\r\n{0}'.format(error_text))
 
 async def sync_db(bot, ctx, table, message_type):
         if(message_type == 'regular'):
