@@ -20,3 +20,4 @@ import Commands.weather
 import Commands.wiki
 import Commands.codec
 import Commands.timers
+import Commands.test

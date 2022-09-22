@@ -146,6 +146,15 @@ class Commands(commands.Cog):
         self.tz = pytz.timezone(user_data[4])
         await eval.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
 
+    @commands.command(name="test")
+    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+    async def eval_cmd(self, ctx, arg):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
+        language = guild_data[1]
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
+        self.tz = pytz.timezone(user_data[4])
+        await test.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, fatalerr_reporter)
+
     @commands.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def guild_cmd(self, ctx):
@@ -331,9 +340,9 @@ class Listeners(commands.Cog):
             error_list = []
             error_text = "".join(traceback.TracebackException.from_exception(error).format())
             if(config['bugs_ch'] > 0):
-                await bugreporter.send(ctx, self.bot, config, language, disnake, translator, error_text, 'regular')
+                await fatalerr_reporter.send(ctx, self.bot, config, language, disnake, translator, error_text, 'regular')
             else:
-                print(' BUGREPORT:\r\n{0}'.format(error_text))
+                print(' WE\'VE GOT SOMETHING BROKEN!\r\n{0}'.format(error_text))
 
     @commands.Cog.listener()
     async def on_slash_command_error(self, ctx, error):
@@ -345,7 +354,7 @@ class Listeners(commands.Cog):
         error_list = []
         error_text = "".join(traceback.TracebackException.from_exception(error).format())
         if(config['bugs_ch'] > 0):
-            await bugreporter.send(ctx, self.bot, config, language, disnake, translator, error_text, 'slash')
+            await fatalerr_reporter.send(ctx, self.bot, config, language, disnake, translator, error_text, 'slash')
         else:
             print(' BUGREPORT:\r\n{0}'.format(error_text))
 

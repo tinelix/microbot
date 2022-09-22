@@ -4,6 +4,6 @@
 
 import Utilities.notifier
 import Utilities.translator
-import Utilities.bugreporter
+import Utilities.fatalerr_reporter
 import Utilities.db
 import Utilities.binary
