@@ -249,7 +249,7 @@ def translate(where, str, language):
                     'codec': '```{0}codec [-d / -e] [алгоритм] [содержимое]\r\n{0}codec -e base64 Base64 text encoding.\r\n{0}codec -e binary Это перевод текста в двоичный код.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
                     'calc': '```{0}calc [выражение]```',
                     'timers': '```{0}timers```',
-                    'timers_create': '```{0}timers [-Cr / -Ce] [имя таймера] -t [ГГГГ-ММ-ДД ЧЧ:ММ:СС] -e [эмодзи]\r\n{0}timers -Cr Новый год -t 2024-01-01 00:00:00 -e 🍁\r\n{0}timers -Ce Начало карьеры -t 2016-03-27 00:00:00 -e 📹```',
+                    'timers_create': '```{0}timers [-Cr / -Ce] [имя таймера] -t [ГГГГ-ММ-ДД ЧЧ:ММ:СС] -e [эмодзи]\r\n{0}timers -Cr Новый год -t 2024-01-01 00:00:00 -e 🎄\r\n{0}timers -Ce Начало карьеры -t 2016-03-27 00:00:00 -e 📹```',
                     'timers_delete': '```{0}timers -D [имя таймера]\r\n{0}timers -D Начало карьеры```',
                 }
             elif where == "button":
@@ -518,7 +518,7 @@ def translate(where, str, language):
                     'wiki': '```{0}wiki [full page name]\r\n{0}wiki Sinus\r\n{0}wiki Android (operating system)\r\n{0}wiki Kunstkamera\r\n{0}wiki Proxy server\r\n{0}wiki Emoji```',
                     'codec': '```{0}codec [-d / -e] [standard] [content]\r\n{0}codec -e base64 Base64 encoding text example.\r\n{0}codec -e binary Binary text decoding example.\r\n{0}codec -d base64 QmFzZTY0IHRleHQgZGVjb2RpbmcgZXhhbXBsZS4=```',
                     'timers': '```{0}timers```',
-                    'timers_create': '```{0}timers [-Cr / -Ce] [timer name] -t [YYYY-MM-DD HH:MM:SS] -e [emoji]\r\n{0}timers -Cr New Year -t 2024-01-01 00:00:00 -e 🍁\r\n{0}timers -Ce Carier start -t 2016-03-27 00:00:00 -e 📹```',
+                    'timers_create': '```{0}timers [-Cr / -Ce] [timer name] -t [YYYY-MM-DD HH:MM:SS] -e [emoji]\r\n{0}timers -Cr New Year -t 2024-01-01 00:00:00 -e 🎄\r\n{0}timers -Ce Carier start -t 2016-03-27 00:00:00 -e 📹```',
                     'timers_delete': '```{0}timers -D [timer name]\r\n{0}timers -D Carier start```',
                 }
             elif where == "button":
