@@ -107,7 +107,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         )
 
 
-    msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)')
+    msg_embed.set_footer(text='Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)')
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz):
