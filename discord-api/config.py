@@ -13,8 +13,8 @@ tokens = {
 
 config = {
     'name': 'Microbot',
-    'version': '0.7.1',
-    'version_date': '2023-01-02',
+    'version': '0.7.2',
+    'version_date': '2023-01-03',
     'prefix': '>',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,
@@ -28,4 +28,5 @@ links = {
     'support': 'https://discord.gg/saEHAWzYt3',
     'website': 'http://tinelix.ru',
     'repo': 'https://github.com/tinelix/microbot',
+    'donate': 'your_donate_link_here'
 }
