@@ -27,9 +27,9 @@ try:
     print("\033[92m SQLite datebase connected!")
     cursor = database.cursor()
 except sqlite3.Error as e:
-    print("\033[91m SQLite Error: {0}\r\n\r\n")
+    print("\033[91m SQLite Error: {0}\r\n\r\n".format(e))
     print("\033[0m If 'Database' directory not yet created,"
-        "\r\n create manually inside 'discord-api' directory and try again.\r\n".format(e))
+        "\r\n create manually inside 'discord-api' directory and try again.\r\n")
     sys.exit()
 
 # 5. Getting custom guild prefix
