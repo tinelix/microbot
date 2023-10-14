@@ -40,7 +40,7 @@ class Commands(commands.Cog):
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[5])
-        await help.sendCmdHelpMsg(ctx, self.bot, links, config, language, disnake, translator, arg)
+        await help.sendCmdHelpMsg(ctx, self.bot, links, config, version, language, disnake, translator, arg)
 
     @commands.slash_command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
     async def help_scmd(self, ctx):
