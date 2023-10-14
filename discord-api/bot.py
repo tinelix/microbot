@@ -10,6 +10,7 @@ import datetime
 import time
 import sqlite3
 import pytz
+import sys
 
 # 2. Importing modular commands
 from disnake.ext import commands
@@ -25,7 +26,8 @@ try:
     print(" SQLite datebase connected!")
     cursor = database.cursor()
 except sqlite3.Error as e:
-    print(" Exception: {0}".format(e))
+    print(" Exception: {0}\r\n\r\nIf 'Database' directory not yet created, create manually.".format(e))
+    sys.exit()
 
 # 5. Getting custom guild prefix
 prefixes = {}
