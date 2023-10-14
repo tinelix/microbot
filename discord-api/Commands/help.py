@@ -41,12 +41,12 @@ async def generateEmbed(ctx, bot, config, links, version, language, disnake, tra
         )
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator)
+async def sendSlashMsg(ctx, bot, config, links, version, language, disnake, translator):
+    msg_embed = await generateEmbed(ctx, bot, config, links, version, language, disnake, translator)
     await ctx.response.send_message(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, links, language, disnake, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator)
+async def sendRegularMsg(ctx, bot, config, links, version, language, disnake, translator):
+    msg_embed = await generateEmbed(ctx, bot, config, links, version, language, disnake, translator)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
 async def sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg):
