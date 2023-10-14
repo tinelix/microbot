@@ -19,7 +19,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        if(user.global_name == None):
+        if(user.global_name != None):
             msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.global_name, user.name))
         else:
             msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.name))
@@ -27,7 +27,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        if(user.global_name == None):
+        if(user.global_name != None):
             msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.global_name, user.name))
         else:
             msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.name))
@@ -35,7 +35,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        if(user.global_name == None):
+        if(user.global_name != None):
             msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.global_name, user.name))
         else:
             msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.name))
