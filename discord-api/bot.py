@@ -24,7 +24,7 @@ from config import *
 try:
     print("\r\n Connecting with SQLite database...")
     database = sqlite3.connect('Database/main.db')
-    print("\033[92m SQLite datebase connected!\033[0m If")
+    print("\033[92m SQLite datebase connected!\033[0m")
     cursor = database.cursor()
 except sqlite3.Error as e:
     print("\033[91m SQLite Error: {0}\r\n".format(e))
