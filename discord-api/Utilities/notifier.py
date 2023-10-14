@@ -12,9 +12,9 @@ async def showWelcomeMessage(disnake, bot, config, version):
     else:
         clear_cmd = 'clear'
     os.system(clear_cmd)
-    print('\n {0} {1}\n Connected to {2}!\n Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)'
+    print('\n {0} {1}\n Connected to {2}!\n Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)'
           '\n ─────────────────────────────────────────────────────── \n'
-          ' L: {3} ms │ G: {4}\n ───────────────────────────────────────────────────────'.format(version['original_name'], version['version'], '{0}#{1}'.format(bot.user.name, bot.user.global_name), round(bot.latency * 1000, 2), len(bot.guilds)))
+          ' L: {3} ms │ G: {4}\n ───────────────────────────────────────────────────────'.format(version['original_name'], version['version'], '{0} ({1})'.format(bot.user.name, bot.user.global_name), round(bot.latency * 1000, 2), len(bot.guilds)))
     statuses = ["{0} guilds".format(len(bot.guilds)), "{0}help".format(config['prefix']), "Version {0}".format(config['version'])]
     statuses_cycle = cycle(statuses)
     game = disnake.Game(statuses[0], type=disnake.ActivityType.watching)
@@ -25,12 +25,12 @@ async def showWelcomeMessage(disnake, bot, config, version):
         await bot.change_presence(status=disnake.Status.dnd, activity=disnake.Game(name=next(statuses_cycle)))
     autostatus.start()
 
-async def updateWelcomeMessage(disnake, bot, config):
+async def updateWelcomeMessage(disnake, bot, config, versiom):
     if(os.name == 'nt'):
         clear_cmd = 'cls'
     else:
         clear_cmd = 'clear'
     os.system(clear_cmd)
-    print('\n {0} {1}\n Connected to {2}!\n Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)'
+    print('\n {0} {1}\n Connected to {2}!\n Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)'
           '\n ─────────────────────────────────────────────────────── \n'
-          ' L: {3} ms │ G: {4}\n ───────────────────────────────────────────────────────'.format(config['name'], config['version'], '{0}#{1}'.format(bot.user.name, bot.user.discriminator), round(bot.latency * 1000, 2), len(bot.guilds)))
+          ' L: {3} ms │ G: {4}\n ───────────────────────────────────────────────────────'.format(version['original_name'], version['version'], '{0} ({1})'.format(bot.user.name, bot.user.global_name), round(bot.latency * 1000, 2), len(bot.guilds)))

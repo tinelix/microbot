@@ -314,7 +314,7 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_leave(guild):
-        await notifier.updateWelcomeMessage(disnake, bot, config)
+        await notifier.updateWelcomeMessage(disnake, bot, config, version)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
