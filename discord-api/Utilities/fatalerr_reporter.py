@@ -2,7 +2,7 @@
 # Repo: https://github.com/tinelix/microbot
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
-async def generateBrEmbed(ctx, bot, config, language, disnake, translator, error, msg_type):
+async def generateBrEmbed(ctx, bot, config, version, language, disnake, translator, error, msg_type):
     if(msg_type == 'regular'):
         if(ctx.message.content.startswith('{0}help'.format(config['prefix']))):
             command_example = translator.translate('command_examples', 'help', 'en_US')
@@ -36,11 +36,11 @@ async def generateBrEmbed(ctx, bot, config, language, disnake, translator, error
     ).add_field(
         'How to reproduce the fatal error?', command_example.format(config['prefix']), inline=False
     ).add_field(
-        translator.translate('embed_fields', 'about_versf', 'en_US'), translator.translate('embed_fields', 'about_versv', 'en_US').format(config['version'], config['version_date']), inline=False
+        translator.translate('embed_fields', 'about_versf', 'en_US'), translator.translate('embed_fields', 'about_versv', 'en_US').format(version['version'], version['version_date']), inline=False
     )
     return msg_embed
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, error):
+async def generateEmbed(ctx, bot, config, version, language, disnake, translator, error):
     msg_embed = disnake.Embed(
         description=translator.translate('embed_description', 'fatalerr_reporter', language),
         colour=config['accent_err']
@@ -48,17 +48,17 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, error):
     msg_embed.set_author(name=translator.translate('embed_title', 'fatalerr_reporter', language))
     return msg_embed
 
-async def send(ctx, bot, config, language, disnake, translator, error, msg_type):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, error)
+async def send(ctx, bot, config, version, language, disnake, translator, error, msg_type):
+    msg_embed = await generateEmbed(ctx, bot, config, version, language, disnake, translator, error)
     if(config['bugs_ch'] > 0):
         try:
             channel = bot.get_channel(config['bugs_ch'])
-            msg_bug_embed = await generateBrEmbed(ctx, bot, config, language, disnake, translator, error, msg_type)
+            msg_bug_embed = await generateBrEmbed(ctx, bot, config, version, language, disnake, translator, error, msg_type)
             await channel.send(embed=msg_bug_embed)
         except:
-            print(' WE\'VE GOT SOMETHING BROKEN!\r\n\r\n {0}\r\n\r\n How to reproduce the fatal error? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), config['version'], config['version_date']))
+            print(' WE\'VE GOT SOMETHING BROKEN!\r\n\r\n {0}\r\n\r\n How to reproduce the fatal error? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), version['version'], version['version_date']))
     else:
-        print(' WE\'VE GOT SOMETHING BROKEN!\r\n\r\n {0}\r\n\r\n How to reproduce the fatal error? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), config['version'], config['version_date']))
+        print(' WE\'VE GOT SOMETHING BROKEN!\r\n\r\n {0}\r\n\r\n How to reproduce the fatal error? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), version['version'], version['version_date']))
     if(msg_type == 'regular'):
         await ctx.reply(embed=msg_embed, mention_author=False)
     elif(msg_type == 'slash'):
