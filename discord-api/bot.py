@@ -27,7 +27,7 @@ try:
     print(" SQLite datebase connected!")
     cursor = database.cursor()
 except sqlite3.Error as e:
-    print(" Exception: {0}\r\n\r\n If 'Database' directory not yet created, create manually.".format(e))
+    print(" SQLite Error: {0}\r\n\r\n If 'Database' directory not yet created, create manually and try again.\r\n".format(e))
     sys.exit()
 
 # 5. Getting custom guild prefix
