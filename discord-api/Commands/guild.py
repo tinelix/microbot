@@ -77,7 +77,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, tz):
             online += 1
 
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format('<@{0}>'.format(owner.id), owner.name, owner.global_name), inline=True
+        translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format('<@{0}>'.format(owner.id), owner.global_name, owner.name), inline=True
     )
     msg_embed.add_field(
         translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(translator.formatDate(guild.created_at.astimezone(tz), 'normal', language)), inline=True
