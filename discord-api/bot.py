@@ -22,6 +22,7 @@ from config import *
 
 # 4. Initializing SQLite3 server
 try:
+    print(" Connecting with SQLite database...")
     database = sqlite3.connect('Database/main.db')
     print(" SQLite datebase connected!")
     cursor = database.cursor()
