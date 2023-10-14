@@ -7,6 +7,7 @@ from disnake.ext import tasks
 from itertools import cycle
 
 async def getConnectionQualityPseudoGraph(bot):
+    connection_quality = "N/A"
     if(round(bot.latency * 1000, 2) > 2000):
         connection_quality = "{0} ms [\033[91m....\033[0m]".format(round(bot.latency * 1000, 2))
     elif(round(bot.latency * 1000, 2) > 1500):
