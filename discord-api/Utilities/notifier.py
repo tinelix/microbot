@@ -28,7 +28,7 @@ async def showWelcomeMessage(disnake, bot, config, version):
         clear_cmd = 'clear'
     os.system(clear_cmd)
 
-    conn_quality = getConnectionQualityPseudoGraph(bot)
+    conn_quality = await getConnectionQualityPseudoGraph(bot)
 
     print('\n {0} {1}\n\033[92m Connected to {2}!\033[0m\n Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)'
           '\n ─────────────────────────────────────────────────────── \n'
