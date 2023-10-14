@@ -24,7 +24,7 @@ from config import *
 try:
     print("\r\n Connecting with SQLite database...")
     database = sqlite3.connect('Database/main.db')
-    print("\033[92m SQLite datebase connected!\033[0m\r\n")
+    print("\033[92m SQLite datebase connected!\033[0m")
     cursor = database.cursor()
 except sqlite3.Error as e:
     print("\033[91m SQLite Error: {0}\r\n".format(e))
@@ -52,7 +52,7 @@ async def get_guild_prefix(bot, message):
 # 6. Creating Discord bot instance with all intents
 print(" Preparing to running {0}...".format(config['name']))
 intents = disnake.Intents.all()
-bot = commands.AutoShardedBot(command_prefix=get_guild_prefix, intents=intents, sync_commands_debug=True)
+bot = commands.AutoShardedBot(command_prefix=get_guild_prefix, intents=intents)
 bot.remove_command('help')
 bot.add_cog(Listeners(bot, database, cursor))
 bot.add_cog(Commands(bot, database, cursor))
