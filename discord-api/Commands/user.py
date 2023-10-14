@@ -19,17 +19,26 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.global_name, user.name))
+        if(user.global_name == None):
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.global_name, user.name))
+        else:
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'user_bot', language)).format(user.name))
     elif user.id == ctx.guild.owner_id:
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.global_name, user.name))
+        if(user.global_name == None):
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.global_name, user.name))
+        else:
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'user_owner', language)).format(user.name))
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.global_name, user.name))
+        if(user.global_name == None):
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.global_name, user.name))
+        else:
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'user', language)).format(user.name))
 
     msg_embed.set_thumbnail(url=user.display_avatar)
 
@@ -105,7 +114,7 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, tz)
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
                 avatar_embed = disnake.Embed(
                     colour=config['accent_def'],
-                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.global_name, user.name))
+                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name))
                 await interaction.response.send_message(embed=avatar_embed)
         await ctx.response.send_message(embed=msg_embed, view=AvatarByButton())
     except:
@@ -132,7 +141,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, t
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
                 avatar_embed = disnake.Embed(
                     colour=config['accent_def'],
-                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.global_name))
+                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name))
                 await interaction.response.send_message(embed=avatar_embed)
         await ctx.reply(embed=msg_embed, view=AvatarByButton(), mention_author=False)
     except Exception as e:
