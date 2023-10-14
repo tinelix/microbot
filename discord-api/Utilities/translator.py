@@ -95,6 +95,7 @@ def translate(where, str, language):
                     'eval_codelf': 'Листинг',
                     'eval_resulf': 'Результат',
                     'about_versf': 'Версия',
+                    'about_versf2': 'На основе {0}',
                     'about_versv': '{0} ({1})',
                     'about_devsf': 'Разработчик',
                     'about_devsv': '`{0}#{1}`',
@@ -201,6 +202,7 @@ def translate(where, str, language):
                 locale = {
                     '8ball': 'Все совпадения случайны!',
                     'help': 'Версия {0}',
+                    'help2': 'На основе Microbot версии {0}',
                 }
             elif where == "command_categories":
                 locale = {
@@ -366,6 +368,7 @@ def translate(where, str, language):
                     'eval_codelf': 'Code listing',
                     'eval_resulf': 'Result',
                     'about_versf': 'Version',
+                    'about_versf2': 'Based on {0}',
                     'about_versv': '{0} ({1})',
                     'about_devsf': 'Developer',
                     'about_devsv': '`{0}#{1}`',
@@ -470,6 +473,7 @@ def translate(where, str, language):
                 locale = {
                     '8ball': 'All matches are random!',
                     'help': 'Version {0}',
+                    'help2': 'Based on Microbot ver. {0}',
                 }
             elif where == "command_categories":
                 locale = {

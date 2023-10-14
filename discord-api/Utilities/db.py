@@ -9,8 +9,8 @@ now = datetime.datetime.now()
 async def create_tables(database, cursor):
     guilds_query = '''CREATE TABLE IF NOT EXISTS guilds (
                 id INTEGER NOT NULL PRIMARY KEY,
-                language TEXT NOT NULL,
-                prefix TEXT NOT NULL,
+                language VARCHAR(20) NOT NULL,
+                prefix VARCHAR(8) NOT NULL,
                 bot_ch_id INTEGER NOT NULL,
                 reg_timestamp DATETIME NOT NULL);'''
     cursor.execute(guilds_query)
@@ -19,15 +19,15 @@ async def create_tables(database, cursor):
                 reputation INTEGER NOT NULL,
                 reg_timestamp DATETIME NOT NULL,
                 sended_msg_timestamp DATETIME NOT NULL,
-                timezone TEXT NOT NULL,
+                timezone VARCHAR(8) NOT NULL,
                 blocked INTEGER NOT NULL);'''
     cursor.execute(users_query)
     timers_query = '''CREATE TABLE IF NOT EXISTS timers (
-                name TEXT NOT NULL,
+                name VARCHAR(100) NOT NULL,
                 author_id INTEGER NOT NULL,
-                icon TEXT NOT NULL,
+                icon VARCHAR(20) NOT NULL,
                 timer_action_date DATETIME NOT NULL,
-                timer_action TEXT NOT NULL,
+                timer_action VARCHAR(20) NOT NULL,
                 over INTEGER NOT NULL);'''
     cursor.execute(timers_query)
     database.commit()

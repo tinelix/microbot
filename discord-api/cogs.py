@@ -21,6 +21,7 @@ from disnake.ext import commands
 from Commands import *
 from Utilities import *
 from config import *
+from version import *
 
 class Commands(commands.Cog):
     def __init__(self, bot, database, cursor):
@@ -47,7 +48,7 @@ class Commands(commands.Cog):
         language = guild_data[1]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[4])
-        await help.sendSlashMsg(ctx, self.bot, config, links, language, disnake, translator)
+        await help.sendSlashMsg(ctx, self.bot, config, links, version, language, disnake, translator)
 
     @commands.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
@@ -57,7 +58,7 @@ class Commands(commands.Cog):
         language = guild_data[1]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[4])
-        await about.sendRegularMsg(ctx, self.bot, config, links, language, disnake, translator, python_version, uptime, self.tz)
+        await about.sendRegularMsg(ctx, self.bot, config, links, language, disnake, translator, python_version, uptime, self.tz, version)
 
     @commands.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)

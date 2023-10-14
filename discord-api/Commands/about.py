@@ -12,7 +12,7 @@ import sqlite3
 name = 'about'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version):
+async def generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version, version):
     msg_embed = disnake.Embed(
         description=translator.translate('embed_description', 'please_wait', language),
         colour=config['accent_def'],
@@ -62,9 +62,14 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         colour=config['accent_def']
     )
     msg_embed.set_author(name=str(translator.translate('embed_title', 'about', language)))
-    msg_embed.add_field(
-        translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(config['version'], config['version_date']), inline=True
-    )
+    if(config['name'] == 'Microbot'):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']), inline=True
+        )
+    else:
+       msg_embed.add_field(
+            translator.translate('embed_fields', 'about_versf2', language).format(version['original_name']), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']), inline=True
+       )
     if(dev == None):
         pass
     else:

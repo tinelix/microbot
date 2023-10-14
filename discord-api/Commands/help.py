@@ -5,7 +5,7 @@
 name = 'help'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
+async def generateEmbed(ctx, bot, config, links, version, language, disnake, translator):
     prefixes_list = f"`{config['prefix']}` "
     commands_list = ""
     prefixes = await bot.get_prefix(ctx)
@@ -17,12 +17,17 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
             else:
                 prefixes_list += "`{0}`".format(prefix)
 
+        if(config['name'] == 'Microbot'):
+            msg_footer = translator.translate('embed_footer', 'help', language).format(version['version'])
+        else:
+            msg_footer = translator.translate('embed_footer', 'help2', language).format(version['version'])
+
     msg_embed = disnake.Embed(
         description=str(translator.translate('embed_description', 'help', language)).format(config['name'], config['prefix'], links['invite']),
         colour=config['accent_def']
     ).add_field(
         translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language).format(prefixes_list), inline=False
-    ).set_footer(text=translator.translate('embed_footer', 'help', language).format(config['version'])).set_author(name=str(translator.translate('embed_title', 'help', language)))
+    ).set_footer(text=).set_author(name=str(translator.translate('embed_title', 'help', language)))
 
     for category in bot.commands_list.keys():
         commands_list = ''
