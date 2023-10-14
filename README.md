@@ -10,17 +10,20 @@ Microbot is a simple and compact bot for Discord and Revolt. Powered by Disnake 
 2. In `discord_api` folder, create `Database` required folder for SQLite DB storage.
 3. If running Windows, in `discord.bat` file, replace `your_token_here` to your Discord bot token. Or if running Linux or UNIX-like OS, in `discord.sh` file, replace `your_token_here` to your Discord bot token. 
 
-   ###### The token can be obtained from [Discord developer portal](https://discord.com/developers).
+   #### Notes:
+   1. The token can be obtained from [Discord developer portal](https://discord.com/developers).
+   2. To protect against bot hacks, before commiting we strongly advise you to disable change tracking for *.bat and *.sh files using the line: `git update-index --assume-unchanged *.bat *.sh`
     
-4. Run script.
+5. Run script.
 
 ### Installation manual (for Revolt)
 1. Download or clone this repository with Git: `git clone https://github.com/tinelix/microbot.git`
 2. In `revolt_api` folder, create `Database` required folder for SQLite DB storage.
 3. If running Windows, in `revolt.bat` file replace `your_token_here` to your Revolt bot token. If running Linux or UNIX-like OS, in `revolt.sh` file replace `your_token_here` to your Revolt bot token.
 
-   ###### The token can be obtained from Revolt web client: 'Settings' → 'My Bots' → 'Token' → 'Reveal'.
-
+   #### Notes:
+   1. The token can be obtained from Revolt web client: 'Settings' → 'My Bots' → 'Token' → 'Reveal'.
+   2. To protect against bot hacks, before commiting we strongly advise you to disable change tracking for *.bat and *.sh files using the line: `git update-index --assume-unchanged *.bat *.sh`
 4. Run script.
 
 ### License
