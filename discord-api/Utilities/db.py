@@ -9,6 +9,7 @@ now = datetime.datetime.now()
 async def create_tables(database, cursor):
     guilds_query = '''CREATE TABLE IF NOT EXISTS guilds (
                 id INTEGER NOT NULL PRIMARY KEY,
+                name VARCHAR(80) NOT NULL,
                 language VARCHAR(20) NOT NULL,
                 prefix VARCHAR(8) NOT NULL,
                 bot_ch_id INTEGER NOT NULL,
@@ -16,6 +17,7 @@ async def create_tables(database, cursor):
     cursor.execute(guilds_query)
     users_query = '''CREATE TABLE IF NOT EXISTS users (
                 id INTEGER NOT NULL PRIMARY KEY,
+                global_name VARCHAR(50) NOT NULL,
                 reputation INTEGER NOT NULL,
                 reg_timestamp DATETIME NOT NULL,
                 sended_msg_timestamp DATETIME NOT NULL,
@@ -33,14 +35,14 @@ async def create_tables(database, cursor):
     database.commit()
 
 async def add_guild_value(config, database, guild, cursor):
-    query = """INSERT INTO guilds VALUES (?, ?, ?, ?, ?);"""
-    values = [(guild.id, "en_US", config['prefix'], 0, now.strftime('%Y-%m-%d %H:%M:%S'))]
+    query = """INSERT INTO guilds VALUES (?, ?, ?, ?, ?, ?);"""
+    values = [(guild.id, guild.name, "en_US", config['prefix'], 0, now.strftime('%Y-%m-%d %H:%M:%S'))]
     cursor.executemany(query, values)
     database.commit()
 
 async def add_user_value(database, message, cursor):
-    query = """INSERT INTO users VALUES (?, ?, ?, ?, ?, ?);"""
-    values = [(message.author.id, 0, now.strftime('%Y-%m-%d %H:%M:%S'), message.created_at.strftime('%Y-%m-%d %H:%M:%S'), 'Europe/Moscow', 0)]
+    query = """INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?);"""
+    values = [(message.author.id, message.author.global_name, 0, now.strftime('%Y-%m-%d %H:%M:%S'), message.created_at.strftime('%Y-%m-%d %H:%M:%S'), 'Europe/Moscow', 0)]
     cursor.executemany(query, values)
     database.commit()
 
