@@ -300,7 +300,7 @@ class Listeners(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         self.connectionStartTime = time.time()
-        await notifier.showWelcomeMessage(disnake, self.bot, config)
+        await notifier.showWelcomeMessage(disnake, self.bot, config, version)
         await db.create_tables(self.bot.database, self.bot.cursor)
 
     @commands.Cog.listener()

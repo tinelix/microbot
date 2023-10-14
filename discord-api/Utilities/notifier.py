@@ -6,7 +6,7 @@ import os
 from disnake.ext import tasks
 from itertools import cycle
 
-async def showWelcomeMessage(disnake, bot, config):
+async def showWelcomeMessage(disnake, bot, config, version):
     if(os.name == 'nt'):
         clear_cmd = 'cls'
     else:
