@@ -16,7 +16,7 @@ async def generateEmbed(ctx, bot, config, links, version, language, disnake, tra
                 prefixes_list += "`{0}`, ".format(prefix)
             else:
                 prefixes_list += "`{0}`".format(prefix)
-
+        msg_footer = ""
         if(config['name'] == 'Microbot'):
             msg_footer = translator.translate('embed_footer', 'help', language).format(version['version'])
         else:
@@ -27,7 +27,7 @@ async def generateEmbed(ctx, bot, config, links, version, language, disnake, tra
         colour=config['accent_def']
     ).add_field(
         translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language).format(prefixes_list), inline=False
-    ).set_footer(text=).set_author(name=str(translator.translate('embed_title', 'help', language)))
+    ).set_footer(text=msg_footer).set_author(name=str(translator.translate('embed_title', 'help', language)))
 
     for category in bot.commands_list.keys():
         commands_list = ''
