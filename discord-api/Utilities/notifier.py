@@ -9,11 +9,11 @@ from itertools import cycle
 async def getConnectionQualityPseudoGraph(bot):
     if(round(bot.latency * 1000, 2) > 2000):
         connection_quality = "{0} ms [\033[91m....\033[0m]".format(round(bot.latency * 1000, 2))
-    else if(round(bot.latency * 1000, 2) > 1500):
+    elif(round(bot.latency * 1000, 2) > 1500):
         connection_quality = "{0} ms [\033[91m|...\033[0m]".format(round(bot.latency * 1000, 2))
-    else if(round(bot.latency * 1000, 2) > 1000):
+    elif(round(bot.latency * 1000, 2) > 1000):
         connection_quality = "{0} ms [\033[93m||..\033[0m]".format(round(bot.latency * 1000, 2))
-    else if(round(bot.latency * 1000, 2) > 500):
+    elif(round(bot.latency * 1000, 2) > 500):
         connection_quality = "{0} ms [\033[92m|||.\033[0m]".format(round(bot.latency * 1000, 2))
     else:
         connection_quality = "{0} ms [\033[92m||||\033[0m]".format(round(bot.latency * 1000, 2))
