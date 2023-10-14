@@ -28,12 +28,14 @@ async def showWelcomeMessage(disnake, bot, config, version):
         clear_cmd = 'clear'
     os.system(clear_cmd)
 
+    conn_quality = getConnectionQualityPseudoGraph(bot)
+
     print('\n {0} {1}\n\033[92m Connected to {2}!\033[0m\n Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)'
           '\n ─────────────────────────────────────────────────────── \n'
           ' L: {3} │ G: {4}'
           '\n ───────────────────────────────────────────────────────'
           .format(version['original_name'], version['version'], '{0} ({1})'
-                  .format(bot.user.name, bot.user.global_name), getConnectionQualityPseudoGraph(bot), len(bot.guilds)))
+                  .format(bot.user.name, bot.user.global_name), conn_quality, len(bot.guilds)))
     statuses = ["{0} guilds".format(len(bot.guilds)), "{0}help".format(config['prefix']), "Version {0}".format(version['version'])]
     statuses_cycle = cycle(statuses)
     game = disnake.Game(statuses[0], type=disnake.ActivityType.watching)
