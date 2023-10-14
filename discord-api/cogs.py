@@ -328,7 +328,7 @@ class Listeners(commands.Cog):
                 custom_prefix = prefix
         if isinstance(error, commands.MissingRequiredArgument):
             if(ctx.message.content == '{0}help'.format(config['prefix']) or ctx.message.content == '{0}help'.format(custom_prefix)):
-                await help.sendRegularMsg(ctx, self.bot, config, links, language, disnake, translator)
+                await help.sendRegularMsg(ctx, self.bot, config, links, language, disnake, translator, version)
             elif(ctx.message.content == '{0}timers'.format(config['prefix']) or ctx.message.content == '{0}timers'.format(custom_prefix)):
                 await timers.sendRegularMsgWithoutArgs(ctx, self.bot, config, language, disnake, translator, db, self.bot.database, self.bot.cursor, self.tz)
             else:
