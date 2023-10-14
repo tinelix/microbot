@@ -24,10 +24,10 @@ from config import *
 try:
     print("\r\n Connecting with SQLite database...")
     database = sqlite3.connect('Database/main.db')
-    print(" SQLite datebase connected!")
+    print("\033\[92m SQLite datebase connected!")
     cursor = database.cursor()
 except sqlite3.Error as e:
-    print(" SQLite Error: {0}\r\n\r\n If 'Database' directory not yet created, create manually inside 'discord-api' directory and try again.\r\n".format(e))
+    print("\033[91m SQLite Error: {0}\r\n\r\n\033\[0m If 'Database' directory not yet created,\r\n create manually inside 'discord-api' directory and try again.\r\n".format(e))
     sys.exit()
 
 # 5. Getting custom guild prefix
@@ -48,6 +48,7 @@ async def get_guild_prefix(bot, message):
         return config['prefix']
 
 # 6. Creating Discord bot instance with all intents
+print(" Preparing to running {0}...".format(config['name']))
 intents = disnake.Intents.all()
 bot = commands.AutoShardedBot(command_prefix=get_guild_prefix, intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
