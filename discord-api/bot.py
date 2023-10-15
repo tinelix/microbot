@@ -24,7 +24,10 @@ from cogs import Commands, Listeners
 from config import *
 
 # 4. Set the logger
-log_file = open("microbot-discord.log", "w+")
+def write_log_file(text):
+    log_file = open("microbot-discord.log", "w+")
+    log_file.write(text)
+    log_file.close()
 
 # 5. Initializing SQLite3 server
 try:
@@ -85,14 +88,14 @@ def start_daemon(pidf):
     ### This launches the daemon in its context
 
     print(" Running Microbot in PID: {}...".format(pidf))
-    log_file.write(" Running Microbot in PID: {}...".format(pidf))
-    log_file.close()
+    write_log_file("Running Microbot in PID: {}...".format(pidf))
 
     with daemon.DaemonContext(
         working_directory='.',
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
+            write_log_file("Connecting to Discord API...")
             bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
