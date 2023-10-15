@@ -208,29 +208,11 @@ class Commands(commands.Cog):
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[5])
-        arg = ""
-        print("ЗАЩЕЛКА!")
         await settings.sendRegularMsg(ctx, self.bot, config, language, disnake,
                                       translator, arg, db, self.bot.database,
                                       self.bot.cursor, guild_data, user_data)
 
-    @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
-    async def settings_cmd(self, ctx, language: str = "", prefix: str = "", timezone: str = ""):
-        guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
-        lang_from_db = guild_data[2]
-        user_data = await sync_db(self.bot, ctx, 'users', 'slash')
-        self.tz = pytz.timezone(user_data[5])
-        arg = ""
-        if(len(language) > 0):
-            arg = "-L {0}".format(language).split(" ")
-        elif(len(prefix) > 0):
-            arg = "-P {0}".format(prefix).split(" ")
-        elif(len(timezone) > 0):
-            arg = "-tz {0}".format(timezone).split(" ")
 
-        await settings.sendSlashMsg(ctx, self.bot, config, lang_from_db, disnake,
-                                    translator, arg, db, self.bot.database,
-                                    self.bot.cursor, guild_data, user_data)
 
     @commands.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
