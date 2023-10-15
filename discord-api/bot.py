@@ -88,11 +88,12 @@ def start_daemon(pidf):
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
+            print(" Connecting to Discord API")
             bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
-    parser.add_argument('-p', '--pid-file', default='./microbot-discord.pid')
+    parser.add_argument('-p', '--pid-file', default='/var/run/microbot-discord.pid')
 
     args = parser.parse_args()
 
