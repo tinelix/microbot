@@ -91,7 +91,7 @@ def start_daemon(pidf):
     write_log_file(" Running Microbot in PID: {}...".format(pidf))
 
     with daemon.DaemonContext(
-        working_directory=os.path.dirname(os.path.abspath(__file__)),
+        working_directory=".",
         stdout=open("microbot-discord.log", "a+")
     ):
         token = "N/A"
