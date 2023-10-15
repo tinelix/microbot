@@ -96,7 +96,7 @@ def start_daemon(pidf):
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         files_preserve=[fh.stream],
         ) as context:
-            logger.info('Connecting to Discord API...')
+            logger.debug('Connecting to Discord API...')
             bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
