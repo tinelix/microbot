@@ -20,14 +20,15 @@ name = 'settings'
 hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data, msg_type):
-    guild_id = ctx.message.guild.id
-    author_id = ctx.message.author.id
+    guild_id = 0
+    author_id = 0
     if(msg_type == "slash"):
         guild_id = ctx.guild.id
         author_id = ctx.author.id
     else:
         guild_id = ctx.message.guild.id
         author_id = ctx.message.author.id
+    print("Length " + len(arg))
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
             if ctx.author.guild_permissions.administrator:
