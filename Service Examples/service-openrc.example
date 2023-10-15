@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+name="microbot-discord"
+description="Tinelix Microbot for Discord service"
+command_user="tretdm" 						 # User (not-root)
+
+start_pre()
+{
+    cd /var/bots/microbot					 # Change working directory
+}
+
+start() {
+	echo "Microbot for Discord running as daemon..." 
+	PATH=/home/tretdm/py-env/bin:$PATH 			 # Add Python with Virtual Environment path
+	/var/bots/microbot/discord.sh &			 # Running Python process as daemon
+	sleep 5							 # Required delay before bot start 
+	BOT_PID=$!
+	echo " Status: Running service at PID ${BOT_PID}"        
+}
