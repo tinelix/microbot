@@ -94,8 +94,11 @@ def start_daemon(pidf):
         working_directory=os.path.dirname(os.path.abspath(__file__)),
         stdout=open("microbot-discord.log", "a+")
     ):
+        token = "N/A"
+        if(len(token) > 12):
+            token = tokens['discord_api'][0:10] + "..."
         print("\r\n Connecting to Discord API..."
-            "\r\n API Token: {0}".format(tokens['discord_api'][0:10]))
+            "\r\n API Token: {0}".format(token))
         bot.run()
         print(" OK!")
 
