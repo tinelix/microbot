@@ -92,7 +92,7 @@ def start_daemon(pidf):
 
     with daemon.DaemonContext(
         working_directory=".",
-        stdout=open("microbot-discord.log", "a+")
+        stdout=open("microbot-discord.log", "a+"),
         umask=0o002,
         pidfile=lockfile.FileLock(args.pid_file),
     ):
