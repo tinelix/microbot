@@ -95,7 +95,7 @@ def start_daemon(pidf):
         stdout=open("microbot-discord.log", "a+")
     ):
         token = "N/A"
-        if(len(token) > 12):
+        if(len(tokens['discord_api']) > 12):
             token = tokens['discord_api'][0:10] + "..."
         print("\r\n Connecting to Discord API..."
             "\r\n API Token: {0}".format(token))
