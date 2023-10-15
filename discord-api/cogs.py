@@ -220,7 +220,7 @@ class Commands(commands.Cog):
 
     @commands.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def settings_cmd(self, ctx, *arg):
+    async def settings_scmd(self, ctx, *arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
