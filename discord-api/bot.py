@@ -92,7 +92,7 @@ def start_daemon(pidf):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
-    parser.add_argument('-p', '--pid-file', default='/var/run/microbot-discord.pid')
+    parser.add_argument('-p', '--pid-file', default='./microbot-discord.pid')
 
     args = parser.parse_args()
 
