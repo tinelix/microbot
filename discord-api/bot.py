@@ -97,8 +97,7 @@ def start_daemon(pidf):
         token = "N/A"
         if(len(tokens['discord_api']) > 12):
             token = tokens['discord_api'][0:10] + "..."
-        print("\r\n Connecting to Discord API..."
-            "\r\n API Token: {0}".format(token))
+        print("\r\n Connecting to Discord API...")
         bot.run(tokens['discord_api'])
         print(" OK!")
 
