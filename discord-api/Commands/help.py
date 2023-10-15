@@ -50,12 +50,31 @@ async def sendRegularMsg(ctx, bot, config, links, version, language, disnake, tr
     await ctx.reply(embed=msg_embed, mention_author=False)
 
 async def sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg):
-    msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
-        description=str(translator.translate('command_description', arg, language)),
-        colour=config['accent_def'],
-    )
-    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', arg, language).format(config['prefix']), inline=False)
+    for category in bot.commands_list.keys():
+        commands_result = 0
+        for command in bot.commands_list[category]:
+            if(command == arg):
+                commands_result++
+    if(commands_result > 0):
+        msg_embed = disnake.Embed(
+            title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
+            description=str(translator.translate('command_description', arg, language)),
+            colour=config['accent_def'],
+        )
+        msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', arg, language).format(config['prefix']), inline=False)
+    else:
+        if(repo == None):
+            msg_embed = disnake.Embed(
+                title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
+                description=str(translator.translate('embed_description', 'cmd_not_found2', language)),
+                colour=config['accent_err'],
+            )
+        else:
+            msg_embed = disnake.Embed(
+                title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
+                description=str(translator.translate('embed_description', 'cmd_not_found', language).format(links['repo'] + "/issues")),
+                colour=config['accent_err'],
+            )
     await ctx.reply(embed=msg_embed, mention_author=False)
 
 async def sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator):
