@@ -88,7 +88,7 @@ def start_daemon(pidf):
     ### This launches the daemon in its context
 
     print(" Running Microbot in PID: {}...".format(pidf))
-    write_log_file("Running Microbot in PID: {}...".format(pidf))
+    write_log_file(" Running Microbot in PID: {}...".format(pidf))
 
     with daemon.DaemonContext(
         working_directory=os.path.dirname(os.path.abspath(__file__)),
