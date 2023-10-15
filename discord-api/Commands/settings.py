@@ -28,6 +28,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
     else:
         guild_id = ctx.message.guild.id
         author_id = ctx.message.author.id
+    print("Length {0} | A_ID: {1} | G_ID: {2} | Args: [{3}]".format(len(arg), author_id, guild_id, arg))
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
             if ctx.author.guild_permissions.administrator:
