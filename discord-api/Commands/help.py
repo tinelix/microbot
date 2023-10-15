@@ -54,7 +54,7 @@ async def sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator,
         commands_result = 0
         for command in bot.commands_list[category]:
             if(command == arg):
-                commands_result++
+                commands_result = 1
     if(commands_result > 0):
         msg_embed = disnake.Embed(
             title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
