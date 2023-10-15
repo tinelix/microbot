@@ -219,11 +219,11 @@ class Commands(commands.Cog):
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[5])
         arg = None
-        if(len(language) > 2):
+        if(len(language) > 0):
             arg = "-L {0}".format(language).split(" ")
-        elif(len(prefix) > 2):
-            arg = "-p {0}".format(prefix).split(" ")
-        elif(len(timezone) > 2):
+        elif(len(prefix) > 0):
+            arg = "-P {0}".format(prefix).split(" ")
+        elif(len(timezone) > 0):
             arg = "-tz {0}".format(timezone).split(" ")
 
         await settings.sendSlashMsg(ctx, self.bot, config, language, disnake,
