@@ -82,9 +82,8 @@ def start_daemon(pidf):
     ### This launches the daemon in its context
 
     print(" Running Microbot in PID: {}...".format(pidf))
-    ### XXX pidfile is a context
+
     with daemon.DaemonContext(
-        umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
             print(" Connecting to Discord API")
