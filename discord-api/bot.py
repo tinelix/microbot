@@ -90,9 +90,9 @@ def start_daemon(pidf):
     print(" Running Microbot in PID: {}...".format(pidf))
     write_log_file("Running Microbot in PID: {}...".format(pidf))
 
-    with daemon.DaemonContext() as context:
-            write_log_file("Connecting to Discord API...")
-            bot.run(tokens['discord_api'])
+    with daemon.DaemonContext():
+        write_log_file("Connecting to Discord API...")
+        bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
