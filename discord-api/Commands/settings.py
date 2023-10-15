@@ -122,4 +122,29 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data)
+    class SettingsByButton(disnake.ui.View):
+        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🚩')
+        async def show_changing_language_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+            language_embed = disnake.Embed(
+                colour=config['accent_def'],
+            )
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_lang', language).format(config['prefix']), inline=False)
+            await interaction.response.send_message(embed=language_embed)
+        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🪄')
+        async def show_changing_prefix_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+            language_embed = disnake.Embed(
+                colour=config['accent_def'],
+            )
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_prefix', language).format(config['prefix']), inline=False)
+            await interaction.response.send_message(embed=language_embed)
+        @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🕒')
+        async def show_changing_tz_embed(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+            language_embed = disnake.Embed(
+                colour=config['accent_def'],
+            )
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_tz', language).format(config['prefix']), inline=False)
+            await interaction.response.send_message(embed=language_embed)
     await ctx.send(embed=msg_embed)

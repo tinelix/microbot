@@ -216,7 +216,7 @@ class Commands(commands.Cog):
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[5])
-        await settings.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, db, self.bot.database, self.bot.cursor, guild_data, user_data)
+        await settings.sendSlashMsg(ctx, self.bot, config, language, disnake, translator, arg, db, self.bot.database, self.bot.cursor, guild_data, user_data)
 
     @commands.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
