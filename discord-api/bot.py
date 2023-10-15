@@ -82,19 +82,18 @@ def start_daemon(pidf):
     ### This launches the daemon in its context
 
     print(" Running Microbot in PID: {}...".format(pidf))
-
-    bot.run(tokens['discord_api'])
+    ### XXX pidfile is a context
     with daemon.DaemonContext(
+        working_directory='.',
+        umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
-            print(" Connecting to Discord API")
-
+            bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
-    parser.add_argument('-p', '--pid-file', default='./microbot-discord.pid')
+    parser.add_argument('-p', '--pid-file', default='/var/run/microbot-discord.pid')
 
     args = parser.parse_args()
 
     start_daemon(pidf=args.pid_file)
-    print("\033[92m Done! You can now close your console session.")
