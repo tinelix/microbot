@@ -12,7 +12,7 @@ import sqlite3
 import pytz
 import sys
 import argparse
-import daemon
+import daemon, logging
 from daemon import pidfile
 
 # 2. Importing modular commands
@@ -23,7 +23,14 @@ from cogs import Commands, Listeners
 # 3. Importing bot configuration
 from config import *
 
-# 4. Initializing SQLite3 server
+# 4. Set the logger
+LOG_LEVEL = logging.DEBUG
+logger = logging.getLogger()
+logger.setLevel(LOG_LEVEL)
+fh = logging.FileHandler("./microbot-discord.log")
+logger.addHandler(fh)
+
+# 5. Initializing SQLite3 server
 try:
     print("\r\n Connecting with SQLite database...")
     database = sqlite3.connect('Database/main.db')
@@ -35,7 +42,7 @@ except sqlite3.Error as e:
         "\r\n create manually inside 'discord-api' directory and try again.\r\n")
     sys.exit()
 
-# 5. Getting custom guild prefix
+# 6. Getting custom guild prefix
 prefixes = {}
 
 async def get_guild_prefix(bot, message):
@@ -52,7 +59,7 @@ async def get_guild_prefix(bot, message):
     except Exception as e:
         return config['prefix']
 
-# 6. Creating Discord bot instance with all intents
+# 7. Creating Discord bot instance with all intents
 print(" Preparing to running {0}...".format(config['name']))
 intents = disnake.Intents.all()
 bot = commands.AutoShardedBot(command_prefix=get_guild_prefix, intents=intents)
@@ -73,7 +80,7 @@ user_col = None
 guild_col = None
 connectionStartTime = time.time()
 
-# 7. Globally blocking all DMs
+# 8. Globally blocking all DMs
 @bot.check
 async def no_DM(ctx):
     return ctx.guild is not None
@@ -82,12 +89,14 @@ def start_daemon(pidf):
     ### This launches the daemon in its context
 
     print(" Running Microbot in PID: {}...".format(pidf))
-    ### XXX pidfile is a context
+
     with daemon.DaemonContext(
         working_directory='.',
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
+        files_preserve=[fh.stream],
         ) as context:
+            logger.info('Connecting to Discord API...')
             bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
