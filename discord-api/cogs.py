@@ -218,7 +218,7 @@ class Commands(commands.Cog):
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[5])
-        arg = None
+        arg = ""
         if(len(language) > 0):
             arg = "-L {0}".format(language)
         elif(len(prefix) > 0):
