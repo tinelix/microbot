@@ -213,21 +213,17 @@ class Commands(commands.Cog):
                                       self.bot.cursor, guild_data, user_data)
 
     @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
-    async def settings_cmd(self, ctx,
-                           language: disnake.Option(name="language", type=str, required=False),
-                           prefix: disnake.Option(name="prefix", type=str, required=False),
-                           timezone: disnake.Option(name="timezone", type=str, required=False)
-                          ):
+    async def settings_cmd(self, ctx, language: str = "", prefix: str = "", timezone: str = ""):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[5])
         arg = None
-        if(language != None):
+        if(len(language) > 0):
             arg = "-L {0}".format(language)
-        elif(prefix != None):
+        elif(len(prefix) > 0):
             arg = "-p {0}".format(prefix)
-        elif(timezone != None):
+        elif(len(timezone) > 0):
             arg = "-tz {0}".format(timezone)
 
         await settings.sendSlashMsg(ctx, self.bot, config, language, disnake,
