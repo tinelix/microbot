@@ -81,11 +81,7 @@ async def no_DM(ctx):
 def start_daemon(pidf):
     ### This launches the daemon in its context
 
-    global debug_p
-
-    if debug_p:
-        print("Running Microbot in PID: {}...".format(pidf))
-
+    print("Running Microbot in PID: {}...".format(pidf))
     ### XXX pidfile is a context
     with daemon.DaemonContext(
         working_directory='.',
