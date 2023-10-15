@@ -147,4 +147,4 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db,
             language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
             language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_tz', language).format(config['prefix']), inline=False)
             await interaction.response.send_message(embed=language_embed)
-    await ctx.send(embed=msg_embed)
+    await ctx.send(embed=msg_embed, view=SettingsByButton())
