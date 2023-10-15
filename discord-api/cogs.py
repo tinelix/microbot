@@ -215,7 +215,7 @@ class Commands(commands.Cog):
     @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
     async def settings_cmd(self, ctx, language: str = "", prefix: str = "", timezone: str = ""):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
-        language = guild_data[2]
+        lang_from_db = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[5])
         arg = None
@@ -226,7 +226,7 @@ class Commands(commands.Cog):
         elif(len(timezone) > 0):
             arg = "-tz {0}".format(timezone).split(" ")
 
-        await settings.sendSlashMsg(ctx, self.bot, config, language, disnake,
+        await settings.sendSlashMsg(ctx, self.bot, config, lang_from_db, disnake,
                                     translator, arg, db, self.bot.database,
                                     self.bot.cursor, guild_data, user_data)
 
