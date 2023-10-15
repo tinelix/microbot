@@ -99,7 +99,7 @@ def start_daemon(pidf):
             token = tokens['discord_api'][0:10] + "..."
         print("\r\n Connecting to Discord API..."
             "\r\n API Token: {0}".format(token))
-        bot.run()
+        bot.run(tokens['discord_api'])
         print(" OK!")
 
 if __name__ == "__main__":
