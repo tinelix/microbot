@@ -119,7 +119,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
 
 async def sendSlashMsg(ctx, bot, config, links, version, language, disnake, translator, python_version, uptime, tz):
     await ctx.response.defer()
-    msg_embed = await editEmbed(ctx, bot, config, version, links, language, disnake, translator, python_version, uptime, tz, version)
+    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz, version)
     await ctx.send(embed=msg_embed)
 
 async def sendRegularMsg(ctx, bot, config, links, version, language, disnake, translator, python_version, uptime, tz):
