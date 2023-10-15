@@ -20,8 +20,8 @@ name = 'settings'
 hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data, msg_type):
-    guild_id = 0
-    author_id = 0
+    guild_id = ctx.message.guild.id
+    author_id = ctx.message.author.id
     if(msg_type == "slash"):
         guild_id = ctx.guild.id
         author_id = ctx.author.id
