@@ -88,9 +88,7 @@ def start_daemon(pidf):
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
-            print("Connecting to Discord API...")
             bot.run(tokens['discord_api'])
-            print("\033[92m Done! You can now close your console session.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
@@ -99,3 +97,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     start_daemon(pidf=args.pid_file)
+    print("\033[92m Done! You can now close your console session.")
