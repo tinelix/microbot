@@ -209,6 +209,7 @@ class Commands(commands.Cog):
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[5])
         arg = ""
+        print("ЗАЩЕЛКА!")
         await settings.sendRegularMsg(ctx, self.bot, config, language, disnake,
                                       translator, arg, db, self.bot.database,
                                       self.bot.cursor, guild_data, user_data)
