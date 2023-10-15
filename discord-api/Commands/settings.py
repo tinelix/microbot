@@ -28,7 +28,6 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
     else:
         guild_id = ctx.message.guild.id
         author_id = ctx.message.author.id
-    print("ЗАЩЕЛКА 2!")
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
             if ctx.author.guild_permissions.administrator:
@@ -97,7 +96,6 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
     return msg_embed
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data):
-    print("ЗАЩЕЛКА 1!")
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db,
                                     database, cursor, guild_data, user_data, 'default')
     class SettingsByButton(disnake.ui.View):
