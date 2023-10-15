@@ -86,7 +86,7 @@ def translate(where, str, language):
                     'timers_invupcomdt': '❌ Указанная дата должна быть не раньше сегодняшней!',
                     'tz_invalidabbr': '❌ Вы ввели неверное обозначение часового пояса. Смотрите [по ссылке](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) (столбец Notes) для подробной информации.',
                     'invalid_cmd_usage': 'Вы используете эту команду неправильно или не указали одно из требуемых параметров. Смотрите её синтаксис и пример.',
-                    'cmd_not_found': '❌ Запрашиваемая вами команда не предусмотрена. Возможно, [вы что-то предложите разработчику]({0})?'
+                    'cmd_not_found': '❌ Запрашиваемая вами команда не предусмотрена. Возможно, [вы что-то предложите разработчику]({0})?',
                     'cmd_not_found2': '❌ Запрашиваемая вами команда не предусмотрена. Возможно, вы что-то предложите разработчику?'
                 }
             elif where == "embed_fields":
@@ -364,6 +364,8 @@ def translate(where, str, language):
                     'timers_invupcomdt': '❌ The specified date must not be earlier than today!',
                     'tz_invalidabbr': '❌ You have entered an invalid timezone alias. See [link](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) (Notes column) for details.',
                     'invalid_cmd_usage': 'You are using this command incorrectly, or you have not provided one of the required parameters. See its syntax and example.',
+                    'cmd_not_found': '❌ The command you requested is not available. Perhaps [you would suggest something to the developer]({0})?',
+                    'cmd_not_found2': '❌ The command you requested is not available. Perhaps you would suggest something to the developer?'
                 }
             elif where == "embed_fields":
                 locale = {
