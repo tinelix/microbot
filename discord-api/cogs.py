@@ -214,9 +214,9 @@ class Commands(commands.Cog):
 
     @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
     async def settings_cmd(self, ctx,
-                           language: disnake.Option(str, name="language", description="Language", required=False),
-                           prefix: disnake.Option(str, name="prefix", description="Prefix", required=False),
-                           timezone: disnake.Option(str, name="timezone", description="Timezone", required=False)
+                           language: disnake.Option(name="language", description="Language", required=False),
+                           prefix: disnake.Option(name="prefix", description="Prefix", required=False),
+                           timezone: disnake.Option(name="timezone", description="Timezone", required=False)
                           ):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         language = guild_data[2]
