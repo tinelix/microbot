@@ -96,6 +96,7 @@ def start_daemon(pidf):
     ):
         print(" Connecting to Discord API...")
         bot.run(tokens['discord_api'])
+        print(" OK!")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
