@@ -24,11 +24,7 @@ from cogs import Commands, Listeners
 from config import *
 
 # 4. Set the logger
-LOG_LEVEL = logging.DEBUG
-logger = logging.getLogger()
-logger.setLevel(LOG_LEVEL)
-fh = logging.FileHandler("./microbot-discord.log")
-logger.addHandler(fh)
+log_file = open("microbot-discord.log", "w+")
 
 # 5. Initializing SQLite3 server
 try:
@@ -96,7 +92,7 @@ def start_daemon(pidf):
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         files_preserve=[fh.stream],
         ) as context:
-            logger.debug('Connecting to Discord API...')
+            log_file.write('Connecting to Discord API...')
             bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
