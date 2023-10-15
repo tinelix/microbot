@@ -88,6 +88,7 @@ def start_daemon(pidf):
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
+            print("Connecting to Discord API...")
             bot.run(tokens['discord_api'])
             print("\033[92m Done! You can now close your console session.")
 
