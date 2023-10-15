@@ -90,7 +90,10 @@ def start_daemon(pidf):
     print(" Running Microbot in PID: {}...".format(pidf))
     write_log_file("Running Microbot in PID: {}...".format(pidf))
 
-    with daemon.DaemonContext():
+    with daemon.DaemonContext(
+        working_directory=os.path.dirname(os.path.abspath(__file__)),
+        stdout=open("microbot-discord.log", "w+")
+    ):
         write_log_file("Connecting to Discord API...")
         bot.run(tokens['discord_api'])
 
