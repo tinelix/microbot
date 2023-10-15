@@ -13,7 +13,6 @@ import pytz
 import sys
 import argparse
 import daemon
-from daemon import *
 
 # 2. Importing modular commands
 from disnake.ext import commands
