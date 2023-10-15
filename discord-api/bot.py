@@ -94,6 +94,7 @@ def start_daemon(pidf):
         working_directory=os.path.dirname(os.path.abspath(__file__)),
         stdout=open("microbot-discord.log", "w+")
     ):
+        print(" Connecting to Discord API...")
         bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
