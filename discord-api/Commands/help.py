@@ -63,7 +63,7 @@ async def sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator,
         )
         msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', arg, language).format(config['prefix']), inline=False)
     else:
-        if(links['repo'] == None or len(links['repo']) > 0):
+        if(links['repo'] == None or len(links['repo']) == 0):
             msg_embed = disnake.Embed(
                 title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
                 description=str(translator.translate('embed_description', 'cmd_not_found2', language)),
