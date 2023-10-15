@@ -84,7 +84,6 @@ def start_daemon(pidf):
     print(" Running Microbot in PID: {}...".format(pidf))
     ### XXX pidfile is a context
     with daemon.DaemonContext(
-        working_directory='.',
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
