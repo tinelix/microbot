@@ -83,7 +83,6 @@ connectionStartTime = time.time()
 async def no_DM(ctx):
     return ctx.guild is not None
 
-if __name__ == "__main__":
-    bot_thread = threading.Thread(target=bot.run, args=tokens['discord_api'])
-    bot_thread.daemon = True
-    bot_thread.start()
+bot_thread = threading.Thread(target=bot.run, args=tokens['discord_api'])
+bot_thread.daemon = True
+bot_thread.start()
