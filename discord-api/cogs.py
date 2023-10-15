@@ -201,8 +201,19 @@ class Commands(commands.Cog):
         self.tz = pytz.timezone(user_data[5])
         await calc.sendSlashMsg(ctx, self.bot, config, language, disnake, translator, expression)
 
+    @commands.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
+    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+    async def settings_cmd(self, ctx, *arg):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
+        language = guild_data[2]
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
+        self.tz = pytz.timezone(user_data[5])
+        await settings.sendRegularMsg(ctx, self.bot, config, language, disnake,
+                                      translator, arg, db, self.bot.database,
+                                      self.bot.cursor, guild_data, user_data)
+
     @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
-    async def settings_cmd(self, ctx, language: str = "", prefix: str = "", timezone: str = ""):
+    async def settings_scmd(self, ctx, language: str = "", prefix: str = "", timezone: str = ""):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         lang_from_db = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
@@ -217,17 +228,6 @@ class Commands(commands.Cog):
         await settings.sendSlashMsg(ctx, self.bot, config, lang_from_db, disnake,
                                     translator, arg, db, self.bot.database,
                                     self.bot.cursor, guild_data, user_data)
-
-    @commands.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
-    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def settings_scmd(self, ctx, *arg):
-        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
-        language = guild_data[2]
-        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        self.tz = pytz.timezone(user_data[5])
-        await settings.sendRegularMsg(ctx, self.bot, config, language, disnake,
-                                      translator, arg, db, self.bot.database,
-                                      self.bot.cursor, guild_data, user_data)
 
     @commands.command(name="publish", description=translator.translate('command_description', 'publish', 'en_US'), aliases=['post'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
