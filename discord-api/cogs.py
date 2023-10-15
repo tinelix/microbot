@@ -220,11 +220,11 @@ class Commands(commands.Cog):
         self.tz = pytz.timezone(user_data[5])
         arg = ""
         if(len(language) > 0):
-            arg = "-L {0}".format(language)
+            arg = "-L {0}".format(language).split(" ")
         elif(len(prefix) > 0):
-            arg = "-p {0}".format(prefix)
+            arg = "-p {0}".format(prefix).split(" ")
         elif(len(timezone) > 0):
-            arg = "-tz {0}".format(timezone)
+            arg = "-tz {0}".format(timezone).split(" ")
 
         await settings.sendSlashMsg(ctx, self.bot, config, language, disnake,
                                     translator, arg, db, self.bot.database,

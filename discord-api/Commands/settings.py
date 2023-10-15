@@ -147,4 +147,14 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db,
             language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
             language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'settings_tz2', language).format("/"), inline=False)
             await interaction.response.send_message(embed=language_embed)
-    await ctx.send(embed=msg_embed, view=SettingsByButton())
+    if(len(arg) >= 2):
+        if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
+            await ctx.send(embed=msg_embed)
+        elif(arg[0] == '-P'):
+            await ctx.send(embed=msg_embed)
+        elif(arg[0] == '-tz'):
+            await ctx.send(embed=msg_embed)
+        else:
+            await ctx.send(embed=msg_embed, view=SettingsByButton())
+    else:
+        await ctx.send(embed=msg_embed, view=SettingsByButton())
