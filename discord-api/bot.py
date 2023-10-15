@@ -90,7 +90,6 @@ def start_daemon(pidf):
         working_directory='.',
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
-        files_preserve=[fh.stream],
         ) as context:
             log_file.write('Connecting to Discord API...')
             bot.run(tokens['discord_api'])
