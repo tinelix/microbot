@@ -11,6 +11,8 @@ import time
 import sqlite3
 import pytz
 import sys
+import daemon
+from daemon import pidfile
 
 # 2. Importing modular commands
 from disnake.ext import commands
@@ -75,4 +77,26 @@ connectionStartTime = time.time()
 async def no_DM(ctx):
     return ctx.guild is not None
 
-bot.run(tokens['discord_api'])
+def start_daemon(pidf):
+    ### This launches the daemon in its context
+
+    global debug_p
+
+    if debug_p:
+        print("Running Microbot in PID: {}...".format(pidf))
+
+    ### XXX pidfile is a context
+    with daemon.DaemonContext(
+        working_directory='.',
+        umask=0o002,
+        pidfile=pidfile.TimeoutPIDLockFile(pidf),
+        ) as context:
+            bot.run(tokens['discord_api'])
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
+    parser.add_argument('-p', '--pid-file', default='/var/run/microbot-discord.pid')
+
+    args = parser.parse_args()
+
+    start_daemon(pidf=args.pid_file)
