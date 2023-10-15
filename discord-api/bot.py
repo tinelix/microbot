@@ -12,7 +12,7 @@ import sqlite3
 import pytz
 import sys
 import argparse
-import daemon, logging
+import daemon, logging, lockfile
 from daemon import pidfile
 
 # 2. Importing modular commands
