@@ -12,7 +12,7 @@ import sqlite3
 import pytz
 import sys
 import daemon
-from daemon import pidfile
+from daemon import *
 
 # 2. Importing modular commands
 from disnake.ext import commands
