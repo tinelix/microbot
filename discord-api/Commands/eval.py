@@ -1,6 +1,15 @@
-# Microbot Discord bot
-# Repo: https://github.com/tinelix/microbot
-# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+# Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of
+# the GNU Affero General Public License 3 (or any later version) and/or Apache License 2
+# See the following files in this directory for the precise terms and conditions of either
+# license:
+#
+#     LICENSE.APACHE
+#     LICENSE.AGPL
+#
+# Please see each file in the implementation for copyright and licensing
+# information, (in the opening comment of each file).
 
 import cpuinfo # for install 'pip install py-cpuinfo'
 import psutil
