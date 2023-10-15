@@ -393,7 +393,7 @@ async def sync_db(bot, ctx, table, message_type):
                 cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
                 user_data = cursor.fetchone()
                 await db.update_value(ctx, bot.database, cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.author.id)
-                await db.update_value(ctx, bot.database, cursor, 'users', 'global_name', '\'{0}\''.format(ctx.message.author.global_name), ctx.message.author.id)
+                await db.update_value(ctx, bot.database, cursor, 'users', 'global_name', '\'{0}\''.format(ctx.author.global_name), ctx.author.id)
             else:
                 await db.add_user_value(bot.database, ctx, cursor)
                 cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
