@@ -86,13 +86,13 @@ def start_daemon(pidf):
 
     print(" Running Microbot in PID: {}...".format(pidf))
     log_file.write(" Running Microbot in PID: {}...".format(pidf))
+    log_file.close()
 
     with daemon.DaemonContext(
         working_directory='.',
         umask=0o002,
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
-            log_file.write('Connecting to Discord API...')
             bot.run(tokens['discord_api'])
 
 if __name__ == "__main__":
