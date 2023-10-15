@@ -213,7 +213,10 @@ class Commands(commands.Cog):
                                       self.bot.cursor, guild_data, user_data)
 
     @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
-    async def settings_cmd(self, ctx, language: str, prefix: str, timezone: str):
+    async def settings_cmd(self, ctx,
+                           language: Option(str, required = False),
+                           prefix: Option(str, required = False),
+                           timezone: Option(str, required = False)):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
