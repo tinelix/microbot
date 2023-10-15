@@ -83,11 +83,12 @@ def start_daemon(pidf):
 
     print(" Running Microbot in PID: {}...".format(pidf))
 
+    bot.run(tokens['discord_api'])
     with daemon.DaemonContext(
         pidfile=pidfile.TimeoutPIDLockFile(pidf),
         ) as context:
             print(" Connecting to Discord API")
-            bot.run(tokens['discord_api'])
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tinelix Microbot for Discord daemon")
