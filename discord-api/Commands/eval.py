@@ -63,3 +63,8 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
     await ctx.reply(embed=msg_embed, mention_author=False)
+
+async def sendGoodbyeMsg(ctx, bot, config, language, disnake, translator, arg):
+    if(ctx.message.author.id == config['dev_id']):  # only bot owner!
+        await ctx.reply(":wave:", mention_author=False)
+        await ctx.bot.logout()
