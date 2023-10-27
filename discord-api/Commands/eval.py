@@ -15,7 +15,7 @@ import cpuinfo # for install 'pip install py-cpuinfo'
 import psutil
 import platform
 import traceback
-from datetime import date
+from datetime import datetime
 
 name = 'eval'
 hidden = True
@@ -67,8 +67,8 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
 
 async def sendGoodbyeMsg(ctx, bot, config, language, disnake, translator):
     if(ctx.message.author.id == config['dev_id']):  # only bot owner!
-        now = date.today()
+        now = datetime.now()
         current_dt = now.strftime("%y-%m-%d %H:%M:%S")
-        print(" [{0}] Bot is shutting down...\r\n", current_dt)
+        print(" [{0}] Bot is shutting down...\r\n".format(current_dt))
         await ctx.reply(":wave:", mention_author=False)
         await ctx.bot.close()
