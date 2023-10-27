@@ -302,7 +302,7 @@ class Commands(commands.Cog):
 
     @commands.command(name="eval")
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def eval_cmd(self, ctx, arg):
+    async def eval_cmd(self, ctx, *, arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
@@ -311,7 +311,7 @@ class Commands(commands.Cog):
 
     @commands.command(name="test")
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def eval_cmd(self, ctx, arg):
+    async def test_cmd(self, ctx, arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
