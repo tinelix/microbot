@@ -169,12 +169,12 @@ class Commands(commands.Cog):
 
     @commands.command(name="shutdown")
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def shutdown_cmd(self, ctx, arg):
+    async def shutdown_cmd(self, ctx):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[5])
-        await eval.sendGoodbyeMsg(ctx, self.bot, config, language, disnake, translator, arg)
+        await eval.sendGoodbyeMsg(ctx, self.bot, config, language, disnake, translator)
 
     @commands.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
