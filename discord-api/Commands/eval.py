@@ -66,6 +66,8 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
 
 async def sendGoodbyeMsg(ctx, bot, config, language, disnake, translator):
     if(ctx.message.author.id == config['dev_id']):  # only bot owner!
-        print(" Bot is shutting down...")
+        now = datetime.now()
+        current_dt = now.strftime("%D.%m.%Y %H:%M:%S")
+        print(" [{0}] Bot is shutting down...\r\n", current_dt)
         await ctx.reply(":wave:", mention_author=False)
         await ctx.bot.close()
