@@ -15,6 +15,7 @@ import cpuinfo # for install 'pip install py-cpuinfo'
 import psutil
 import platform
 import traceback
+import datetime
 
 name = 'eval'
 hidden = True
