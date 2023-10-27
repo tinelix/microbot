@@ -149,33 +149,6 @@ class Commands(commands.Cog):
         self.tz = pytz.timezone(user_data[5])
         await rngen.sendSlashMsg(ctx, self.bot, config, language, disnake, translator, range)
 
-    @commands.command(name="eval")
-    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def eval_cmd(self, ctx, arg):
-        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
-        language = guild_data[2]
-        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        self.tz = pytz.timezone(user_data[5])
-        await eval.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
-
-    @commands.command(name="test")
-    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def eval_cmd(self, ctx, arg):
-        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
-        language = guild_data[2]
-        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        self.tz = pytz.timezone(user_data[5])
-        await test.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, fatalerr_reporter)
-
-    @commands.command(name="shutdown")
-    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def shutdown_cmd(self, ctx):
-        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
-        language = guild_data[2]
-        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        self.tz = pytz.timezone(user_data[5])
-        await eval.sendGoodbyeMsg(ctx, self.bot, config, language, disnake, translator)
-
     @commands.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def guild_cmd(self, ctx):
@@ -326,6 +299,33 @@ class Commands(commands.Cog):
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
         self.tz = pytz.timezone(user_data[5])
         await timers.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, db, self.bot.database, self.bot.cursor, self.tz)
+
+    @commands.command(name="eval")
+    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+    async def eval_cmd(self, ctx, arg):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
+        language = guild_data[2]
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
+        self.tz = pytz.timezone(user_data[5])
+        await eval.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
+
+    @commands.command(name="test")
+    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+    async def eval_cmd(self, ctx, arg):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
+        language = guild_data[2]
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
+        self.tz = pytz.timezone(user_data[5])
+        await test.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, fatalerr_reporter)
+
+    @commands.command(name="shutdown")
+    @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+    async def shutdown_cmd(self, ctx):
+        guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
+        language = guild_data[2]
+        user_data = await sync_db(self.bot, ctx, 'users', 'regular')
+        self.tz = pytz.timezone(user_data[5])
+        await eval.sendGoodbyeMsg(ctx, self.bot, config, language, disnake, translator)
 
 class Listeners(commands.Cog):
     def __init__(self, bot, database, cursor):
