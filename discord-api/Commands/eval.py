@@ -21,6 +21,7 @@ hidden = True
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     if(ctx.message.author.id == config['dev_id']):  # only bot owner!
+        print("TEST! Part 1")
         try:
             msg_embed = disnake.Embed(
                 colour=config['accent_def'],
@@ -52,12 +53,14 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
             )
             msg_embed.set_author(name=str(translator.translate('embed_title', 'eval', language)))
             msg_embed.add_field(translator.translate('embed_fields', 'eval_resulf', language), '```py\r\n{0}```'.format("".join(traceback.TracebackException.from_exception(e).format())), inline=False)
+            print("TEST! Part 2")
     else:
         msg_embed = disnake.Embed(
             description=str(translator.translate('embed_description', 'forbidden', language)),
             colour=config['accent_err']
         )
         msg_embed.set_author(name=str(translator.translate('embed_title', 'forbidden', language)))
+        print("TEST! Part 3")
     return msg_embed
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
