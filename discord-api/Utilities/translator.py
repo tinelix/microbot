@@ -20,6 +20,7 @@ import importlib
 locale = importlib.import_module("Locales")
 
 def translate(where, str, language):
+    print(language)
     str2pyclass.str2pyclass(locale, "{0}".format(language))._tr(where, str)
 
 def getLanguages():
