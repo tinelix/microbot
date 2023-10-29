@@ -17,10 +17,7 @@ from Utilities import str2pyclass
 from Locales import *
 
 def translate(where, str, language):
-    try:
-        str2pyclass(language)._tr(where, str)
-    except:
-        return "[{0}|{1}|Error]".format(str, where)
+    str2pyclass(language)._tr(where, str)
 
 def getLanguages():
     languages = {'ru_RU': 'Russian', 'en_US': 'English'}
