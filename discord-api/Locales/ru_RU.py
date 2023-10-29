@@ -14,6 +14,7 @@
 #   information, (in the opening comment of each file).
 
 def _tr(where, str):
+    locale = {}
     if where == "message":
         locale = {
             'prefix': '**Префикс:** `{0}`\r\nПоддерживаются также слэш-команды.'
@@ -291,10 +292,10 @@ def _tr(where, str):
         }
     else:
         locale = {}
-        if len(locale) == 0: # if string not found (variant #1)
-            return "[{0}|{1}]".format(str, where)
-        else:
-            return locale[str]
+    if len(locale) == 0: # if string not found (variant #1)
+        return "[{0}|{1}]".format(str, where)
+    else:
+        return locale[str]
 
 def _dt_fmt(datetime, size):
     if(size == 'full'):

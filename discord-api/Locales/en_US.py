@@ -14,6 +14,7 @@
 #   information, (in the opening comment of each file).
 
 def _tr(where, str):
+    locale = {}
     if where == "message":
         locale = {
             'prefix': '**Prefix:** `{0}`\r\nSlash commands are also supported.'
