@@ -36,7 +36,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
             colour=config['accent_def'],
             description=arg
         )
-        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.message.author.name, ctx.message.author.discriminator))
+        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.message.author.global_name, ctx.message.author.name))
         if(attachment_url != None):
             msg_embed.set_image(attachment_url)
     else:
@@ -63,7 +63,7 @@ async def generateSlashEmbed(ctx, bot, config, language, disnake, translator, ar
             colour=config['accent_def'],
             description=arg
         )
-        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.author.name, ctx.author.discriminator))
+        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.author.global_name, ctx.author.name))
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_err'],

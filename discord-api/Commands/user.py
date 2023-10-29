@@ -57,7 +57,6 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, user, m
         nick = None
         status == None
     else:
-
         if(member.nick == None):
             nick = translator.translate('embed_fields', 'user_nickvn', language)
         else:

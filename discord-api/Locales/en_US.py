@@ -39,7 +39,7 @@ def _tr(where, str):
             'rngen': '🎱 Random Number Generator',
             'calc': '🔢 Calculator',
             'settings': '⚙ Settings',
-            'msg_author': '📣 Post by {0} / _`{1}`_',
+            'msg_author': '📣 Post by {0} / @{1}',
             'ping': '🏓 Pong!',
             'weather': '⛅ Weather',
             'weather2': '⛅ {0}, {1}',
