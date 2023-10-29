@@ -18,3 +18,4 @@ import Utilities.translator
 import Utilities.fatalerr_reporter
 import Utilities.db
 import Utilities.binary
+import Utilities.str2pyclass

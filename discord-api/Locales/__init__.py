@@ -13,22 +13,5 @@
 #   Please see each file in the implementation for copyright and licensing
 #   information, (in the opening comment of each file).
 
-commands_list = []
-
-import Commands.help
-import Commands.about
-import Commands.user
-import Commands.avatar
-import Commands.eval
-import Commands.eightball
-import Commands.rngen
-import Commands.guild
-import Commands.calc
-import Commands.settings
-import Commands.publish
-import Commands.ping
-import Commands.weather
-import Commands.wiki
-import Commands.codec
-import Commands.timers
-import Commands.test
+import Locales.en_US
+import Locales.ru_RU
