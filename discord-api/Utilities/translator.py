@@ -15,6 +15,7 @@
 
 from Utilities import str2pyclass
 from Locales import *
+import importlib
 
 locale = importlib.import_module("Locales")
 
