@@ -17,7 +17,7 @@ from Utilities import str2pyclass
 from Locales import *
 
 def translate(where, str, language):
-    locale = __import__("Locales.{0}".format(language), fromlist=["Locales"])
+    locale = __import__("Locales.{0}".format(language))
     locale._tr(where, str)
 
 def getLanguages():
@@ -26,7 +26,7 @@ def getLanguages():
 
 def formatDate(datetime, size, language):
     try:
-        locale = __import__("Locales.{0}".format(language), fromlist=["Locales"])
+        locale = __import__("Locales.{0}".format(language))
         locale._dt_fmt(datetime, size)
     except:
         return "[{0}|{1}|Error]".format(str, where)
