@@ -20,7 +20,9 @@ import importlib
 
 def translate(where, str, language):
     locale = importlib.import_module("Locales.{0}".format(language))
-    locale._tr(where, str)
+    string = locale._tr(where, str)
+    importlib.invalidate_caches()
+    return string
 
 def getLanguages():
     languages = {'ru_RU': 'Russian', 'en_US': 'English'}
@@ -29,7 +31,9 @@ def getLanguages():
 def formatDate(datetime, size, language):
     try:
         locale = importlib.import_module("Locales.{0}".format(language))
-        locale._dt_fmt(datetime, size)
+        string = locale._dt_fmt(datetime, size)
+        importlib.invalidate_caches()
+        return string
     except:
         return "[{0}|{1}|Error]".format(str, where)
 
