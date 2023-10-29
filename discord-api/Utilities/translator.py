@@ -17,7 +17,7 @@ from Utilities import str2pyclass
 from Locales import *
 
 def translate(where, str, language):
-    str2pyclass.str2pyclass("Locales.{0}".format(language))._tr(where, str)
+    str2pyclass.str2pyclass(".{0}".format(language))._tr(where, str)
 
 def getLanguages():
     languages = {'ru_RU': 'Russian', 'en_US': 'English'}
@@ -25,7 +25,7 @@ def getLanguages():
 
 def formatDate(datetime, size, language):
     try:
-        str2pyclass.str2pyclass("Locales.{0}".format(language))._dt_fmt(datetime, size)
+        str2pyclass.str2pyclass(".{0}".format(language))._dt_fmt(datetime, size)
     except:
         return "[{0}|{1}|Error]".format(str, where)
 
