@@ -16,6 +16,6 @@
 version = {
     'original_name': 'Microbot',
     'original_repo': 'https://github.com/tinelix/microbot',
-    'version': '0.8.1',
-    'version_date': '2023-10-15'
+    'version': '0.8.2',
+    'version_date': '2023-10-29'
 }
