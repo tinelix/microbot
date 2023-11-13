@@ -6,7 +6,7 @@ Description=Microbot Discord service
 WorkingDirectory=/var/bots/microbot
 
 [Service]
-Environment="PATH=/home/tretdm/py-env/bin:$PATH"
+Environment="PATH=/home/[user]/py-env/bin:$PATH"
 ExecStart=/var/bots/microbot/discord.sh
 Type=notify
 
