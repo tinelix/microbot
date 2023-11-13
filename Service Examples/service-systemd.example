@@ -1,5 +1,8 @@
 # Microbot service example for systemd
-# Rename service-systemd.example to [service-name].service and put to /etc/systemd/system
+#
+# INSTRUCTIONS:
+# 1. Rename service-systemd.example to [service-name].service and put to /etc/systemd/system
+# 2. Enable service with command: systemctl enable microbot-discord
 
 [Unit]
 Description=Microbot Discord service
