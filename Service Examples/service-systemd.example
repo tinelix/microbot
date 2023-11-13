@@ -1,3 +1,6 @@
+# Microbot service example for systemd
+# Rename service-systemd.example to [service-name].service and put to /etc/systemd/system
+
 [Unit]
 Description=Microbot Discord service
 WorkingDirectory=/var/bots/microbot
