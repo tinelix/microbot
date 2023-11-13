@@ -11,7 +11,7 @@ start_pre()
 
 start() {
 	echo "Microbot for Discord running as daemon..." 
-	PATH=/home/[user]/py-env/bin:$PATH  		 # Add Python with Virtual Environment path
+	PATH=~/py-env/bin:$PATH  		 # Add Python with Virtual Environment path
 	/var/bots/microbot/discord.sh & 			 # Running Python process as daemon
 	sleep 5 									 # Required delay before bot start
 	BOT_PID=$!

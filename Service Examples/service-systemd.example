@@ -8,10 +8,10 @@
 
 [Unit]
 Description=Microbot Discord service
-WorkingDirectory=/var/bots/microbot
 
 [Service]
-Environment="PATH=/home/[user]/py-env/bin:$PATH"
+Environment="PATH=~/py-env/bin:$PATH"
+WorkingDirectory=/var/api-bots/microbot
 ExecStart=/var/bots/microbot/discord.sh
 Type=notify
 
