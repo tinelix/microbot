@@ -93,7 +93,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
             translator.translate('embed_fields', 'about_hardwf', language), translator.translate('embed_fields', 'about_hardwv', language).format(cpuinfo.get_cpu_info()['brand_raw'], round(cpuinfo.get_cpu_info()['hz_advertised'][0] / 1000000, 2), ram, os_ver), inline=False
         )
     except:
-    msg_embed.add_field(
+        msg_embed.add_field(
             translator.translate('embed_fields', 'about_hardwf', language), translator.translate('embed_fields', 'about_hardwv', language).format(cpuinfo.get_cpu_info()['brand_raw'], "?", ram, os_ver), inline=False
         )
 
