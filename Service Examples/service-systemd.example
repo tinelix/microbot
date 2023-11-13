@@ -1,0 +1,12 @@
+[Unit]
+Description=Microbot Discord service
+WorkingDirectory=/var/bots/microbot
+
+[Service]
+Environment="PATH=/home/tretdm/py-env/bin:$PATH"
+ExecStart=/var/bots/microbot/discord.sh
+Type=notify
+
+[Install]
+WantedBy=default.target
+RequiredBy=network.target
