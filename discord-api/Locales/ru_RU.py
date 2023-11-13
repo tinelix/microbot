@@ -131,7 +131,7 @@ def _tr(where, str):
             'about_linksv4': '[Сервер поддержки]({0})',
             'about_linksv5': '[Донат]({0})',
             'about_licensesf': 'О лицензиях',
-            'about_licensesv': 'Это свободное программное обеспечение с открытым исходным кодом, предназначенное для работы с сетевыми API и распространяемое в соответствии с условиями [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) и [GNU Affero GPL 3.0 (или выше)](https://www.gnu.org/licenses/agpl-3.0.html).',
+            'about_licensesv': 'Это свободное программное обеспечение с открытым исходным кодом, предназначенное для работы с сетевыми API и распространяемое в соответствии с условиями [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) и/или [GNU Affero GPL 3.0 (или выше)](https://www.gnu.org/licenses/agpl-3.0.html).',
             'user_nickf': 'Псевдоним',
             'user_nickv': '{0}',
             'user_nickvn': '*Отсутствует*',
