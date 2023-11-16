@@ -64,14 +64,14 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
     msg_embed.set_author(name=str(translator.translate('embed_title', 'about', language)))
     license = ''
     if(config['license'] == 1):
-        license = 'combo'
+        license = 'AGPLv3+ & Apache 2.0 Edition'
     elif(config['license'] == 2):
-        license = 'agplv3'
+        license = 'AGPLv3+ Edition'
     else:
-        license = 'apache2'
+        license = 'Apache 2.0 Edition'
     if(config['name'] == 'Microbot'):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'] + "-" + license, version['version_date']), inline=True
+            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']) + "\r\n_" license + "_", inline=True
         )
     else:
        msg_embed.add_field(
