@@ -71,7 +71,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         license = 'Apache 2.0 Edition'
     if(config['name'] == 'Microbot'):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']) + "\r\n_" license + "_", inline=True
+            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']) + "\r\n_" + license + "_", inline=True
         )
     else:
        msg_embed.add_field(
