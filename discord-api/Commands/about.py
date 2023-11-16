@@ -75,7 +75,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         )
     else:
        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_versf2', language).format(version['original_name']), translator.translate('embed_fields', 'about_versv', language).format(version['version'] + "-" + license, version['version_date']), inline=True
+            translator.translate('embed_fields', 'about_versf2', language).format(version['original_name']), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']) + "\r\n_" + license + "_", inline=True
        )
     if(dev == None):
         pass
