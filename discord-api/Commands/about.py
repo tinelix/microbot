@@ -62,13 +62,20 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
         colour=config['accent_def']
     )
     msg_embed.set_author(name=str(translator.translate('embed_title', 'about', language)))
+    license = ''
+    if(config['license'] == 1):
+        license = 'combo'
+    elif(config['license'] == 2):
+        license = 'agplv3'
+    else:
+        license = 'apache2'
     if(config['name'] == 'Microbot'):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']), inline=True
+            translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(version['version'] + "-" + license, version['version_date']), inline=True
         )
     else:
        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_versf2', language).format(version['original_name']), translator.translate('embed_fields', 'about_versv', language).format(version['version'], version['version_date']), inline=True
+            translator.translate('embed_fields', 'about_versf2', language).format(version['original_name']), translator.translate('embed_fields', 'about_versv', language).format(version['version'] + "-" + license, version['version_date']), inline=True
        )
     if(dev == None):
         pass

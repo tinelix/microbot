@@ -1,2 +1,3 @@
 
 discord-api/config.py
+*.pyc

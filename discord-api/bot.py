@@ -33,6 +33,8 @@ from cogs import Commands, Listeners
 # 3. Importing bot configuration
 from config import *
 
+setupwiz.gen_config_file(sys, config, links)
+
 # 4. Set the logger
 def write_log_file(text):
     log_file = open("microbot-discord.log", "w+")
@@ -67,6 +69,7 @@ async def get_guild_prefix(bot, message):
             return config['prefix']
     except Exception as e:
         return config['prefix']
+
 
 # 7. Creating Discord bot instance with all intents
 print(" Preparing to running {0}...".format(config['name']))
