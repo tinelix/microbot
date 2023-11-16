@@ -3,7 +3,7 @@
 # INSTRUCTIONS:
 # 1. Rename service-systemd.example to [service-name].service and put to /etc/systemd/system
 # 2. Enable service with commands:
-#    systemctl enable microbot-discord
+#    systemctl enable [service-name]
 #    systemctl daemon-reload
 
 [Unit]
