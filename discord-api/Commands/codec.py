@@ -170,6 +170,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, b
 
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, decode, text, binary):
     try:
+        await ctx.response.defer()
         arg = ""
         if(encode != ""):
             arg = str("-e " + encode + " " + text).split(" ")
