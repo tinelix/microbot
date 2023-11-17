@@ -164,6 +164,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, bi
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, binary):
     try:
+        print(arg)
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary)
         await ctx.reply(embed=msg_embed, mention_author=False)
     except:
