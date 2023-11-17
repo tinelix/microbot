@@ -174,9 +174,9 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, 
         await ctx.response.defer()
         arg = [""]
         if(encode != ""):
-            arg = str("/codec -e " + encode + " " + text).split(" ")
-        if(decode != ""):
-            arg = str("/codec -d " + decode + " " + text).split(" ")
+            arg = str("-e " + encode + " " + text).split(" ")
+        elif(decode != ""):
+            arg = str("-d " + decode + " " + text).split(" ")
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary)
         await ctx.reply(embed=msg_embed)
     except:
