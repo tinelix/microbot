@@ -291,7 +291,7 @@ class Commands(commands.Cog):
         now = datetime.datetime.now(datetime.timezone.utc).astimezone()
         await codec.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, binary)
 
-    @commands.command(name="codec", description=translator.translate('command_description', 'codec', 'en_US'))
+    @commands.slash_command(name="codec", description=translator.translate('command_description', 'codec', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def codec_scmd(self, ctx, encode: str = "", decode: str = ""):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
