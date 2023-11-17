@@ -167,10 +167,15 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, b
     except:
         pass
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, binary):
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, decode, binary):
     try:
+        arg = ""
+        if(encode != ""):
+            arg = "-e " + encode
+        if(decode != ""):
+            arg = "-d " + decode
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary)
-        await ctx.send(embed=msg_embed)
+        await ctx.reply(embed=msg_embed)
     except:
         pass
 
