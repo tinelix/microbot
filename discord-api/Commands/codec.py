@@ -20,6 +20,7 @@ name = 'codec'
 hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary):
+    msg_embed = None
     if(len(arg) >= 2):
         if(arg[0] == '-d'):
             if(arg[1] == 'base64'):
@@ -155,7 +156,6 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, bi
             else:
                 await sendHelpMsg(ctx, bot, config, language, disnake, translator)
         else:
-            print("Error if-else #2")
             await sendHelpMsg(ctx, bot, config, language, disnake, translator)
     else:
         await sendHelpMsg(ctx, bot, config, language, disnake, translator)
@@ -171,7 +171,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, b
 async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, decode, text, binary):
     try:
         await ctx.response.defer()
-        arg = ""
+        arg = [""]
         if(encode != ""):
             arg = str("-e " + encode + " " + text).split(" ")
         if(decode != ""):
