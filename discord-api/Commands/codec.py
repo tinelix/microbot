@@ -153,13 +153,11 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, bi
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', language), translator.translate('embed_fields', 'codec_algv', language).format(algoritm), inline=False)
             else:
-                print("Error if-else #3")
                 await sendHelpMsg(ctx, bot, config, language, disnake, translator)
         else:
             print("Error if-else #2")
             await sendHelpMsg(ctx, bot, config, language, disnake, translator)
     else:
-        print("Error if-else #1")
         await sendHelpMsg(ctx, bot, config, language, disnake, translator)
     return msg_embed
 
@@ -174,9 +172,9 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, 
     try:
         arg = ""
         if(encode != ""):
-            arg = "-e " + encode + " " + text
+            arg = str("-e " + encode + " " + text).split(" ")
         if(decode != ""):
-            arg = "-d " + decode + " " + text
+            arg = str("-d " + decode + " " + text).split(" ")
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary)
         await ctx.reply(embed=msg_embed)
     except:
