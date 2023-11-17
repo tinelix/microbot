@@ -21,6 +21,7 @@ hidden = False
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary):
     msg_embed = None
+    result = None
     if(len(arg) >= 2):
         if(arg[0] == '-d'):
             if(arg[1] == 'base64'):
@@ -173,9 +174,9 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, 
         await ctx.response.defer()
         arg = [""]
         if(encode != ""):
-            arg = str("-e " + encode + " " + text).split(" ")
+            arg = str("/codec -e " + encode + " " + text).split(" ")
         if(decode != ""):
-            arg = str("-d " + decode + " " + text).split(" ")
+            arg = str("/codec -d " + decode + " " + text).split(" ")
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary)
         await ctx.reply(embed=msg_embed)
     except:
