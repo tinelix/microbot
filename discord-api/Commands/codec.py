@@ -177,6 +177,7 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, 
             arg = str("-e " + encode + " " + text).split(" ")
         elif(decode != ""):
             arg = str("-d " + decode + " " + text).split(" ")
+        print(arg)
         msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, binary)
         await ctx.reply(embed=msg_embed)
     except:
