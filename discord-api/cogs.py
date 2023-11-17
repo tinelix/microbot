@@ -293,13 +293,13 @@ class Commands(commands.Cog):
 
     @commands.slash_command(name="codec", description=translator.translate('command_description', 'codec', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
-    async def codec_scmd(self, ctx, encode: str = "", decode: str = ""):
+    async def codec_scmd(self, ctx, encode: str = "", decode: str = "", *, text):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         language = guild_data[2]
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
         self.tz = pytz.timezone(user_data[5])
         now = datetime.datetime.now(datetime.timezone.utc).astimezone()
-        await codec.sendSlashMsg(ctx, self.bot, config, language, disnake, translator, encode, decode, binary)
+        await codec.sendSlashMsg(ctx, self.bot, config, language, disnake, translator, encode, decode, text, binary)
 
     @commands.command(name="timers", description=translator.translate('command_examples', 'timers', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
