@@ -153,10 +153,13 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, bi
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', language), translator.translate('embed_fields', 'codec_algv', language).format(algoritm), inline=False)
             else:
+                print("Error if-else #3")
                 await sendHelpMsg(ctx, bot, config, language, disnake, translator)
         else:
+            print("Error if-else #2")
             await sendHelpMsg(ctx, bot, config, language, disnake, translator)
     else:
+        print("Error if-else #1")
         await sendHelpMsg(ctx, bot, config, language, disnake, translator)
     return msg_embed
 
