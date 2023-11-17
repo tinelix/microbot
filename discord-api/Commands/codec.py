@@ -167,7 +167,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, b
     except:
         pass
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, decode, binary):
+async def sendSlashMsg(ctx, bot, config, language, disnake, translator, encode, decode, text, binary):
     try:
         arg = ""
         if(encode != ""):
