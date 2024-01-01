@@ -20,7 +20,7 @@ import urllib
 name = 'wiki'
 hidden = False
 
-async def generateEmbed(ctx, inst, config, language, disnake, translator, arg):
+async def generateEmbed(ctx, inst, config, disnake, translator, arg):
         if(language == "ru_RU"):
             wikipedia.set_lang("ru")
         else:
@@ -65,7 +65,7 @@ async def sendSlashMsg(ctx, inst, config, disnake, translator, arg):
     await ctx.send(embed=msg_embed)
 
 async def sendRegularMsg(ctx, inst, config, disnake, translator, arg):
-    msg_embed = await generateEmbed(ctx, inst, config,  disnake, translator, arg)
+    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
 async def sendHelpMsg(ctx, bot, config, disnake, translator):
