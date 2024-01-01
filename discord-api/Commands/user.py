@@ -120,11 +120,11 @@ async def sendSlashMsg(ctx, inst, config, language, disnake, translator, arg):
                 user = None
         msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, user, member)
         class AvatarByButton(disnake.ui.View):
-            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', inst.language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
                 avatar_embed = disnake.Embed(
                     colour=config['accent_def'],
-                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name))
+                ).set_image(user.display_avatar.url).set_author(name=str(translator.translate('embed_title', 'avatar', inst.language)).format(user.name))
                 await interaction.response.send_message(embed=avatar_embed)
         await ctx.response.send_message(embed=msg_embed, view=AvatarByButton())
     except:
@@ -147,7 +147,7 @@ async def sendRegularMsg(ctx, inst, config, disnake, translator, arg):
                 user = None
         msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, user, member)
         class AvatarByButton(disnake.ui.View):
-            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', inst.language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
                 avatar_embed = disnake.Embed(
                     colour=config['accent_def'],
