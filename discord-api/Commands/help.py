@@ -19,7 +19,7 @@ hidden = False
 async def generateEmbed(ctx, inst, config, links, version, disnake, translator):
     prefixes_list = f"`{config['prefix']}` "
     commands_list = ""
-    prefixes = await bot.get_prefix(ctx)
+    prefixes = await inst.bot.get_prefix(ctx)
 
     for prefix in prefixes:
         if(prefix != config['prefix']):
@@ -40,15 +40,15 @@ async def generateEmbed(ctx, inst, config, links, version, disnake, translator):
         translator.translate('embed_fields', 'help_preff', inst.language), translator.translate('embed_fields', 'help_prefv', inst.language).format(prefixes_list), inline=False
     ).set_footer(text=msg_footer).set_author(name=str(translator.translate('embed_title', 'help', language)))
 
-    for category in bot.commands_list.keys():
+    for category in inst.bot.commands_list.keys():
         commands_list = ''
-        for command in bot.commands_list[category]:
-            if(bot.commands_list[category].index(command) < len(bot.commands_list[category]) - 1):
+        for command in inst.bot.commands_list[category]:
+            if(inst.bot.commands_list[category].index(command) < len(bot.commands_list[category]) - 1):
                 commands_list += "`{0}` ".format(command)
             else:
                 commands_list += "`{0}`".format(command)
         msg_embed.add_field(
-            translator.translate('command_categories', category, language), commands_list, inline=False
+            translator.translate('command_categories', category, inst.language), commands_list, inline=False
         )
     return msg_embed
 
