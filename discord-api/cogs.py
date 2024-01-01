@@ -157,7 +157,7 @@ class Commands(commands.Cog):
     async def settings_cmd(self, ctx, *arg):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         user_data = await sync_db(self, ctx, 'users', 'regular')
-        await settings.sendRegularMsg(ctx, self, config, language, disnake,
+        await settings.sendRegularMsg(ctx, self, config, disnake,
                                       translator, arg, db, guild_data, user_data)
 
     @commands.slash_command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
