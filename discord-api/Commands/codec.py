@@ -47,7 +47,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         colour=config['accent_def']
                     )
                 except:
-                    result = translator.translate('embed_fields', 'codec_derrv', language)
+                    result = translator.translate('embed_fields', 'codec_derrv', inst.language)
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
@@ -62,7 +62,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         colour=config['accent_def']
                     )
                 except:
-                    result = translator.translate('embed_fields', 'codec_derrv', language)
+                    result = translator.translate('embed_fields', 'codec_derrv', inst.language)
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
@@ -108,13 +108,13 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         colour=config['accent_def']
                     )
                 except:
-                    result = translator.translate('embed_fields', 'codec_eerrv', language)
+                    result = translator.translate('embed_fields', 'codec_eerrv', inst.language)
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', inst.language)))
-                msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', language), translator.translate('embed_fields', 'codec_resulv', inst.language).format(result), inline=False)
-                msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
+                msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', inst.language).format(result), inline=False)
+                msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', inst.language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
             elif(arg[1] == 'base16'):
                 algoritm = "Base16"
                 try:
@@ -123,13 +123,13 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         colour=config['accent_def']
                     )
                 except:
-                    result = translator.translate('embed_fields', 'codec_eerrv', language)
+                    result = translator.translate('embed_fields', 'codec_eerrv', inst.language)
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', inst.language)))
-                msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', language), translator.translate('embed_fields', 'codec_resulv', inst.language).format(result), inline=False)
-                msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
+                msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', inst.language).format(result), inline=False)
+                msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', inst.language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
             elif(arg[1] == 'binary'):
                 algoritm = translator.translate('embed_fields', 'codec_algv2', language)
                 try:
