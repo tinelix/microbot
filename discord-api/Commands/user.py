@@ -145,7 +145,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, t
             else:
                 member = None
                 user = None
-        msg_embed = await generateEmbed(ctx, inst, config, language, disnake, translator, user, member)
+        msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, user, member)
         class AvatarByButton(disnake.ui.View):
             @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'user_avatar', language))
             async def show_avatar(self, button: disnake.ui.Button, interaction: disnake.Interaction):
