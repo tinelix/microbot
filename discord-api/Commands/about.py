@@ -113,7 +113,7 @@ async def editEmbed(ctx, inst, config, links, disnake, translator, python_versio
     if(len(links['repo']) > 0):
         links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv3', inst.language).format(links['repo']))
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_licensesf', inst.language), translator.translate('embed_fields', 'about_licensesv', language), inline=False
+            translator.translate('embed_fields', 'about_licensesf', inst.language), translator.translate('embed_fields', 'about_licensesv', inst.language), inline=False
         )
     if(len(links['support']) > 0):
         links_str += "{0}\r\n".format(translator.translate('embed_fields', 'about_linksv4', inst.language).format(links['support']))
