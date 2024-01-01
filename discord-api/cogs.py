@@ -357,7 +357,7 @@ async def sync_db(self, ctx, table, message_type):
             self.cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.message.author.id))
             user_data = self.cursor.fetchone()
         # for guild values sync and cooldown
-        if(await db.if_guild_existed(self.bot.database, cursor, ctx.message.guild.id) == True):
+        if(await db.if_guild_existed(self.bot.database, self.cursor, ctx.message.guild.id) == True):
             self.cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.message.guild.id))
             guild_data = self.cursor.fetchone()
             await db.update_value(ctx, self.bot.database, self.cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
