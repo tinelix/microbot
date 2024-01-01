@@ -51,7 +51,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', language)))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', inst.language)))
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', inst.language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', inst.language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
             elif(arg[1] == 'base16'):
@@ -77,12 +77,11 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         colour=config['accent_def']
                     )
                 except Exception as e:
-                    print(e)
                     result = translator.translate('embed_fields', 'codec_derrv', inst.language)
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', language)))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', inst.language)))
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', inst.language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
         elif(arg[0] == '-e'):
@@ -98,7 +97,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                     msg_embed = disnake.Embed(
                         colour=config['accent_err']
                     )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', language)))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', inst.language)))
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', inst.language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
             elif(arg[1] == 'base32'):
@@ -140,7 +139,6 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         try:
                             result += binary.encode()[letter]
                         except Exception as e:
-                            print(e)
                             result += '[?]'
                     msg_embed = disnake.Embed(
                         colour=config['accent_def']
