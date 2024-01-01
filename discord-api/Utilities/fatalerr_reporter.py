@@ -39,6 +39,7 @@ async def showCommandExample(ctx, config, msg_type, translator):
             command_example = '*Unknown*'
     elif(msg_type == 'slash'):
         command_example = '```/{0}```'.format(ctx.application_command.name)
+    return command_example
 
 async def generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type, command_example):
     msg_embed = disnake.Embed(

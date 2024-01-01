@@ -338,7 +338,7 @@ class Listeners(commands.Cog):
         error_list = []
         error_text = "".join(traceback.TracebackException.from_exception(error).format())
         if(config['bugs_ch'] > 0):
-            await fatalerr_reporter.send(ctx, self.bot, config, version, language, disnake, translator, error_text, 'slash')
+            await fatalerr_reporter.send(ctx, self, config, version, disnake, translator, error_text, 'slash')
         else:
             print(' BUGREPORT:\r\n{0}'.format(error_text))
 
