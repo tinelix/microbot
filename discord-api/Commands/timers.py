@@ -118,7 +118,7 @@ async def generateTimersEmbed(ctx, inst, config, disnake, translator, db):
     return msg_embed
 
 async def sendRegularMsgWithoutArgs(ctx, inst, config, disnake, translator, db):
-    msg_embed = await generateTimersEmbed(ctx, inst, config, language, disnake, translator, db)
+    msg_embed = await generateTimersEmbed(ctx, inst, config, disnake, translator, db)
     class TimerByButtons(disnake.ui.View):
         @disnake.ui.button(style=disnake.ButtonStyle.green, label=translator.translate('button', 'timers_create', inst.language))
         async def create_timer(self, button: disnake.ui.Button, interaction: disnake.Interaction):
