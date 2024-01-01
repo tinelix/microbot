@@ -347,7 +347,7 @@ async def sync_db(self, ctx, table, message_type):
         self.cursor = self.bot.database.cursor()
         self.database = self.bot.database
         # for user values sync
-        if(await db.if_user_existed(self.bot.database, cursor, ctx.message.author.id) == True):
+        if(await db.if_user_existed(self.bot.database, self.cursor, ctx.message.author.id) == True):
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.message.author.id))
             user_data = cursor.fetchone()
             await db.update_value(ctx, self.bot.database, self.cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.message.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.message.author.id)
