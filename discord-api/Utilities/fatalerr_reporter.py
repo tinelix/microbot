@@ -13,7 +13,7 @@
 #   Please see each file in the implementation for copyright and licensing
 #   information, (in the opening comment of each file).
 
-async def generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type):
+async def showCommandExample(config, msg_type, translator):
     if(msg_type == 'regular'):
         if(ctx.message.content.startswith('{0}help'.format(config['prefix']))):
             command_example = translator.translate('command_examples', 'help', 'en_US')
@@ -40,6 +40,7 @@ async def generateBrEmbed(ctx, inst, config, version, disnake, translator, error
     elif(msg_type == 'slash'):
         command_example = '```/{0}```'.format(ctx.application_command.name)
 
+async def generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type, command_example):
     msg_embed = disnake.Embed(
         title='Fatal error report',
         description='```{0}```'.format(error),
@@ -61,10 +62,11 @@ async def generateEmbed(ctx, inst, config, version, disnake, translator, error):
 
 async def send(ctx, inst, config, version, disnake, translator, error, msg_type):
     msg_embed = await generateEmbed(ctx, inst, config, version, disnake, translator, error)
+    command_example = await showCommandExample(config, msg_type, translator);
     if(config['bugs_ch'] > 0):
         try:
             channel = bot.get_channel(config['bugs_ch'])
-            msg_bug_embed = await generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type)
+            msg_bug_embed = await generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type, command_example)
             await channel.send(embed=msg_bug_embed)
         except:
             print(' WE\'VE GOT SOMETHING BROKEN!\r\n\r\n {0}\r\n\r\n How to reproduce the fatal error? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), version['version'], version['version_date']))
