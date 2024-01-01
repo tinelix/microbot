@@ -16,7 +16,7 @@
 name = 'publish'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
+async def generateEmbed(ctx, inst, config, disnake, translator, arg):
     community = ""
     for guild_feature in ctx.message.guild.features:
         if guild_feature == "COMMUNITY":
@@ -24,9 +24,9 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     if(community != "COMMUNITY"):
         msg_embed = disnake.Embed(
             colour=config['accent_err'],
-            description=translator.translate('embed_description', 'publish_isntcomm', language)
+            description=translator.translate('embed_description', 'publish_isntcomm', inst.language)
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', inst.language)))
     elif(str(ctx.message.channel.type) == "news"):
         if(len(ctx.message.attachments) >= 1):
             attachment_url = ctx.message.attachments[0].url
@@ -36,18 +36,18 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
             colour=config['accent_def'],
             description=arg
         )
-        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', language).format(ctx.message.author.global_name, ctx.message.author.name))
+        msg_embed.set_author(name=translator.translate('embed_title', 'msg_author', inst.language).format(ctx.message.author.global_name, ctx.message.author.name))
         if(attachment_url != None):
             msg_embed.set_image(attachment_url)
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_err'],
-            description=translator.translate('embed_description', 'publish_isntnewsch', language)
+            description=translator.translate('embed_description', 'publish_isntnewsch', inst.language)
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', inst.language)))
     return msg_embed
 
-async def generateSlashEmbed(ctx, bot, config, language, disnake, translator, arg):
+async def generateSlashEmbed(ctx, inst, config, disnake, translator, arg):
     community = ""
     for guild_feature in ctx.guild.features:
         if guild_feature == "COMMUNITY":
@@ -55,9 +55,9 @@ async def generateSlashEmbed(ctx, bot, config, language, disnake, translator, ar
     if(community != "COMMUNITY"):
         msg_embed = disnake.Embed(
             colour=config['accent_err'],
-            description=translator.translate('embed_description', 'publish_isntcomm', language)
+            description=translator.translate('embed_description', 'publish_isntcomm', inst.language)
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', inst.language)))
     elif(str(ctx.channel.type) == "news"):
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
@@ -67,14 +67,14 @@ async def generateSlashEmbed(ctx, bot, config, language, disnake, translator, ar
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_err'],
-            description=translator.translate('embed_description', 'publish_isntnewsch', language)
+            description=translator.translate('embed_description', 'publish_isntnewsch', inst.language)
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', inst.language)))
     return msg_embed
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
+async def sendRegularMsg(ctx, inst, config, disnake, translator, arg):
     try:
-        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
         msg = await ctx.send(embed=msg_embed)
         community = ""
         for guild_feature in ctx.message.guild.features:
@@ -86,9 +86,9 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     except:
         pass
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
+async def sendSlashMsg(ctx, inst, config, disnake, translator, arg):
     try:
-        msg_embed = await generateSlashEmbed(ctx, bot, config, language, disnake, translator, arg)
+        msg_embed = await generateSlashEmbed(ctx, inst, config, disnake, translator, arg)
         msg = await ctx.channel.send(embed=msg_embed)
         community = ""
         for guild_feature in ctx.guild.features:
@@ -100,9 +100,9 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
     except:
         pass
 
-async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
+async def sendHelpMsg(ctx, bot, config, disnake, translator):
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'cmd_help', language)).format('user'),
+        title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format('user'),
         description=str(translator.translate('command_description', 'avatar', 'ru_RU')),
         colour=config['accent_def'],
     )

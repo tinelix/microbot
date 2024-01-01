@@ -131,13 +131,13 @@ class Commands(commands.Cog):
     async def guild_cmd(self, ctx):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         user_data = await sync_db(self, ctx, 'users', 'regular')
-        await guild.sendRegularMsg(ctx, self, config, language, disnake, translator, self.tz)
+        await guild.sendRegularMsg(ctx, self, config, disnake, translator)
 
     @commands.slash_command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
     async def guild_scmd(self, ctx):
         guild_data = await sync_db(self, ctx, 'guilds', 'slash')
         user_data = await sync_db(self, ctx, 'users', 'slash')
-        await guild.sendSlashMsg(ctx, self, config, disnake, translator, self.tz)
+        await guild.sendSlashMsg(ctx, self, config, disnake, translator)
 
     @commands.command(name="calc", description=translator.translate('command_description', 'calc', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
