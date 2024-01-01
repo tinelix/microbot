@@ -61,8 +61,8 @@ async def generateEmbed(ctx, inst, config, version, disnake, translator, error):
     return msg_embed
 
 async def send(ctx, inst, config, version, disnake, translator, error, msg_type):
+    command_example = await showCommandExample(ctx, config, msg_type, translator)
     msg_embed = await generateEmbed(ctx, inst, config, version, disnake, translator, error)
-    command_example = await showCommandExample(ctx, config, msg_type, translator);
     if(config['bugs_ch'] > 0):
         try:
             channel = bot.get_channel(config['bugs_ch'])
