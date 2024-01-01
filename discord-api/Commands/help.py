@@ -38,7 +38,7 @@ async def generateEmbed(ctx, inst, config, links, version, disnake, translator):
         colour=config['accent_def']
     ).add_field(
         translator.translate('embed_fields', 'help_preff', inst.language), translator.translate('embed_fields', 'help_prefv', inst.language).format(prefixes_list), inline=False
-    ).set_footer(text=msg_footer).set_author(name=str(translator.translate('embed_title', 'help', language)))
+    ).set_footer(text=msg_footer).set_author(name=str(translator.translate('embed_title', 'help', inst.language)))
 
     for category in inst.bot.commands_list.keys():
         commands_list = ''
