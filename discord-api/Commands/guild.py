@@ -16,39 +16,39 @@ import re
 name = 'guild'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, tz):
+async def generateEmbed(ctx, inst, config, disnake, translator):
     guild = ctx.guild
     try:
-        guild_pr = await bot.fetch_guild_preview(ctx.guild.id)
+        guild_pr = await inst.bot.fetch_guild_preview(ctx.guild.id)
     except:
         guild_pr = None
-    owner = bot.get_user(guild.owner_id)
+    owner = inst.bot.get_user(guild.owner_id)
 
     badges = ''
 
     for guild_feature in guild.features:
         if(guild.features.index(guild_feature) == 0):
             if guild_feature == "AUTO_MODERATION":
-                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv', language))
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv', inst.language))
             elif guild_feature == "COMMUNITY":
-                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv2', language))
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv2', inst.language))
             elif guild_feature == "NEWS":
-                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv3', language))
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv3', inst.language))
             elif guild_feature == "TEXT_IN_VOICE_ENABLED":
-                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv4', language))
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv4', inst.language))
             elif guild_feature == "WELCOME_SCREEN_ENABLED":
-                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv5', language))
+                badges += '`{0}`'.format(translator.translate('embed_fields', 'guild_featurv5', inst.language))
         else:
             if guild_feature == "AUTO_MODERATION":
-                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv', language))
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv', inst.language))
             elif guild_feature == "COMMUNITY":
-                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv2', language))
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv2', inst.language))
             elif guild_feature == "NEWS":
-                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv3', language))
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv3', inst.language))
             elif guild_feature == "TEXT_IN_VOICE_ENABLED":
-                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv4', language))
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv4', inst.language))
             elif guild_feature == "WELCOME_SCREEN_ENABLED":
-                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv5', language))
+                badges += '\r\n`{0}`'.format(translator.translate('embed_fields', 'guild_featurv5', inst.language))
 
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
@@ -63,15 +63,15 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, tz):
         msg_embed.description = guild.description.replace('_', '\_').replace('`', '\`').replace('*', '\*').replace('~', '\~').replace('|', '\|').replace('>', '\>')
 
     if(guild.verification_level == disnake.VerificationLevel.none):
-        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv', language)
+        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv', inst.language)
     elif(guild.verification_level == disnake.VerificationLevel.low):
-        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv2', language)
+        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv2', inst.language)
     elif(guild.verification_level == disnake.VerificationLevel.medium):
-        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv3', language)
+        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv3', inst.language)
     elif(guild.verification_level == disnake.VerificationLevel.high):
-        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv4', language)
+        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv4', inst.language)
     elif(guild.verification_level == disnake.VerificationLevel.highest):
-        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv5', language)
+        verif_lvl = translator.translate('embed_fields', 'guild_mlvlv5', inst.language)
 
     people = 0
     bots = 0
@@ -86,18 +86,18 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, tz):
             online += 1
 
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_ownerf', language), translator.translate('embed_fields', 'guild_ownerv', language).format('<@{0}>'.format(owner.id), owner.global_name, owner.name), inline=True
+        translator.translate('embed_fields', 'guild_ownerf', inst.language), translator.translate('embed_fields', 'guild_ownerv', inst.language).format('<@{0}>'.format(owner.id), owner.global_name, owner.name), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_crtf', language), translator.translate('embed_fields', 'guild_crtv', language).format(translator.formatDate(guild.created_at.astimezone(tz), 'normal', language)), inline=True
+        translator.translate('embed_fields', 'guild_crtf', inst.language), translator.translate('embed_fields', 'guild_crtv', inst.language).format(translator.formatDate(guild.created_at.astimezone(inst.tz), 'normal', inst.language)), inline=True
     )
     if(guild.premium_tier == 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'guild_blvlf', language), translator.translate('embed_fields', 'guild_blvlv', language).format(guild.premium_tier), inline=True
+            translator.translate('embed_fields', 'guild_blvlf', inst.language), translator.translate('embed_fields', 'guild_blvlv', inst.language).format(guild.premium_tier), inline=True
         )
     else:
         msg_embed.add_field(
-            translator.translate('embed_fields', 'guild_blvlf', language), translator.translate('embed_fields', 'guild_blvlv2', language).format(guild.premium_tier, guild.premium_subscription_count), inline=True
+            translator.translate('embed_fields', 'guild_blvlf', inst.language), translator.translate('embed_fields', 'guild_blvlv2', inst.language).format(guild.premium_tier, guild.premium_subscription_count), inline=True
         )
     msg_embed.add_field(
         translator.translate('embed_fields', 'guild_mlvlf', language), verif_lvl, inline=False
@@ -108,30 +108,30 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, tz):
 
     if(len(badges) > 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'guild_featurf', language), badges, inline=True
+            translator.translate('embed_fields', 'guild_featurf', inst.language), badges, inline=True
         )
 
     if(guild.rules_channel != None):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'guild_rulesf', language), translator.translate('embed_fields', 'guild_rulesv', language).format(f'<#{guild.rules_channel.id}>'), inline=False
+            translator.translate('embed_fields', 'guild_rulesf', inst.language), translator.translate('embed_fields', 'guild_rulesv', inst.language).format(f'<#{guild.rules_channel.id}>'), inline=False
         )
 
     msg_embed.set_footer(text='ID: {0}'.format(guild.id))
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, tz):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, tz)
+async def sendSlashMsg(ctx, inst, config, disnake, translator):
+    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator)
     await ctx.response.send_message(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, tz):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, tz)
+async def sendRegularMsg(ctx, inst, config, disnake, translator):
+    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
-async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
+async def sendHelpMsg(ctx, inst, config, disnake, translator):
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'cmd_help', language)).format('user'),
-        description=str(translator.translate('command_description', 'avatar', 'ru_RU')),
+        title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format('user'),
+        description=str(translator.translate('command_description', 'avatar', inst.language)),
         colour=config['accent_def'],
     )
-    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', 'ru_RU'), translator.translate('command_examples', 'user', 'ru_RU').format(config['prefix']), inline=False)
+    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language), translator.translate('command_examples', 'user', inst.language).format(config['prefix']), inline=False)
     await ctx.send(embed=msg_embed)
