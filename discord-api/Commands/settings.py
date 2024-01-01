@@ -95,7 +95,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, db, guild_d
                             translator.translate('embed_fields', 'settings_availoptv', inst.language), inline=False)
     return msg_embed
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data):
+async def sendRegularMsg(ctx, inst, config, disnake, translator, arg, db, guild_data, user_data):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db,
                                     database, cursor, guild_data, user_data, 'default')
     class SettingsByButton(disnake.ui.View):
