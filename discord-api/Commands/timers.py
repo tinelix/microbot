@@ -35,7 +35,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, db):
                 timer_name = re.search('-Cr (.+?) -t', arg).group(1)
                 timer_action_date = re.search('-t (.+?) -e', arg).group(1)
                 timer_actiondt = datetime.datetime.strptime(timer_action_date, "%Y-%m-%d %H:%M:%S")
-                remaining_time = timer_actiondt.astimezone(tz) - current_dt.astimezone(inst.tz)
+                remaining_time = timer_actiondt.astimezone(inst.tz) - current_dt.astimezone(inst.tz)
                 if(remaining_time.total_seconds() >= 0):
                     emoji = re.search('-e (.+?)', arg).group(1)
                     await db.add_timer_value(inst.database, author_id, emoji, timer_name, timer_action_date, 'remaining', inst.cursor)
@@ -58,7 +58,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, db):
                 timer_name = re.search('-Ce (.+?) -t', arg).group(1)
                 timer_action_date = re.search('-t (.+?) -e', arg).group(1)
                 timer_actiondt = datetime.datetime.strptime(timer_action_date, "%Y-%m-%d %H:%M:%S")
-                elapsed_time = current_dt.astimezone(tz) - timer_actiondt.astimezone(tz)
+                elapsed_time = current_dt.astimezone(inst.tz) - timer_actiondt.astimezone(inst.tz)
                 if(elapsed_time.total_seconds() >= 0):
                     emoji = re.search('-e (.+?)', arg).group(1)
                     await db.add_timer_value(inst.database, author_id, emoji, timer_name, timer_action_date, 'elapsed', inst.cursor)
