@@ -79,26 +79,26 @@ class Commands(commands.Cog):
     async def user_cmd(self, ctx, arg):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         user_data = await sync_db(self, ctx, 'users', 'regular')
-        await user.sendRegularMsg(ctx, self.bot, config, disnake, translator, arg)
+        await user.sendRegularMsg(ctx, self, config, disnake, translator, arg)
 
     @commands.slash_command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
     async def user_scmd(self, ctx, member):
         guild_data = await sync_db(self, ctx, 'guilds', 'slash')
         user_data = await sync_db(self, ctx, 'users', 'slash')
-        await user.sendSlashMsg(ctx, self.bot, config, disnake, translator, member)
+        await user.sendSlashMsg(ctx, self, config, disnake, translator, member)
 
     @commands.command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def avatar_cmd(self, ctx, arg):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         user_data = await sync_db(self, ctx, 'users', 'regular')
-        await avatar.sendRegularMsg(ctx, self.bot, config, disnake, translator, arg)
+        await avatar.sendRegularMsg(ctx, self, config, disnake, translator, arg)
 
     @commands.slash_command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
     async def avatar_scmd(self, ctx, member):
         guild_data = await sync_db(self, ctx, 'guilds', 'slash')
         user_data = await sync_db(self, ctx, 'users', 'slash')
-        await avatar.sendSlashMsg(ctx, self.bot, config, disnake, translator, member)
+        await avatar.sendSlashMsg(ctx, self, config, disnake, translator, member)
 
     @commands.command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
