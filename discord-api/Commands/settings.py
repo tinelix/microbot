@@ -96,7 +96,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, db, guild_d
     return msg_embed
 
 async def sendRegularMsg(ctx, inst, config, disnake, translator, arg, db, guild_data, user_data):
-    msg_embed = await generateEmbed(ctx, inst, config, language, disnake, translator, arg, db,
+    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg, db,
                                     guild_data, user_data, 'default')
     class SettingsByButton(disnake.ui.View):
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🚩')
