@@ -390,7 +390,7 @@ async def sync_db(self, ctx, table, message_type):
             guild_data = cursor.fetchone()
             await db.update_value(ctx, self.bot.database, self.cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
         else:
-            language = 'en_US'
+            self.language = 'en_US'
             await db.add_guild_value(config, self.bot.database, ctx.guild, self.cursor)
             self.cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
             guild_data = cursor.fetchone()
