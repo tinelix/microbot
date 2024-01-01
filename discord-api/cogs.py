@@ -305,17 +305,16 @@ class Listeners(commands.Cog):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         custom_prefix = ''
         user_data = await sync_db(self, ctx, 'users', 'regular')
-        self.tz = pytz.timezone(user_data[5])
         for prefix in await self.bot.get_prefix(ctx.message):
             if(ctx.message.content.startswith(prefix)):
                 custom_prefix = prefix
         if isinstance(error, commands.MissingRequiredArgument):
             if(ctx.message.content == '{0}help'.format(config['prefix']) or ctx.message.content == '{0}help'.format(custom_prefix)):
-                await help.sendRegularMsg(ctx, self.bot, config, links, version, language, disnake, translator)
+                await help.sendRegularMsg(ctx, self, config, links, version, disnake, translator)
             elif(ctx.message.content == '{0}timers'.format(config['prefix']) or ctx.message.content == '{0}timers'.format(custom_prefix)):
-                await timers.sendRegularMsgWithoutArgs(ctx, self.bot, config, language, disnake, translator, db, self.bot.database, self.bot.cursor, self.tz)
+                await timers.sendRegularMsgWithoutArgs(ctx, self, config, disnake, translator, db)
             else:
-                await help.sendCmdHelpWithoutArgs(ctx, self.bot, config, language, disnake, translator)
+                await help.sendCmdHelpWithoutArgs(ctx, self, config, disnake, translator)
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
