@@ -85,13 +85,13 @@ async def generateEmbed(ctx, inst, config, disnake, translator, user, member):
         )
 
     msg_embed.add_field(
-        translator.translate('embed_fields', 'user_regdf', inst.language), translator.translate('embed_fields', 'user_regdv', inst.language).format(translator.formatDate(user.created_at.astimezone(tz), 'normal', inst.language)), inline=False
+        translator.translate('embed_fields', 'user_regdf', inst.language), translator.translate('embed_fields', 'user_regdv', inst.language).format(translator.formatDate(user.created_at.astimezone(inst.tz), 'normal', inst.language)), inline=False
     )
     if(member == None):
         pass
     else:
         msg_embed.add_field(
-            translator.translate('embed_fields', 'user_joinf', inst.language), translator.translate('embed_fields', 'user_joinv', inst.language).format(translator.formatDate(member.joined_at.astimezone(tz), 'normal', inst.language)), inline=False
+            translator.translate('embed_fields', 'user_joinf', inst.language), translator.translate('embed_fields', 'user_joinv', inst.language).format(translator.formatDate(member.joined_at.astimezone(inst.tz), 'normal', inst.language)), inline=False
         )
         msg_embed.add_field(
             translator.translate('embed_fields', 'user_statusf', inst.language), status, inline=True
@@ -107,14 +107,14 @@ async def sendSlashMsg(ctx, inst, config, language, disnake, translator, arg):
     try:
         try:
             query = int(re.search(r'\d+', arg).group())
-            user = bot.get_user(query)
+            user = inst.bot.get_user(query)
             member = ctx.guild.get_member(query)
         except:
             search_result = await ctx.guild.query_members(arg)
             if(len(search_result) > 0):
                 member = search_result[0]
                 member = ctx.guild.get_member(member.id) # dummy disnake not showing online status in 'search_members' function
-                user = bot.get_user(member.id)
+                user = inst.bot.get_user(member.id)
             else:
                 member = None
                 user = None
@@ -130,11 +130,11 @@ async def sendSlashMsg(ctx, inst, config, language, disnake, translator, arg):
     except:
         pass
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, tz):
+async def sendRegularMsg(ctx, inst, config, disnake, translator, arg):
     try:
         try:
             query = int(re.search(r'\d+', arg).group())
-            user = bot.get_user(query)
+            user = inst.bot.get_user(query)
             member = ctx.guild.get_member(query)
         except:
             search_result = await ctx.guild.query_members(arg)
@@ -157,7 +157,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, t
     except Exception as e:
         pass
 
-async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
+async def sendHelpMsg(ctx, bot, config, disnake, translator):
     msg_embed = disnake.Embed(
         title=str(translator.translate('embed_title', 'cmd_help', language)).format('user'),
         description=str(translator.translate('command_description', 'avatar', language)),
