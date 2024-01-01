@@ -142,7 +142,7 @@ async def generateWeatherEmbed(ctx, inst, config, tokens, disnake, translator, c
     weather = data.json()
     forecast = forecast_data.json()
 
-    current_conditions = getConditionsDescription(weather['weather'][0]['id'], translator, language)
+    current_conditions = getConditionsDescription(weather['weather'][0]['id'], translator, inst.language)
 
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
