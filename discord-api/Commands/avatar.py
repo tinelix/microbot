@@ -21,7 +21,7 @@ hidden = False
 async def generateEmbed(ctx, inst, config, disnake, translator, arg):
     try:
         query = int(re.search(r'\d+', arg).group())
-        user = bot.get_user(query)
+        user = inst.bot.get_user(query)
         member = ctx.guild.get_member(query)
     except:
         search_result = await ctx.guild.search_members(arg)
