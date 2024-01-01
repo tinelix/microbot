@@ -16,7 +16,7 @@
 name = 'help'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, links, version, language, disnake, translator):
+async def generateEmbed(ctx, inst, config, links, version, disnake, translator):
     prefixes_list = f"`{config['prefix']}` "
     commands_list = ""
     prefixes = await bot.get_prefix(ctx)
@@ -29,15 +29,15 @@ async def generateEmbed(ctx, bot, config, links, version, language, disnake, tra
                 prefixes_list += "`{0}`".format(prefix)
         msg_footer = ""
         if(config['name'] == 'Microbot'):
-            msg_footer = translator.translate('embed_footer', 'help', language).format(version['version'])
+            msg_footer = translator.translate('embed_footer', 'help', inst.language).format(version['version'])
         else:
-            msg_footer = translator.translate('embed_footer', 'help2', language).format(version['version'])
+            msg_footer = translator.translate('embed_footer', 'help2', inst.language).format(version['version'])
 
     msg_embed = disnake.Embed(
-        description=str(translator.translate('embed_description', 'help', language)).format(config['name'], config['prefix'], links['invite']),
+        description=str(translator.translate('embed_description', 'help', inst.language)).format(config['name'], config['prefix'], links['invite']),
         colour=config['accent_def']
     ).add_field(
-        translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language).format(prefixes_list), inline=False
+        translator.translate('embed_fields', 'help_preff', inst.language), translator.translate('embed_fields', 'help_prefv', inst.language).format(prefixes_list), inline=False
     ).set_footer(text=msg_footer).set_author(name=str(translator.translate('embed_title', 'help', language)))
 
     for category in bot.commands_list.keys():
@@ -52,46 +52,46 @@ async def generateEmbed(ctx, bot, config, links, version, language, disnake, tra
         )
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, links, version, language, disnake, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, links, version, language, disnake, translator)
+async def sendSlashMsg(ctx, inst, config, links, version, disnake, translator):
+    msg_embed = await generateEmbed(ctx, inst, config, links, version, disnake, translator)
     await ctx.response.send_message(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, links, version, language, disnake, translator):
-    msg_embed = await generateEmbed(ctx, bot, config, links, version, language, disnake, translator)
+async def sendRegularMsg(ctx, inst, config, links, version, disnake, translator):
+    msg_embed = await generateEmbed(ctx, inst, config, links, version, disnake, translator)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
-async def sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg):
-    for category in bot.commands_list.keys():
+async def sendCmdHelpMsg(ctx, inst, links, config, disnake, translator, arg):
+    for category in inst.bot.commands_list.keys():
         commands_result = 0
-        for command in bot.commands_list[category]:
+        for command in inst.bot.commands_list[category]:
             if(command == arg):
                 commands_result = 1
     if(commands_result > 0):
         msg_embed = disnake.Embed(
-            title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
-            description=str(translator.translate('command_description', arg, language)),
+            title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format(arg),
+            description=str(translator.translate('command_description', arg, inst.language)),
             colour=config['accent_def'],
         )
-        msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', arg, language).format(config['prefix']), inline=False)
+        msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language), translator.translate('command_examples', arg, inst.language).format(config['prefix']), inline=False)
     else:
         if(links['repo'] == None or len(links['repo']) == 0):
             msg_embed = disnake.Embed(
-                title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
-                description=str(translator.translate('embed_description', 'cmd_not_found2', language)),
+                title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format(arg),
+                description=str(translator.translate('embed_description', 'cmd_not_found2', inst.language)),
                 colour=config['accent_err'],
             )
         else:
             msg_embed = disnake.Embed(
-                title=str(translator.translate('embed_title', 'cmd_help', language)).format(arg),
-                description=str(translator.translate('embed_description', 'cmd_not_found', language).format(links['repo'] + "/issues")),
+                title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format(arg),
+                description=str(translator.translate('embed_description', 'cmd_not_found', inst.language).format(links['repo'] + "/issues")),
                 colour=config['accent_err'],
             )
     await ctx.reply(embed=msg_embed, mention_author=False)
 
-async def sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator):
+async def sendCmdHelpWithoutArgs(ctx, inst, config, disnake, translator):
     aliases = None
     custom_prefix = ''
-    for prefix in await bot.get_prefix(ctx.message):
+    for prefix in await inst.bot.get_prefix(ctx.message):
         if(ctx.message.content.startswith(prefix)):
             custom_prefix = prefix
     if(ctx.message.content.startswith('{0}help'.format(config['prefix'])) or ctx.message.content.startswith('{0}help'.format(custom_prefix))):
@@ -135,11 +135,11 @@ async def sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator
     else:
         return
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'cmd_help', language)).format(query),
-        description=str(translator.translate('command_description', query, language)),
+        title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format(query),
+        description=str(translator.translate('command_description', query, inst.language)),
         colour=config['accent_def'],
     )
-    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', query, language).format(config['prefix']), inline=False)
+    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language), translator.translate('command_examples', query, language).format(config['prefix']), inline=False)
     if(aliases != None):
-        msg_embed.add_field(translator.translate('embed_fields', 'help_aliasf', language), ' '.join(aliases), inline=False)
+        msg_embed.add_field(translator.translate('embed_fields', 'help_aliasf', inst.language), ' '.join(aliases), inline=False)
     await ctx.reply(embed=msg_embed, mention_author=False)
