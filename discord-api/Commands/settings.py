@@ -19,7 +19,7 @@ import pytz
 name = 'settings'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data, msg_type):
+async def generateEmbed(ctx, inst, config, disnake, translator, arg, db, guild_data, user_data, msg_type):
     guild_id = 0
     author_id = 0
     if(msg_type == "slash"):
@@ -31,7 +31,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
     if(len(arg) >= 2):
         if(arg[0] == '-L' and (arg[1] == 'en_US' or arg[1] == 'ru_RU')):
             if ctx.author.guild_permissions.administrator:
-                await db.update_value(ctx, database, cursor, 'guilds', 'language', '\'{0}\''.format(arg[1]), guild_id)
+                await db.update_value(ctx, inst.database, inst.cursor, 'guilds', 'language', '\'{0}\''.format(arg[1]), guild_id)
                 msg_embed = disnake.Embed(
                     description=str(translator.translate('embed_description', 'settings_done', arg[1])),
                     colour=config['accent_def']
@@ -39,7 +39,7 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', arg[1])))
             else:
                 msg_embed = disnake.Embed(
-                    description=str(translator.translate('embed_description', 'forbidden', language)),
+                    description=str(translator.translate('embed_description', 'forbidden', inst.language)),
                     colour=config['accent_err']
                 )
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'forbidden', language)))
@@ -47,30 +47,30 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
             if(msg_type == "slash"):
                 guild_id = ctx.guild.id
             if ctx.author.guild_permissions.administrator:
-                await db.update_value(ctx, database, cursor, 'guilds', 'prefix', '\'{0}\''.format(arg[1]), guild_id)
+                await db.update_value(ctx, inst.database, inst.cursor, 'guilds', 'prefix', '\'{0}\''.format(arg[1]), guild_id)
                 msg_embed = disnake.Embed(
-                    description=str(translator.translate('embed_description', 'settings_done', language)),
+                    description=str(translator.translate('embed_description', 'settings_done', inst.language)),
                     colour=config['accent_def']
                 )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
             else:
                 msg_embed = disnake.Embed(
-                    description=str(translator.translate('embed_description', 'forbidden', language)),
+                    description=str(translator.translate('embed_description', 'forbidden', inst.language)),
                     colour=config['accent_err']
                 )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'forbidden', language)))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'forbidden', inst.language)))
         elif(arg[0] == '-tz'):
             try:
                 tz = pytz.timezone(arg[1])
-                await db.update_value(ctx, database, cursor, 'users', 'timezone', '\'{0}\''.format(arg[1]), author_id)
+                await db.update_value(ctx, inst.database, inst.cursor, 'users', 'timezone', '\'{0}\''.format(arg[1]), author_id)
                 msg_embed = disnake.Embed(
-                    description=str(translator.translate('embed_description', 'settings_done', language)),
+                    description=str(translator.translate('embed_description', 'settings_done', inst.language)),
                     colour=config['accent_def']
                 )
-                msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
+                msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
             except pytz.UnknownTimeZoneError as ex:
                 msg_embed = disnake.Embed(
-                    description=str(translator.translate('embed_description', 'tz_invalidabbr', language)),
+                    description=str(translator.translate('embed_description', 'tz_invalidabbr', inst.language)),
                     colour=config['accent_err']
                 )
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
@@ -79,20 +79,20 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg, db
                 description=str(translator.translate('embed_description', 'settings', language)),
                 colour=config['accent_def'],
             )
-            msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-            msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language),
+            msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+            msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', inst.language),
                                 translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
     else:
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-        msg_embed.add_field(translator.translate('embed_fields', 'settings_gsettf', language),
-                            translator.translate('embed_fields', 'settings_gsettv', language).format(f'`{guild_data[3]}`'), inline=False)
-        msg_embed.add_field(translator.translate('embed_fields', 'settings_usettf', language),
-                            translator.translate('embed_fields', 'settings_usettv', language).format(f'`{user_data[5]}`'), inline=False)
-        msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', language),
-                            translator.translate('embed_fields', 'settings_availoptv', language), inline=False)
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+        msg_embed.add_field(translator.translate('embed_fields', 'settings_gsettf', inst.language),
+                            translator.translate('embed_fields', 'settings_gsettv', inst.language).format(f'`{guild_data[3]}`'), inline=False)
+        msg_embed.add_field(translator.translate('embed_fields', 'settings_usettf', inst.language),
+                            translator.translate('embed_fields', 'settings_usettv', inst.language).format(f'`{user_data[5]}`'), inline=False)
+        msg_embed.add_field(translator.translate('embed_fields', 'settings_availoptf', inst.language),
+                            translator.translate('embed_fields', 'settings_availoptv', inst.language), inline=False)
     return msg_embed
 
 async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data):
@@ -104,9 +104,9 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
             language_embed = disnake.Embed(
                 colour=config['accent_def'],
             )
-            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language),
-                                     translator.translate('command_examples', 'settings_lang', language).format(config['prefix']),
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language),
+                                     translator.translate('command_examples', 'settings_lang', inst.language).format(config['prefix']),
                                      inline=False)
             await interaction.response.send_message(embed=language_embed)
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🪄')
@@ -114,9 +114,9 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
             language_embed = disnake.Embed(
                 colour=config['accent_def'],
             )
-            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language),
-                                     translator.translate('command_examples', 'settings_prefix', language).format(config['prefix']),
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language),
+                                     translator.translate('command_examples', 'settings_prefix', inst.language).format(config['prefix']),
                                      inline=False)
             await interaction.response.send_message(embed=language_embed)
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🕒')
@@ -124,9 +124,9 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
             language_embed = disnake.Embed(
                 colour=config['accent_def'],
             )
-            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language),
-                                     translator.translate('command_examples', 'settings_tz', language).format(config['prefix']),
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language),
+                                     translator.translate('command_examples', 'settings_tz', inst.language).format(config['prefix']),
                                      inline=False)
             await interaction.response.send_message(embed=language_embed)
     if(len(arg) >= 2):
@@ -141,7 +141,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, d
     else:
         await ctx.reply(embed=msg_embed, view=SettingsByButton(), mention_author=False)
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data, user_data):
+async def sendSlashMsg(ctx, inst, config, disnake, translator, arg, db, guild_data, user_data):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg, db, database, cursor, guild_data,
                                     user_data, 'slash')
     class SettingsByButton(disnake.ui.View):
@@ -150,9 +150,9 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db,
             language_embed = disnake.Embed(
                 colour=config['accent_def'],
             )
-            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language),
-                                     translator.translate('command_examples', 'settings_lang2', language).format("/"),
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language),
+                                     translator.translate('command_examples', 'settings_lang2', inst.language).format("/"),
                                      inline=False)
             await interaction.response.send_message(embed=language_embed)
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🪄')
@@ -162,7 +162,7 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db,
             )
             language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
             language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language),
-                                     translator.translate('command_examples', 'settings_pref2', language).format("/"),
+                                     translator.translate('command_examples', 'settings_pref2', inst.language).format("/"),
                                      inline=False)
             await interaction.response.send_message(embed=language_embed)
         @disnake.ui.button(style=disnake.ButtonStyle.blurple, label='🕒')
@@ -170,9 +170,9 @@ async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg, db,
             language_embed = disnake.Embed(
                 colour=config['accent_def'],
             )
-            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', language)))
-            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', language),
-                                     translator.translate('command_examples', 'settings_tz2', language).format("/"),
+            language_embed.set_author(name=str(translator.translate('embed_title', 'settings', inst.language)))
+            language_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language),
+                                     translator.translate('command_examples', 'settings_tz2', inst.language).format("/"),
                                      inline=False)
             await interaction.response.send_message(embed=language_embed)
     if(len(arg) >= 2):
