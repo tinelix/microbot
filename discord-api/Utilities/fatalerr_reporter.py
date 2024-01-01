@@ -13,7 +13,7 @@
 #   Please see each file in the implementation for copyright and licensing
 #   information, (in the opening comment of each file).
 
-async def generateBrEmbed(ctx, bot, config, version, language, disnake, translator, error, msg_type):
+async def generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type):
     if(msg_type == 'regular'):
         if(ctx.message.content.startswith('{0}help'.format(config['prefix']))):
             command_example = translator.translate('command_examples', 'help', 'en_US')
@@ -51,20 +51,20 @@ async def generateBrEmbed(ctx, bot, config, version, language, disnake, translat
     )
     return msg_embed
 
-async def generateEmbed(ctx, bot, config, version, language, disnake, translator, error):
+async def generateEmbed(ctx, inst, config, version, disnake, translator, error):
     msg_embed = disnake.Embed(
-        description=translator.translate('embed_description', 'fatalerr_reporter', language),
+        description=translator.translate('embed_description', 'fatalerr_reporter', inst.language),
         colour=config['accent_err']
     )
-    msg_embed.set_author(name=translator.translate('embed_title', 'fatalerr_reporter', language))
+    msg_embed.set_author(name=translator.translate('embed_title', 'fatalerr_reporter', inst.language))
     return msg_embed
 
-async def send(ctx, bot, config, version, language, disnake, translator, error, msg_type):
-    msg_embed = await generateEmbed(ctx, bot, config, version, language, disnake, translator, error)
+async def send(ctx, inst, config, version, disnake, translator, error, msg_type):
+    msg_embed = await generateEmbed(ctx, inst, config, version, disnake, translator, error)
     if(config['bugs_ch'] > 0):
         try:
             channel = bot.get_channel(config['bugs_ch'])
-            msg_bug_embed = await generateBrEmbed(ctx, bot, config, version, language, disnake, translator, error, msg_type)
+            msg_bug_embed = await generateBrEmbed(ctx, inst, config, version, disnake, translator, error, msg_type)
             await channel.send(embed=msg_bug_embed)
         except:
             print(' WE\'VE GOT SOMETHING BROKEN!\r\n\r\n {0}\r\n\r\n How to reproduce the fatal error? {1}\r\n Version: {2}\r\n\r\n'.format(error, command_example.format(config['prefix']), version['version'], version['version_date']))

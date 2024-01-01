@@ -324,7 +324,7 @@ class Listeners(commands.Cog):
             error_list = []
             error_text = "".join(traceback.TracebackException.from_exception(error).format())
             if(config['bugs_ch'] > 0):
-                await fatalerr_reporter.send(ctx, self.bot, config, version, language, disnake, translator, error_text, 'regular')
+                await fatalerr_reporter.send(ctx, self, config, version, disnake, translator, error_text, 'regular')
             else:
                 print(' WE\'VE GOT SOMETHING BROKEN!\r\n{0}'.format(error_text))
 
