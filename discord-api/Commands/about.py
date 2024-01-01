@@ -20,7 +20,7 @@ async def generateEmbed(ctx, inst, config, links, disnake, translator, python_ve
     msg_embed.set_author(name=str(translator.translate('embed_title', 'about', inst.language)))
     return msg_embed
 
-async def editEmbed(ctx, inst, config, links, disnake, translator, python_version, uptime, version):
+async def editEmbed(ctx, inst, config, links, disnake, translator, python_version, version, uptime):
     try:
         dev = inst.bot.get_user(config['dev_id'])
     except:
@@ -134,7 +134,7 @@ async def sendSlashMsg(ctx, inst, config, links, version, disnake, translator, p
     await ctx.send(embed=msg_embed)
 
 async def sendRegularMsg(ctx, inst, config, links, version, disnake, translator, python_version, uptime):
-    msg_embed = await generateEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
+    msg_embed = await generateEmbed(ctx, inst, config, links, disnake, translator, python_version, version, uptime)
     msg = await ctx.reply(embed=msg_embed, mention_author=False)
-    msg_embed_2 = await editEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
+    msg_embed_2 = await editEmbed(ctx, inst, config, links, disnake, translator, python_version, version, uptime)
     await msg.edit(embed=msg_embed_2)
