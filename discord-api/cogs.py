@@ -344,7 +344,8 @@ class Listeners(commands.Cog):
 
 async def sync_db(self, ctx, table, message_type):
     if(message_type == 'regular'):
-        cursor = self.bot.database.cursor()
+        self.cursor = self.bot.database.cursor()
+        self.database = self.bot.database
         # for user values sync
         if(await db.if_user_existed(self.bot.database, cursor, ctx.message.author.id) == True):
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.message.author.id))
