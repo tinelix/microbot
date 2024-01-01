@@ -115,10 +115,11 @@ def getConditionsShortDescription(code, inst, translator):
         conditions = translator.translate('embed_description', 'weather_sconditions_804', inst.language)
 
     return conditions
+
 def formatTemperature(temp):
     if(round(temp, 1) > 0.0):
         ftemp = "+{0}".format(round(temp, 1))
-    elif(round(weather['main']['temp'], 1) == 0.0):
+    elif(round(temp, 1) == 0.0):
         ftemp = "±{0}".format(round(temp, 1))
     else:
         ftemp = "-{0}".format(round(temp, 1))
