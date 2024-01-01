@@ -270,7 +270,7 @@ class Commands(commands.Cog):
     async def shutdown_cmd(self, ctx):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         user_data = await sync_db(self, ctx, 'users', 'regular')
-        await eval.sendGoodbyeMsg(ctx, self, config, language, disnake, translator)
+        await eval.sendGoodbyeMsg(ctx, self, config, disnake, translator)
 
 class Listeners(commands.Cog):
     def __init__(self, bot, database, cursor):
