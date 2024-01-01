@@ -114,7 +114,7 @@ async def generateTimersEmbed(ctx, inst, config, disnake, translator, db):
                 else:
                     msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dco', inst.language), inline=False)
     else:
-        msg_embed.description = translator.translate('embed_description', 'timers', language)
+        msg_embed.description = translator.translate('embed_description', 'timers', inst.language)
     return msg_embed
 
 async def sendRegularMsgWithoutArgs(ctx, inst, config, disnake, translator, db):
