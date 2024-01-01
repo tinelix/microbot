@@ -18,47 +18,47 @@ import random
 name = 'rngen'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
+async def generateEmbed(ctx, inst, config, disnake, translator, arg):
     random_numb = random.randint(int(arg.split('-')[0]), int(arg.split('-')[1]))
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
     )
-    msg_embed.add_field(translator.translate('embed_fields', 'rngen_numbf', language), random_numb)
-    msg_embed.set_author(name=str(translator.translate('embed_title', 'rngen', language)))
+    msg_embed.add_field(translator.translate('embed_fields', 'rngen_numbf', inst.language), random_numb)
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'rngen', inst.language)))
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
+async def sendSlashMsg(ctx, inst, config, disnake, translator, arg):
     try:
-        msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+        msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
         class RetryButton(disnake.ui.View):
-            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'rngen_retry', language))
+            @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'rngen_retry', inst.language))
             async def regenerate(self, button: disnake.ui.Button, interaction: disnake.Interaction):
-                msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+                msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
                 await interaction.response.send_message(embed=msg_embed)
         await ctx.response.send_message(embed=msg_embed, view=RetryButton())
     except:
-        await sendHelpMsg(ctx, bot, config, language, disnake, translator)
+        await sendHelpMsg(ctx, inst, config, language, disnake, translator)
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
+async def sendRegularMsg(ctx, inst, config, disnake, translator, arg):
     try:
         if(len(arg.split('-')) == 2):
-            msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+            msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
             class RetryButton(disnake.ui.View):
-                @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'rngen_retry', language))
+                @disnake.ui.button(style=disnake.ButtonStyle.blurple, label=translator.translate('button', 'rngen_retry', inst.language))
                 async def regenerate(self, button: disnake.ui.Button, interaction: disnake.Interaction):
-                    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+                    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
                     await interaction.response.send_message(embed=msg_embed, view=RetryButton())
             await ctx.reply(embed=msg_embed, view=RetryButton(), mention_author=False)
         else:
-            await sendHelpMsg(ctx, bot, config, language, disnake, translator)
+            await sendHelpMsg(ctx, inst, config, disnake, translator)
     except:
-        await sendHelpMsg(ctx, bot, config, language, disnake, translator)
+        await sendHelpMsg(ctx, inst, config, disnake, translator)
 
-async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
+async def sendHelpMsg(ctx, inst, config, language, disnake, translator):
     msg_embed = disnake.Embed(
-        title=str(translator.translate('embed_title', 'cmd_help', language)).format('rngen'),
-        description=str(translator.translate('command_description', 'rngen', language)),
+        title=str(translator.translate('embed_title', 'cmd_help', inst.language)).format('rngen'),
+        description=str(translator.translate('command_description', 'rngen', inst.language)),
         colour=config['accent_def'],
     )
-    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', language), translator.translate('command_examples', 'rngen', language).format(config['prefix']), inline=False)
+    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language), translator.translate('command_examples', 'rngen', inst.language).format(config['prefix']), inline=False)
     await ctx.send(embed=msg_embed)
