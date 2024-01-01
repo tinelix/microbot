@@ -21,7 +21,7 @@ name = 'wiki'
 hidden = False
 
 async def generateEmbed(ctx, inst, config, disnake, translator, arg):
-        if(language == "ru_RU"):
+        if(inst.language == "ru_RU"):
             wikipedia.set_lang("ru")
         else:
             wikipedia.set_lang("en")
@@ -41,7 +41,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg):
                     title=page.title,
                     url=page.url,
                     colour=config['accent_def'],
-                    description=translator.translate('embed_description', 'wikipedia', language).format(short_content, page.url)
+                    description=translator.translate('embed_description', 'wikipedia', inst.language).format(short_content, page.url)
                 )
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'wikipedia', inst.language)))
             else:
