@@ -100,10 +100,10 @@ async def generateEmbed(ctx, inst, config, disnake, translator):
             translator.translate('embed_fields', 'guild_blvlf', inst.language), translator.translate('embed_fields', 'guild_blvlv2', inst.language).format(guild.premium_tier, guild.premium_subscription_count), inline=True
         )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_mlvlf', language), verif_lvl, inline=False
+        translator.translate('embed_fields', 'guild_mlvlf', inst.language), verif_lvl, inline=False
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'guild_statsf', language), translator.translate('embed_fields', 'guild_statsv', language).format(guild.member_count, people, round(people / (guild.member_count * 0.01), 2), bots, round(bots / (guild.member_count * 0.01), 2), online, round(online / (guild.member_count * 0.01), 2), len(guild.channels)), inline=True
+        translator.translate('embed_fields', 'guild_statsf', inst.language), translator.translate('embed_fields', 'guild_statsv', inst.language).format(guild.member_count, people, round(people / (guild.member_count * 0.01), 2), bots, round(bots / (guild.member_count * 0.01), 2), online, round(online / (guild.member_count * 0.01), 2), len(guild.channels)), inline=True
     )
 
     if(len(badges) > 0):
