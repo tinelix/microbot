@@ -43,7 +43,7 @@ async def generateEmbed(ctx, inst, config, links, version, disnake, translator):
     for category in inst.bot.commands_list.keys():
         commands_list = ''
         for command in inst.bot.commands_list[category]:
-            if(inst.bot.commands_list[category].index(command) < len(bot.commands_list[category]) - 1):
+            if(inst.bot.commands_list[category].index(command) < len(inst.bot.commands_list[category]) - 1):
                 commands_list += "`{0}` ".format(command)
             else:
                 commands_list += "`{0}`".format(command)
