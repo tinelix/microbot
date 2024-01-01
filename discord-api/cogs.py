@@ -376,23 +376,23 @@ async def sync_db(self, ctx, table, message_type):
         cursor = bot.database.cursor()
         # for user values sync
         if(await db.if_user_existed(bot.database, self.cursor, ctx.author.id) == True):
-            cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
+            self.cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
             user_data = cursor.fetchone()
             await db.update_value(ctx, self.bot.database, self.cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.author.id)
             await db.update_value(ctx, self.bot.database, self.cursor, 'users', 'global_name', '\'{0}\''.format(ctx.author.global_name), ctx.author.id)
         else:
             await db.add_user_value(self.bot.database, ctx, cursor)
-            cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
+            self.cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
             user_data = cursor.fetchone()
             # for guild values sync and cooldown
         if(await db.if_guild_existed(bot.database, self.cursor, ctx.guild.id) == True):
-            cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
+            self.cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
             guild_data = cursor.fetchone()
             await db.update_value(ctx, self.bot.database, self.cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
         else:
             language = 'en_US'
             await db.add_guild_value(config, self.bot.database, ctx.guild, self.cursor)
-            cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
+            self.cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
             guild_data = cursor.fetchone()
         if(table == 'guilds'):
             self.language = guild_data[2]
