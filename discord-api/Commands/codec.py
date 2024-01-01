@@ -98,7 +98,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
                         colour=config['accent_err']
                     )
                 msg_embed.set_author(name=str(translator.translate('embed_title', 'codec', inst.language)))
-                msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', language).format(result), inline=False)
+                msg_embed.add_field(translator.translate('embed_fields', 'codec_resulf', inst.language), translator.translate('embed_fields', 'codec_resulv', inst.language).format(result), inline=False)
                 msg_embed.add_field(translator.translate('embed_fields', 'codec_algf', inst.language), translator.translate('embed_fields', 'codec_algv', inst.language).format(algoritm), inline=False)
             elif(arg[1] == 'base32'):
                 algoritm = "Base32"
@@ -161,7 +161,6 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, binary):
 
 async def sendRegularMsg(ctx, inst, config, disnake, translator, arg, binary):
     try:
-        print(arg)
         msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg, binary)
         await ctx.reply(embed=msg_embed, mention_author=False)
     except:
