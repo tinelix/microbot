@@ -122,7 +122,7 @@ def formatTemperature(temp):
     elif(round(temp, 1) == 0.0):
         ftemp = "±{0}".format(round(temp, 1))
     else:
-        ftemp = "-{0}".format(round(temp, 1))
+        ftemp = "{0}".format(round(temp, 1))
 
     return ftemp
 
