@@ -128,13 +128,13 @@ async def editEmbed(ctx, inst, config, links, disnake, translator, python_versio
     msg_embed.set_footer(text='Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)')
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, links, version, language, disnake, translator, python_version, uptime, tz):
+async def sendSlashMsg(ctx, inst, config, links, version, disnake, translator, python_version, uptime):
     await ctx.response.defer()
-    msg_embed = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz, version)
+    msg_embed = await editEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
     await ctx.send(embed=msg_embed)
 
 async def sendRegularMsg(ctx, bot, config, links, version, language, disnake, translator, python_version, uptime, tz):
-    msg_embed = await generateEmbed(ctx, bot, config, links, language, disnake, translator, python_version, version)
+    msg_embed = await generateEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
     msg = await ctx.reply(embed=msg_embed, mention_author=False)
-    msg_embed_2 = await editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime, tz, version)
+    msg_embed_2 = await editEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
     await msg.edit(embed=msg_embed_2)

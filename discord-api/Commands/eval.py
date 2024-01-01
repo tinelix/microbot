@@ -65,7 +65,7 @@ async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
     msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
-async def sendGoodbyeMsg(ctx, bot, config, language, disnake, translator):
+async def sendGoodbyeMsg(ctx, inst, config, disnake, translator):
     if(ctx.message.author.id == config['dev_id']):  # only bot owner!
         try:
             now = datetime.now()

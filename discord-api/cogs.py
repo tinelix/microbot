@@ -63,8 +63,8 @@ class Commands(commands.Cog):
         uptime = str(datetime.timedelta(seconds=int(round(time.time() - self.connectionStartTime))))
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        await about.sendRegularMsg(ctx, self, config, links, version, disnake, translator,
-                                   python_version, uptime)
+        await about.sendRegularMsg(ctx, self, config, links, disnake, translator,
+                                   python_version, uptime, version)
 
     @commands.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
@@ -72,8 +72,7 @@ class Commands(commands.Cog):
         uptime = str(datetime.timedelta(seconds=int(round(time.time() - self.connectionStartTime))))
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'slash')
         user_data = await sync_db(self.bot, ctx, 'users', 'slash')
-        await about.sendSlashMsg(ctx, self, config, links, version, disnake, translator,
-                                 python_version, uptime)
+        await about.sendSlashMsg(ctx, self, config, links, disnake, translator, python_version, uptime, version)
 
     @commands.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
@@ -252,28 +251,28 @@ class Commands(commands.Cog):
     async def timers_cmd(self, ctx, *, arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        await timers.sendRegularMsg(ctx, self, config, language, disnake, translator, arg, db)
+        await timers.sendRegularMsg(ctx, self, config, disnake, translator, arg, db)
 
     @commands.command(name="eval")
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def eval_cmd(self, ctx, *, arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        await eval.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg)
+        await eval.sendRegularMsg(ctx, self, config, disnake, translator, arg)
 
     @commands.command(name="test")
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def test_cmd(self, ctx, arg):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        await test.sendRegularMsg(ctx, self.bot, config, language, disnake, translator, arg, fatalerr_reporter)
+        await test.sendRegularMsg(ctx, self, config, disnake, translator, arg, fatalerr_reporter)
 
     @commands.command(name="shutdown")
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
     async def shutdown_cmd(self, ctx):
         guild_data = await sync_db(self.bot, ctx, 'guilds', 'regular')
         user_data = await sync_db(self.bot, ctx, 'users', 'regular')
-        await eval.sendGoodbyeMsg(ctx, self.bot, config, language, disnake, translator)
+        await eval.sendGoodbyeMsg(ctx, self, config, language, disnake, translator)
 
 class Listeners(commands.Cog):
     def __init__(self, bot, database, cursor):
