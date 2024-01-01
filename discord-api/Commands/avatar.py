@@ -18,7 +18,7 @@ import re
 name = 'avatar'
 hidden = False
 
-async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
+async def generateEmbed(ctx, inst, config, disnake, translator, arg):
     try:
         query = int(re.search(r'\d+', arg).group())
         user = bot.get_user(query)
@@ -35,24 +35,24 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         ).set_image(user.display_avatar.url)
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'avatar', language)).format(user.name, user.discriminator))
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'avatar', inst.language)).format(user.name, user.discriminator))
     else:
         msg_embed = disnake.Embed(
-            description=translator.translate('embed_description', 'error_unf', language),
+            description=translator.translate('embed_description', 'error_unf', inst.language),
             colour=config['accent_err'],
         )
-        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', inst.language)))
     return msg_embed
 
-async def sendSlashMsg(ctx, bot, config, language, disnake, translator, arg):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+async def sendSlashMsg(ctx, inst, config, disnake, translator, arg):
+    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
     await ctx.response.send_message(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, language, disnake, translator, arg):
-    msg_embed = await generateEmbed(ctx, bot, config, language, disnake, translator, arg)
+async def sendRegularMsg(ctx, inst, config, disnake, translator, arg):
+    msg_embed = await generateEmbed(ctx, inst, config, disnake, translator, arg)
     await ctx.reply(embed=msg_embed, mention_author=False)
 
-async def sendHelpMsg(ctx, bot, config, language, disnake, translator):
+async def sendHelpMsg(ctx, inst, config, disnake, translator):
     msg_embed = disnake.Embed(
         title=str(translator.translate('embed_title', 'cmd_help', language)).format('avatar'),
         description=str(translator.translate('command_description', 'avatar', language)),
