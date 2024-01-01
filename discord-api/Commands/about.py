@@ -87,13 +87,13 @@ async def editEmbed(ctx, inst, config, links, disnake, translator, python_versio
         translator.translate('embed_fields', 'about_regdf', inst.language), translator.translate('embed_fields', 'about_regdv', inst.language).format(translator.formatDate(bot.user.created_at.astimezone(tz), 'normal', inst.language)), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'about_statsf', language), translator.translate('embed_fields', 'about_statsv', inst.language).format(len(bot.guilds), len(bot.users)), inline=True
+        translator.translate('embed_fields', 'about_statsf', inst.language), translator.translate('embed_fields', 'about_statsv', inst.language).format(len(bot.guilds), len(bot.users)), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'about_uptimef', language), translator.translate('embed_fields', 'about_uptimev', inst.language).format(uptime), inline=True
+        translator.translate('embed_fields', 'about_uptimef', inst.language), translator.translate('embed_fields', 'about_uptimev', inst.language).format(uptime), inline=True
     )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'about_basedf', language), translator.translate('embed_fields', 'about_basedv', language).format(python_version(), disnake.__version__, sqlite3.sqlite_version), inline=True
+        translator.translate('embed_fields', 'about_basedf', inst.language), translator.translate('embed_fields', 'about_basedv', inst.language).format(python_version(), disnake.__version__, sqlite3.sqlite_version), inline=True
     )
     try:
         msg_embed.add_field(
