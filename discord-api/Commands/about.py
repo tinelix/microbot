@@ -12,7 +12,7 @@ import sqlite3
 name = 'about'
 hidden = False
 
-async def generateEmbed(ctx, inst, config, links, disnake, translator, python_version, version):
+async def generateEmbed(ctx, inst, config, links, disnake, translator, python_version, version, uptime):
     msg_embed = disnake.Embed(
         description=translator.translate('embed_description', 'please_wait', inst.language),
         colour=config['accent_def'],
@@ -133,7 +133,7 @@ async def sendSlashMsg(ctx, inst, config, links, version, disnake, translator, p
     msg_embed = await editEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
     await ctx.send(embed=msg_embed)
 
-async def sendRegularMsg(ctx, bot, config, links, version, language, disnake, translator, python_version, uptime, tz):
+async def sendRegularMsg(ctx, inst, config, links, version, disnake, translator, python_version, uptime):
     msg_embed = await generateEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
     msg = await ctx.reply(embed=msg_embed, mention_author=False)
     msg_embed_2 = await editEmbed(ctx, inst, config, links, disnake, translator, python_version, version)
