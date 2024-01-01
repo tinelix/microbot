@@ -46,7 +46,7 @@ async def generateEmbed(ctx, inst, config, tokens, disnake, translator, arg):
         msg_embed.set_author(name=str(translator.translate('embed_title', 'error', inst.language)))
     return msg_embed
 
-def getConditionsDescription(code, translator, language):
+def getConditionsDescription(code, inst, translator):
     conditions = ""
     if(code == 200):
         conditions = translator.translate('embed_description', 'weather_conditions_200', inst.language)
@@ -81,7 +81,7 @@ def getConditionsDescription(code, translator, language):
 
     return conditions
 
-def getConditionsShortDescription(code, translator, language):
+def getConditionsShortDescription(code, inst, translator):
     conditions = ""
     if(code == 200):
         conditions = translator.translate('embed_description', 'weather_sconditions_200', inst.language)
@@ -142,7 +142,7 @@ async def generateWeatherEmbed(ctx, inst, config, tokens, disnake, translator, c
     weather = data.json()
     forecast = forecast_data.json()
 
-    current_conditions = getConditionsDescription(weather['weather'][0]['id'], translator, inst.language)
+    current_conditions = getConditionsDescription(weather['weather'][0]['id'], inst, translator)
 
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
@@ -157,7 +157,7 @@ async def generateWeatherEmbed(ctx, inst, config, tokens, disnake, translator, c
 
     for day in forecast['list']:
         if(forecast['list'].index(day) < 7):
-            conditions = getConditionsShortDescription(day['weather'][0]['id'], translator, inst.language)
+            conditions = getConditionsShortDescription(day['weather'][0]['id'], inst, translator)
             temp = formatTemperature(day['main']['temp'])
             min_temp = formatTemperature(day['main']['temp_min'])
             max_temp = formatTemperature(day['main']['temp_max'])
