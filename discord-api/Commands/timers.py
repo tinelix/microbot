@@ -102,7 +102,7 @@ async def generateTimersEmbed(ctx, inst, config, disnake, translator, db):
                 if(remaining_time.total_seconds() >= 0):
                     remaining_hours = (remaining_time.seconds // 3600) % 24
                     remaining_minutes = (remaining_time.seconds % 3600) // 60
-                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dcr', language).format(remaining_time.days, remaining_hours, remaining_minutes, remaining_time.seconds % 60), inline=False)
+                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dcr', inst.language).format(remaining_time.days, remaining_hours, remaining_minutes, remaining_time.seconds % 60), inline=False)
                 else:
                     msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dco', inst.language), inline=False)
             elif(timer[4] == 'elapsed'):
@@ -110,7 +110,7 @@ async def generateTimersEmbed(ctx, inst, config, disnake, translator, db):
                 if(elapsed_time.total_seconds() >= 0):
                     elapsed_hours = (elapsed_time.seconds // 3600) % 24
                     elapsed_minutes = (elapsed_time.seconds % 3600) // 60
-                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dce', language).format(elapsed_time.days, elapsed_hours, elapsed_minutes, elapsed_time.seconds % 60), inline=False)
+                    msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dce', inst.language).format(elapsed_time.days, elapsed_hours, elapsed_minutes, elapsed_time.seconds % 60), inline=False)
                 else:
                     msg_embed.add_field('{0} {1}'.format(timer[2], timer[0]), translator.translate('embed_fields', 'timers_dco', inst.language), inline=False)
     else:
@@ -126,7 +126,7 @@ async def sendRegularMsgWithoutArgs(ctx, inst, config, disnake, translator, db):
                 colour=config['accent_def'],
                 description=translator.translate('command_examples', 'timers_create', inst.language).format(config['prefix'])
             )
-            timers_creating_embed.set_author(name=translator.translate('embed_title', 'timers', language))
+            timers_creating_embed.set_author(name=translator.translate('embed_title', 'timers', inst.language))
             await interaction.response.send_message(embed=timers_creating_embed)
         @disnake.ui.button(style=disnake.ButtonStyle.red, label=translator.translate('button', 'timers_delete', inst.language))
         async def delete_timer(self, button: disnake.ui.Button, interaction: disnake.Interaction):
@@ -134,7 +134,7 @@ async def sendRegularMsgWithoutArgs(ctx, inst, config, disnake, translator, db):
                 colour=config['accent_def'],
                 description=translator.translate('command_examples', 'timers_delete', inst.language).format(config['prefix'])
             )
-            timers_creating_embed.set_author(name=translator.translate('embed_title', 'timers', language))
+            timers_creating_embed.set_author(name=translator.translate('embed_title', 'timers', inst.language))
             await interaction.response.send_message(embed=timers_creating_embed)
     await ctx.reply(embed=msg_embed, view=TimerByButtons(), mention_author=False)
 
