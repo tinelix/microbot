@@ -164,7 +164,7 @@ async def generateWeatherEmbed(ctx, inst, config, tokens, disnake, translator, c
             max_temp = formatTemperature(day['main']['temp_max'])
             day7_forecast += "{0} | {1}°C\r\n{2}\r\n".format(day['dt_txt'], temp, conditions)
 
-    msg_embed.set_author(name=str(translator.translate('embed_title', 'weather2', language)).format(weather['name'], weather['sys']['country']))
+    msg_embed.set_author(name=str(translator.translate('embed_title', 'weather2', inst.language)).format(weather['name'], weather['sys']['country']))
     msg_embed.add_field(translator.translate('embed_fields', 'weather_tempf', inst.language), translator.translate('embed_fields', 'weather_tempv', inst.language).format(current_temp, current_min_temp, current_max_temp), inline=False)
     msg_embed.add_field(translator.translate('embed_fields', 'weather_pressuref', inst.language), translator.translate('embed_fields', 'weather_pressurev', inst.language).format(round(weather['main']['pressure'] * 0.75006)))
     msg_embed.add_field(translator.translate('embed_fields', 'weather_humidityf', inst.language), translator.translate('embed_fields', 'weather_humidityv', inst.language).format(weather['main']['humidity']))
