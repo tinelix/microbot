@@ -79,7 +79,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, db):
         elif(args[0] == '-D'):
             if(len(args) >= 2):
                 timer_name = " ".join(args[1:])
-                await db.delete_timer(database, cursor, timer_name, author_id)
+                await db.delete_timer(inst.database, inst.cursor, timer_name, author_id)
                 msg_embed.description = translator.translate('embed_description', 'timers_deleted', inst.language).format(config['prefix'])
             else:
                 msg_embed.description = translator.translate('command_examples', 'timers_delete', inst.language).format(config['prefix'])
