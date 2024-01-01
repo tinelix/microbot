@@ -64,7 +64,7 @@ class Commands(commands.Cog):
         guild_data = await sync_db(self, ctx, 'guilds', 'regular')
         user_data = await sync_db(self, ctx, 'users', 'regular')
         await about.sendRegularMsg(ctx, self, config, links, disnake, translator,
-                                   python_version, uptime, version)
+                                   python_version, version, uptime)
 
     @commands.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
@@ -72,7 +72,7 @@ class Commands(commands.Cog):
         uptime = str(datetime.timedelta(seconds=int(round(time.time() - self.connectionStartTime))))
         guild_data = await sync_db(self, ctx, 'guilds', 'slash')
         user_data = await sync_db(self, ctx, 'users', 'slash')
-        await about.sendSlashMsg(ctx, self, config, links, disnake, translator, python_version, uptime, version)
+        await about.sendSlashMsg(ctx, self, config, links, disnake, translator, python_version, version, uptime)
 
     @commands.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
     @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
