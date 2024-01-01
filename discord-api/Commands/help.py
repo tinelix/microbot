@@ -139,7 +139,7 @@ async def sendCmdHelpWithoutArgs(ctx, inst, config, disnake, translator):
         description=str(translator.translate('command_description', query, inst.language)),
         colour=config['accent_def'],
     )
-    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language), translator.translate('command_examples', query, language).format(config['prefix']), inline=False)
+    msg_embed.add_field(translator.translate('embed_fields', 'help_exampf', inst.language), translator.translate('command_examples', query, inst.language).format(config['prefix']), inline=False)
     if(aliases != None):
         msg_embed.add_field(translator.translate('embed_fields', 'help_aliasf', inst.language), ' '.join(aliases), inline=False)
     await ctx.reply(embed=msg_embed, mention_author=False)
