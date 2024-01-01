@@ -345,27 +345,27 @@ class Listeners(commands.Cog):
         else:
             print(' BUGREPORT:\r\n{0}'.format(error_text))
 
-async def sync_db(bot, ctx, table, message_type):
+async def sync_db(self, ctx, table, message_type):
     if(message_type == 'regular'):
-        cursor = bot.database.cursor()
+        cursor = self.bot.database.cursor()
         # for user values sync
-        if(await db.if_user_existed(bot.database, cursor, ctx.message.author.id) == True):
+        if(await db.if_user_existed(self.bot.database, cursor, ctx.message.author.id) == True):
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.message.author.id))
             user_data = cursor.fetchone()
-            await db.update_value(ctx, bot.database, cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.message.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.message.author.id)
-            await db.update_value(ctx, bot.database, cursor, 'users', 'global_name', '\'{0}\''.format(ctx.message.author.global_name), ctx.message.author.id)
+            await db.update_value(ctx, self.bot.database, cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.message.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.message.author.id)
+            await db.update_value(ctx, self.bot.database, cursor, 'users', 'global_name', '\'{0}\''.format(ctx.message.author.global_name), ctx.message.author.id)
         else:
-            await db.add_user_value(bot.database, ctx.message, cursor)
+            await db.add_user_value(self.bot.database, ctx.message, cursor)
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.message.author.id))
             user_data = cursor.fetchone()
         # for guild values sync and cooldown
-        if(await db.if_guild_existed(bot.database, cursor, ctx.message.guild.id) == True):
+        if(await db.if_guild_existed(self.bot.database, cursor, ctx.message.guild.id) == True):
             cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.message.guild.id))
             guild_data = cursor.fetchone()
-            await db.update_value(ctx, bot.database, cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
+            await db.update_value(ctx, self.bot.database, cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
         else:
             language = 'en_US'
-            await db.add_guild_value(config, bot.database, ctx.message.guild, cursor)
+            await db.add_guild_value(config, self.bot.database, ctx.message.guild, cursor)
             cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.message.guild.id))
             guild_data = cursor.fetchone()
         if(table == 'guilds'):
@@ -380,20 +380,20 @@ async def sync_db(bot, ctx, table, message_type):
         if(await db.if_user_existed(bot.database, cursor, ctx.author.id) == True):
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
             user_data = cursor.fetchone()
-            await db.update_value(ctx, bot.database, cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.author.id)
-            await db.update_value(ctx, bot.database, cursor, 'users', 'global_name', '\'{0}\''.format(ctx.author.global_name), ctx.author.id)
+            await db.update_value(ctx, self.bot.database, cursor, 'users', 'sended_msg_timestamp', '\'{0}\''.format(ctx.created_at.strftime('%Y-%m-%d %H:%M:%S')), ctx.author.id)
+            await db.update_value(ctx, self.bot.database, cursor, 'users', 'global_name', '\'{0}\''.format(ctx.author.global_name), ctx.author.id)
         else:
-            await db.add_user_value(bot.database, ctx, cursor)
+            await db.add_user_value(self.bot.database, ctx, cursor)
             cursor.execute("SELECT * FROM users WHERE id='{0}';".format(ctx.author.id))
             user_data = cursor.fetchone()
             # for guild values sync and cooldown
         if(await db.if_guild_existed(bot.database, cursor, ctx.guild.id) == True):
             cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
             guild_data = cursor.fetchone()
-            await db.update_value(ctx, bot.database, cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
+            await db.update_value(ctx, self.bot.database, cursor, 'guilds', 'name', '\'{0}\''.format(ctx.guild.name), ctx.guild.id)
         else:
             language = 'en_US'
-            await db.add_guild_value(config, bot.database, ctx.guild, cursor)
+            await db.add_guild_value(config, self.bot.database, ctx.guild, cursor)
             cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
             guild_data = cursor.fetchone()
         if(table == 'guilds'):
