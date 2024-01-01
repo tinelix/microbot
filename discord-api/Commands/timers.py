@@ -52,7 +52,7 @@ async def generateEmbed(ctx, inst, config, disnake, translator, arg, db):
                     colour=config['accent_err'],
                     description='{0}\r\n{1}'.format(translator.translate('embed_description', 'invalid_cmd_usage', inst.language), translator.translate('command_examples', 'timers_create', inst.language).format(config['prefix']))
                 )
-                msg_embed.set_author(name=translator.translate('embed_title', 'timers', language))
+                msg_embed.set_author(name=translator.translate('embed_title', 'timers', inst.language))
         elif(args[0] == '-Ce'):
             try:
                 timer_name = re.search('-Ce (.+?) -t', arg).group(1)
