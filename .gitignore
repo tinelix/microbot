@@ -2,4 +2,3 @@ discord-api/config.py
 *.pyc
 *.bat
 *.sh
-discord.bat
