@@ -2,3 +2,4 @@ discord-api/config.py
 *.pyc
 *.bat
 *.sh
+discord-api/Database/main.db
