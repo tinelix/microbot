@@ -32,7 +32,7 @@ async def editEmbed(ctx, inst, config, links, disnake, translator, python_versio
     if(plt_system == 'Windows'):
         if plt_version.startswith('10.0') and int(plt_version.split('.')[2]) >= 22000:
             os_ver = 'Windows 11 ({0})'.format(plt_version)
-        elif plt_version.starstwith('10.0') and int(plt_version.split('.')[2]) >= 10240:
+        elif plt_version.startswith('10.0') and int(plt_version.split('.')[2]) >= 10240:
             os_ver = 'Windows 10 ({0})'.format(plt_version)
         elif plt_version.startswith('6.3') and int(plt_version.split('.')[2]) >= 9600:
             os_ver = 'Windows 8.1 ({0})'.format(plt_version)
