@@ -4,7 +4,8 @@
 # INSTRUCTIONS:
 # 1. Rename service-openrc.example to [service-name] and put to /etc/user/init.d
 # 2. Enable service with command:
-# 	rc-update add /etc/user/init.d/unrealircd
+# 	ln -s /etc/user/init.d/microbot /etc/init.d/microbot
+# 	rc-update add /etc/user/init.d/microbot
 
 name="microbot-discord"
 description="Tinelix Microbot for Discord service"
