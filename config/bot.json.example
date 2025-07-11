@@ -1,15 +1,16 @@
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#   DON'T FORGET TO RENAME THIS FILE TO bot.json
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   DON'T FORGET TO RENAME THIS FILE TO bot.json 
+//            AND REMOVE ANY COMMENTS
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 {
   "tg_token":         "[TELEGRAM_BOT_TOKEN]", 
   "tg_username":      "[TELEGRAM_BOT_USERNAME]", 
   "tg_name":          "[BOT_NAME]", 
-  "tg_bot_owner_id":  0,          # your Telegram user ID
-  "use_irc_bridge":   false,      # if "false" set, ignore below
+  "tg_bot_owner_id":  0,          // your Telegram user ID
+  "use_irc_bridge":   false,      // if "false" set, ignore below
   "irc_server":       "[IRC_SERVER_ADDRESS]", 
-  "irc_port":         0,          # your IRC server port
+  "irc_port":         0,          // your IRC server port
   "irc_nickname":     "[IRC_BOT_NICKNAME]", 
   "irc_ns_passwd":    "[IRC_BOT_PASSWORD_FOR_NICKSERV]",
   "license":          ""
