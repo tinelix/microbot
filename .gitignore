@@ -1,5 +1,4 @@
-discord-api/config.py
+conf/microbot.json
 *.pyc
 *.bat
 *.sh
-discord-api/Database/main.db
