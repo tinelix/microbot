@@ -1,3 +1,7 @@
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   DON'T FORGET TO RENAME THIS FILE TO bot.json
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 {
   "tg_token":         "[TELEGRAM_BOT_TOKEN]", 
   "tg_username":      "[TELEGRAM_BOT_USERNAME]", 
