@@ -1,4 +1,2 @@
-conf/microbot.json
-*.pyc
-*.bat
-*.sh
+config/*.json
+build/
